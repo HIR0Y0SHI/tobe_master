@@ -1,0 +1,3 @@
+# cacheを無視
+/cache/*
+!/cache/.gitkeep
