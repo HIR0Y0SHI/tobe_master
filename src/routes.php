@@ -11,8 +11,8 @@ $app->get('/sample/{name}', function($request, $response, $args) {
     return $this->view->render($response, 'sample.html', ['name' => $args['name']]);
 });
 
-$app->get('/api/question/{difficulty}', function($request, $response, $args) {
-    $response->getBody()->write("Question! " . $args['difficulty']);
+$app->get('/api/question/{number}', function($request, $response, $args) {
+    $response->getBody()->write("Question! " . $args['number']);
     return $response;
 });
 
