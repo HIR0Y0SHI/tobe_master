@@ -8,7 +8,7 @@ $app->get('/hello/[{name}]', function ($request, $response, $args) {
 
 
 $app->get('/sample/{name}', function($request, $response, $args) {
-    return $this->view->render($response, 'sample.html', ['name' => $args['name']]);
+    return $this->view->render($response, 'web/sample.html', ['name' => $args['name']]);
 });
 
 $app->get('/api/question/{number}', function($request, $response, $args) {
