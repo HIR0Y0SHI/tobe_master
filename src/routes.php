@@ -1,9 +1,50 @@
 <?php
-// Routes
+/**
+* Created by HIR0Y0SHI on 2016/05/31
+* ルーティングを行う
+*/
 
+
+// MEMO: ルーティングテスト
 $app->get('/hello/[{name}]', function ($request, $response, $args) {
     $response->getBody()->write("Hello, " . $args['name']);
     return $response;
+});
+
+// クイズTOP
+$app->get('/web/{category}', function($request, $response, $args) {
+    $category = $args['category'];
+    $path = 'web/';
+
+    switch ($category) {
+        case 'quizu':
+            $path .= 'quizu_top.html';
+            break ;
+        default :
+            $path .= '404.html';
+    }
+
+    return $this->view->render($response, $path, ['category' => $category]);
+});
+
+
+// クイズのモード選択
+$app->get('/web/quizu/{mode}', function($request, $response, $args) {
+    $mode = $args['mode'];
+    $path = 'web/';
+
+    switch ($mode) {
+        case 'one':
+            $path .= 'quizu_one_mode.html';
+            break ;
+        case 'multiple':
+            $path .= 'quizu_multiple_mode.html';
+            break ;
+        default :
+            $path .= '404.html';
+    }
+
+    return $this->view->render($response, $path, ['mode' => $mode]);
 });
 
 
@@ -11,11 +52,32 @@ $app->get('/sample/{name}', function($request, $response, $args) {
     return $this->view->render($response, 'web/sample.html', ['name' => $args['name']]);
 });
 
+
+
+
+
+
+
+/* ==================================================================================================== */
+// クイズ API
+// 
+/* ==================================================================================================== */
+
 $app->get('/api/question/{number}', function($request, $response, $args) {
     $response->getBody()->write("Question! " . $args['number']);
     return $response;
 });
 
+
+
+
+
+
+
+/* ==================================================================================================== */
+// APIのモック
+// テスト用なので、最終的には削除する
+/* ==================================================================================================== */
 
 //Mock
 // 一人で遊ぶ
@@ -38,6 +100,7 @@ $app->get('/api/mock/question/one/{number}', function($request, $response, $args
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
 
 });
+
 
 // 複数で遊ぶ（画像２枚の解答）
 $app->get('/api/mock/question/multiple/{number}', function($request, $response, $args) {
