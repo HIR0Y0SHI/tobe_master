@@ -1,9 +1,7 @@
 # とべマスター
 
 ## 構成
-* silex/silex: ~2.0
-* smarty/smarty": ~3.1
+* "slim/slim": "^3.1",
+* "slim/php-view": "^2.0",
+* "slim/twig-view": "1.*"
 
-
-## その他
-* ルーティングはweb/index.htmlで行う
