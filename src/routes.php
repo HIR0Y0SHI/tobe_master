@@ -5,8 +5,6 @@
 */
 
 
-
-
 /* ==================================================================================================== */
 // WEB側
 /* ==================================================================================================== */
@@ -48,9 +46,7 @@ $app->get('/web/quizu/{mode}', function($request, $response, $args) {
 });
 
 
-$app->get('/sample/{name}', function($request, $response, $args) {
-    return $this->view->render($response, 'web/sample.html', ['name' => $args['name']]);
-});
+$app->get('/sample/{name}', '\App\Controller\TestController:test');
 
 
 
