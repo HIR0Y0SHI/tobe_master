@@ -20,3 +20,12 @@
 **複数で遊ぶ画面**
 * /tobe_master/web/quizu/one
 
+## DB
+
+1. DBの作成と、アクセスできるユーザーの追加
+
+docs/create.sql
+
+2. テーブルの追加
+
+docs/db.sql
