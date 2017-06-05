@@ -10,45 +10,50 @@
 /* ==================================================================================================== */
 
 // クイズTOP
-$app->get('/web/{category}', function($request, $response, $args) {
-    $category = $args['category'];
-    $path = 'web/';
-
-    switch ($category) {
-        case 'quizu':
-            $path .= 'quizu_top.html';
-            break ;
-        default :
-            $path .= '404.html';
-    }
-
-    return $this->view->render($response, $path, ['category' => $category]);
+$app->get('/web/quizu', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quizu_top.html');
 });
 
-
-// クイズのモード選択
-$app->get('/web/quizu/{mode}', function($request, $response, $args) {
-    $mode = $args['mode'];
-    $path = 'web/';
-
-    switch ($mode) {
-        case 'one':
-            $path .= 'quizu_one_mode.html';
-            break ;
-        case 'multiple':
-            $path .= 'quizu_multiple_mode.html';
-            break ;
-        default :
-            $path .= '404.html';
-    }
-
-    return $this->view->render($response, $path, ['mode' => $mode]);
+// 一人で遊ぶ
+$app->get('/web/quizu/one', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quizu_one_mode.html');
 });
+
+// みんなで遊ぶ
+$app->get('/web/quizu/multiple', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quizu_multiple_mode.html');
+});
+
 
 
 $app->get('/sample/{name}', '\App\Controller\TestController:test');
+// $app->get('/sample/{name}', function() use ($app) {
+//     $test = new \App\Controller\TestController($app);
+//     $test->test();
+// });
 
+$app->get('/db', function($request, $response, $args) {
 
+    if (empty($this->db)) {
+        echo 'データベースエラーが発生しました。';
+        exit;
+    }
+
+    try {
+        $mapper = new App\Models\Question($this->db);
+        $test = $mapper->getQuestion();
+        var_dump($test);
+    } catch (PDOExeption $e) {
+        echo $e->getMessage();
+    }
+    
+
+    exit;
+
+    return $this->view->render($response, 'web/quizu_one_mode.html');
+});
+
+ 
 
 
 
