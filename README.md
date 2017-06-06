@@ -17,7 +17,7 @@
 * /tobe_master/web/quizu/multiple
 
 
-**複数で遊ぶ画面**
+**一人で遊ぶ画面**
 * /tobe_master/web/quizu/one
 
 ## DB
