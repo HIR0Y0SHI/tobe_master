@@ -1,15 +1,10 @@
-// $(function(){
-//     $("#1k").on("click", function(){
-//         $("#1k").fadeOut(1000, "linear");
-//         $("#2k").fadeIn(1000, "linear");
-//         // $("#1k").fadeIn(1000, "linear");
-//     });
-
-//     $("#2k").on("click", function(){
-//         $("#2k").fadeOut(1000, "linear");
-//         $("#1k").fadeIn(1000, "linear");
-//     });
-// });
+/*
+ *
+ * 概要：問題表示、人数分のループなどメイン部分
+ * 作成者:荒井大輝
+ * ディレクトリ：tobe_master\public\js\web
+ *
+ */
 
 
 $(function (){
