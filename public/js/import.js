@@ -18,7 +18,7 @@ if (! new Array().push) return false;
         // web側のjsの読み込み
         '/tobe_master/public/js/web/quiz.js',
         '/tobe_master/public/js/web/timebar.js',
-        '/tobe_master/public/js/web/typing.min.js'
+        '/tobe_master/public/js/web/typed.min.js'
     );
     for (var i=0; i<scripts.length; i++) {
         document.write('<script type="text/javascript" src="' +scripts[i] +'" charset="utf-8"></script>');
