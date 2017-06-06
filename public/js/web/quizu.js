@@ -10,7 +10,8 @@
 $(function (){
     $.ajax({
 		type:"GET",
-		url:"http://160.16.107.190/tobe_api.php",
+		url:"/tobe_master/api/mock/question/multiple/1",
+        // /api/mock/question/multiple/{number}
         dataType:"json",
         crossdomain: true
 	}).done(function(data){
@@ -28,8 +29,8 @@ $(function (){
         
         $("#qu").text(question);
         $("#ans").text(ans);
-        $("#answ").text(ans);
         $("#inc").text(inc);
+        $("#answer").text(ans);
 
         //次の問題数を投げる。
 
@@ -52,7 +53,7 @@ $(function (){
  *
  */
 
-$("#box1").on("click", function(){
+$(".next").on("click", function(){
     TweenMax.to('#box1', -1, {
         display: 'none',
         onComplete: function(){// 処理完了後に実行される
