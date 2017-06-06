@@ -68,6 +68,16 @@ $app->get('/db', function($request, $response, $args) {
 // 管理側
 /* ==================================================================================================== */
 
+// 管理TOP
+$app->get('/management', function($request, $response, $args) {
+    return $this->view->render($response, 'management/login.html');
+});
+
+// クイズ作成画面
+$app->get('/management/quizu/make', function($request, $response, $args) {
+    return $this->view->render($response, 'management/makeQuizu.html');
+});
+
 
 
 
