@@ -14,7 +14,7 @@ if (! new Array().push) return false;
         // BootstrapのJS読み込み 
         '/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js',
         // TweenMaxの読み込み
-        '/tobe_master/public/js/TweenMax.min.js',
+        '/tobe_master/public/js/web/TweenMax.min.js',
         // web側のjsの読み込み
         '/tobe_master/public/js/web/quiz.js',
         '/tobe_master/public/js/web/timebar.js',
