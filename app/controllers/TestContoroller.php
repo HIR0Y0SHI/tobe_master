@@ -7,7 +7,14 @@
 namespace App\Controller;
 
 class TestController {
+
+    private $app;
+
+    function __construct($app) {
+        $this->app = $app;
+    }
+
     function test() {
-        echo 'sample name!';
+        return $this->app->render($response, 'web/sample', ['name' => 'hoge']);
     }
 }
