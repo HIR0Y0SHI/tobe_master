@@ -17,7 +17,8 @@ if (! new Array().push) return false;
         '/tobe_master/public/js/TweenMax.min.js',
         // web側のjsの読み込み
         '/tobe_master/public/js/web/quiz.js',
-        '/tobe_master/public/js/web/timebar.js'
+        '/tobe_master/public/js/web/timebar.js',
+        '/tobe_master/public/js/web/typing.min.js'
     );
     for (var i=0; i<scripts.length; i++) {
         document.write('<script type="text/javascript" src="' +scripts[i] +'" charset="utf-8"></script>');
