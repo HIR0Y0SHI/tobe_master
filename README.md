@@ -9,6 +9,8 @@
 
 ## アクセスURL一覧
 
+### WEB側
+
 **クイズ画面TOP**
 * /tobe_master/web/quizu
 
@@ -19,6 +21,16 @@
 
 **一人で遊ぶ画面**
 * /tobe_master/web/quizu/one
+
+
+
+### 管理側
+
+**管理側TOP**
+* /tobe_master/management
+
+**クイズ追加画面**
+* /tobe_master/management/quizu/make
 
 ## DB
 

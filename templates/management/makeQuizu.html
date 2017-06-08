@@ -37,7 +37,7 @@
                 <section>
                   <h3>Aパターン</h3>
                   <hr>
-                  <form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
+                  <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/a" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="タイトルを書いてください" value=""> </div>
                     </div>
@@ -47,7 +47,7 @@
                     <div class="form-group"> <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
                   </label>
                       <div class="col-md-5 col-sm-8">
-                        <div class="input-group"> <input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload"> </div>
+                        <div class="input-group"> <input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload"> </div>
                       </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span></label>
@@ -69,7 +69,7 @@
                     <div class="form-group"> <label class="control-label col-sm-3">難易度<span class="text-danger">*</span></label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control">
+                          <div class="form-group"> <select name="difficulty" class="form-control">
                           <option value="">選択してください</option>
                           <option value="1" >簡単</option>
                           <option value="2" >普通</option>
@@ -82,7 +82,7 @@
                     <div class="form-group"> <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span></label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control">
+                          <div class="form-group"> <select name="solution_time" class="form-control">
                           <option value="">選択してください</option>
                           <option value="1" >10秒</option>
                           <option value="2" >15秒</option>
@@ -95,7 +95,7 @@
                         <div class="input-group answer"> <span class="input-group-addon" id="file_upload">解答方法</span>
                           <table class="table">
                             <tr>
-                              <th><input name="answertype" type="radio" value="" >：①はい、いいえで解答</th>
+                              <th><input name="answertype" type="radio" value="1" >：①はい、いいえで解答</th>
                             </tr>
                             <!-- <tr>
                               <td> <label>
@@ -105,17 +105,17 @@
                               いいえ</label> </td>
                             </tr> -->
                             <tr>
-                              <th><input name="answertype" type="radio" value="" checked>：②解答文で解答</th>
+                              <th><input name="answertype" type="radio" value="2" checked>：②解答文で解答</th>
                             </tr>
 
                           <tr>
                             <td>
-                              <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="正解を書いてください" value="">
+                              <input type="text" class="form-control" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value="">
                             </td>
                           </tr>
                             <tr>
                             <td>
-                              <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="不正解を書いてください" value="">
+                              <input type="text" class="form-control" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value="">
                             </td>
                           </tr>
 
@@ -124,12 +124,13 @@
                       </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control"></textarea> </div>
+                      <div class="col-md-8 col-sm-9"> <textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control"></textarea> </div>
                     </div>
                     <div class="form-group">
                       <div class="col-xs-offset-3 col-xs-10"> <input name="Submit" type="submit" value="作成" class="btn btn-primary"> </div>
                     </div>
                   </form>
+                </section>
               </div>
             </article>
           </li>
