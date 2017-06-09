@@ -1,14 +1,18 @@
 <?php
 /**
 * Created by HIR0Y0SHI on 2017/06/05
-*
-* Question用のDBアクセスクラス
 */
 
 namespace App\Models;
 
-use App;
+use App\Mapper;
 
+/**
+* 問題関連のDBアクセスクラス
+*
+* @author HIR0Y0SHI
+* @package Models
+*/
 class Question extends \App\Mapper {
 
     public function getQuestion() {

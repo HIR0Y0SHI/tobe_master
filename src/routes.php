@@ -80,7 +80,7 @@ $app->get('/management/quizu/make', function($request, $response, $args) {
 
 // クイズ追加（Aパターン）
 $app->post('/management/quizu/make/a', function($request, $response, $args) {
-    var_dump($request->getParsedBody());
+    $params = $request->getParsedBody();
     exit;
     return $this->view->render($response, 'management/makeQuestion.html');
 });
@@ -88,7 +88,16 @@ $app->post('/management/quizu/make/a', function($request, $response, $args) {
 
 // TEST
 $app->get('/management/test', function($request, $response, $args) {
-    return $this->view->render($response, 'management/test.html');
+    // return $this->view->render($response, 'management/test.html');
+
+    // $mapper = new App\Models\Management($this->db);
+    // $val = $mapper->checkUser('admin');
+    // var_dump($val);
+
+    // echo base64_encode('password');
+
+    $management = new App\Controller\ManagementController($this, $response);
+    $management->login('admin', 'password');
 });
 
 
