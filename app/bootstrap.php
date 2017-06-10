@@ -11,7 +11,8 @@ define('APP_PATH'        , __DIR__ . '/../app/');
 define('MODEL_PATH'      , __DIR__ . '/../app/models/');
 define('CONTROLLER_PATH' , __DIR__ . '/../app/controllers/');
 define('PUBLIC_PATH'     , __DIR__ . '/../public/');
-define('SRC_PATH'        , __DIR__ . '/../src/');
+
+
 
 
 require_once VENDOR_PATH . 'autoload.php';
