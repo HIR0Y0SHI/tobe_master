@@ -40,13 +40,17 @@ $app->get('/api/mock/question/one/{number}', function($request, $response, $args
     $question = 'この動物はカピパラ？';
 
     $json = [
-        'pattern' => 'A',
+        'pattern' => 'Aパターン',
         'question' => mb_convert_encoding($question, "UTF-8", "auto"),
         'choices' => [
             'ans' => 'Yes',
             'inc' => 'No'
         ],
-        'image' => 'sample.png'
+        'image' => 'sample.png',
+        'commentary' => '解説が入ります。',
+        'solution_time' => '10',
+        'difficulty' => '普通',
+        'erea' => 'ペンギン広場'
     ];
 
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
@@ -62,12 +66,16 @@ $app->get('/api/mock/question/multiple/{number}', function($request, $response, 
     $question = 'カピパラはどっち？';
 
     $json = [
-        'pattern' => 'B',
+        'pattern' => 'Bパターン',
         'question' => mb_convert_encoding($question, "UTF-8", "auto"),
         'choices' => [
             'ans' => 'sample.png',
-            'inc' => 'sample.png'
-        ]
+            'inc' => 'sample.png',
+        ],
+        'commentary' => '解説が入ります。',
+        'solution_time' => '10',
+        'difficulty' => '最終問題',
+        'erea' => 'ペンギン広場'
     ];
 
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
