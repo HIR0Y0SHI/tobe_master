@@ -75,7 +75,9 @@ $app->get('/management', function($request, $response, $args) {
 
 // ログイン処理
 $app->post('/management/login', function($request, $response, $args) {
-    return $this->view->render($response, 'management/login.html');
+    $params = $request->getParsedBody();
+    $management = new App\Controller\ManagementController($this, $response);
+    $management->login($params["inputId"], $params["inputPassword"]);
 });
 
 // クイズ作成画面
@@ -100,9 +102,9 @@ $app->get('/management/test', function($request, $response, $args) {
     // var_dump($val);
 
     // echo base64_encode('password');
+    
 
-    $management = new App\Controller\ManagementController($this, $response);
-    $management->login('admin', 'passwrd');
+    
 });
 
 
