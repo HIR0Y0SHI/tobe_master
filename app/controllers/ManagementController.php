@@ -50,6 +50,6 @@ class ManagementController extends BaseController {
             }
         }
 
-        return $this->app->view->render($this->response, 'management/login.html');        
+        return $this->app->view->render($this->response, 'management/login.html', array('message' => $message));        
     }
 }

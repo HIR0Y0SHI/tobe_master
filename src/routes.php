@@ -68,8 +68,13 @@ $app->get('/db', function($request, $response, $args) {
 // 管理側
 /* ==================================================================================================== */
 
-// 管理TOP
+// ログイン画面
 $app->get('/management', function($request, $response, $args) {
+    return $this->view->render($response, 'management/login.html');
+});
+
+// ログイン処理
+$app->post('/management/login', function($request, $response, $args) {
     return $this->view->render($response, 'management/login.html');
 });
 
@@ -97,7 +102,7 @@ $app->get('/management/test', function($request, $response, $args) {
     // echo base64_encode('password');
 
     $management = new App\Controller\ManagementController($this, $response);
-    $management->login('admin', 'password');
+    $management->login('admin', 'passwrd');
 });
 
 
