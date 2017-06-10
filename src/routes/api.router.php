@@ -15,6 +15,12 @@ $app->get('/api/question/one/{number}', function($request, $response, $args) {
 });
 
 
+$app->get('/api/question/multiple/{number}', function($request, $response, $args) {
+    $response->getBody()->write("Question! " . $args['number']);
+    return $response;
+});
+
+
 
 
 

@@ -15,6 +15,8 @@ $app->get('/management', function($request, $response, $args) {
     return $this->view->render($response, 'management/login.html');
 });
 
+
+
 // ログイン処理
 $app->post('/management/login', function($request, $response, $args) {
     $params = $request->getParsedBody();
@@ -22,10 +24,14 @@ $app->post('/management/login', function($request, $response, $args) {
     $management->login($params["inputId"], $params["inputPassword"]);
 });
 
+
+
 // クイズ作成画面
 $app->get('/management/quizu/make', function($request, $response, $args) {
     return $this->view->render($response, 'management/makeQuestion.html');
 });
+
+
 
 // クイズ追加（Aパターン）
 $app->post('/management/quizu/make/a', function($request, $response, $args) {
@@ -33,6 +39,8 @@ $app->post('/management/quizu/make/a', function($request, $response, $args) {
     exit;
     return $this->view->render($response, 'management/makeQuestion.html');
 });
+
+
 
 // TEST
 $app->get('/management/test', function($request, $response, $args) {

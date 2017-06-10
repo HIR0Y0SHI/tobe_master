@@ -7,7 +7,28 @@ namespace App\Controller;
 
 class QuestionController extends \App\Controller\BaseController {
 
-    public function render() {
+    /**
+    * 一人で遊ぶ問題を取得する
+    * 
+    * @access public
+    * @param string $number 問題番号
+    */
+    public function oneQuestionAPI($number) {
+
+    }
+
+    /**
+    * 複数で遊ぶ問題を取得する
+    * 
+    * @access public
+    * @param string $number 問題番号
+    */
+    public function multipleQuestionAPI($number) {
+        
+    }
+
+    // TEST
+    private function render() {
         $this->app->view->render($this->response, 'management/login.html');
     }
 }

@@ -39,7 +39,12 @@ class ManagementController extends BaseController {
         if (empty($message)) {
             try {
                 if ($management->check($user, $enc_pass)) {
-                    // ユーザーが存在する
+                    /*
+                     ユーザーが存在する
+                    */
+
+                    // 管理TOPをレンダー
+                    // TODO: 遷移先を管理TOP画面に変更する
                     return $this->app->view->render($this->response, 'management/makeQuestion.html');
                 } else {
                     // ユーザーが存在しない
