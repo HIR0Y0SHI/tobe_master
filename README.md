@@ -26,11 +26,12 @@
 
 ### 管理側
 
-**管理側TOP**
+**ログイン画面**
 * /tobe_master/management
 
 **クイズ追加画面**
 * /tobe_master/management/quizu/make
+
 
 ## DB
 
@@ -41,3 +42,17 @@ docs/create.sql
 2. テーブルの追加
 
 docs/db.sql
+
+3. ビューの追加
+
+docs/view.sql
+
+
+## ルーティングについて
+
+役割ごとにファイルを分けて行う。
+`src/routes`にルーティングファイルを格納。
+
+* `api.router.php` : API関連のルーティング
+* `management.router.php` : 管理側のルーティング
+* `web.router.php` : Webアプリ側のルーティング
