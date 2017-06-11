@@ -7,36 +7,23 @@
 
 
 /* ==================================================================================================== */
-// 管理側
+// GET
 /* ==================================================================================================== */
 
 // ログイン画面
-$app->get('/management', function($request, $response, $args) {
+$app->get('/login', function($request, $response, $args) {
     return $this->view->render($response, 'management/login.html');
 });
 
-
-
-// ログイン処理
-$app->post('/management/login', function($request, $response, $args) {
-    $params = $request->getParsedBody();
-    $management = new App\Controller\ManagementController($this, $response);
-    $management->login($params["inputId"], $params["inputPassword"]);
+// 管理TOP画面
+// MEMO: 画面がまだない
+$app->get('/management', function($request, $response, $args) {
+    // return $this->view->render($response, 'management/login.html');
 });
-
 
 
 // クイズ作成画面
 $app->get('/management/quizu/make', function($request, $response, $args) {
-    return $this->view->render($response, 'management/makeQuestion.html');
-});
-
-
-
-// クイズ追加（Aパターン）
-$app->post('/management/quizu/make/a', function($request, $response, $args) {
-    $params = $request->getParsedBody();
-    exit;
     return $this->view->render($response, 'management/makeQuestion.html');
 });
 
@@ -51,4 +38,27 @@ $app->get('/management/test', function($request, $response, $args) {
     // echo base64_encode('password');
     
     
+});
+
+
+
+
+/* ==================================================================================================== */
+// POST
+/* ==================================================================================================== */
+
+// ログイン処理
+$app->post('/management/login', function($request, $response, $args) {
+    $params = $request->getParsedBody();
+    $management = new App\Controller\ManagementController($this, $response);
+    $management->login($params["inputId"], $params["inputPassword"]);
+});
+
+
+
+// クイズ追加（Aパターン）
+$app->post('/management/quizu/make/a', function($request, $response, $args) {
+    $params = $request->getParsedBody();
+    exit;
+    return $this->view->render($response, 'management/makeQuestion.html');
 });

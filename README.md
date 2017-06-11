@@ -27,6 +27,9 @@
 ### 管理側
 
 **ログイン画面**
+* /tobe_master/login
+
+**管理TOP画面**
 * /tobe_master/management
 
 **クイズ追加画面**
