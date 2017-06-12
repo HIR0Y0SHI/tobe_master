@@ -46,93 +46,128 @@
                   <hr>
                   <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/a" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
+                      <div class="col-md-8 col-sm-9">
+                        <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>
+                      </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea> </div>
-                    </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
-                  </label>
-                      <div class="col-md-5 col-sm-8">
-                        <div class="input-group"> <input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required> </div>
-                      </div>
-                    </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span></label>
-                      <div class="col-xs-8">
-                        <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >ライオン</option>
-                          <option value="2" >ゾウ</option>
-                          <option value="3" >サル</option>
-                          <option value="4" >ピース</option>
-                          <option value="5" >コウモリ</option>
-                          <option value="6" >アライグマ</option>
-                          <option value="7" >キリン</option>
-                        </select> </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">難易度<span class="text-danger">*</span></label>
-                      <div class="col-xs-8">
-                        <div class="form-inline">
-                          <div class="form-group"> <select name="difficulty" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >簡単</option>
-                          <option value="2" >普通</option>
-                          <option value="3" >難しい</option>
-                          <option value="4" >最終問題</option>
-                        </select> </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span></label>
-                      <div class="col-xs-8">
-                        <div class="form-inline">
-                          <div class="form-group"> <select name="solution_time" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >10秒</option>
-                          <option value="2" >15秒</option>
-                        </select> </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small></label>
                       <div class="col-md-8 col-sm-9">
-                        <div class="input-group answer"> <span class="input-group-addon" id="file_upload">解答方法</span>
+                        <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
+                      </label>
+                      <div class="col-md-5 col-sm-8">
+                        <div class="input-group">
+                          <input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >ライオン</option>
+                              <option value="2" >ゾウ</option>
+                              <option value="3" >サル</option>
+                              <option value="4" >ピース</option>
+                              <option value="5" >コウモリ</option>
+                              <option value="6" >アライグマ</option>
+                              <option value="7" >キリン</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">難易度<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="difficulty" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >簡単</option>
+                              <option value="2" >普通</option>
+                              <option value="3" >難しい</option>
+                              <option value="4" >最終問題</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="solution_time" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >10秒</option>
+                              <option value="2" >15秒</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small>
+                      </label>
+                      <div class="col-md-8 col-sm-9">
+                        <div class="input-group answer">
+                          <span class="input-group-addon" id="file_upload">解答方法</span>
                           <table class="table">
                             <tr>
                               <td>
-                                <label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />：①はい、いいえで解答</label>
+                                <label>
+                                  <input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />：①はい、いいえで解答
+                                </label>
                               </td>
                             </tr>
                             <!-- 表示非表示切り替え -->
                             <tr id="firstBox">
-                              <td> <label>
-                              <input name="answer" type="radio" value="Yes" checked>
-                              はい</label> &nbsp; <label>
-                              <input name="answer" type="radio" value="No" >
-                              いいえ</label> </td>
+                              <td>
+                                <label>
+                                    <input name="answer" type="radio" value="Yes" checked>はい
+                                </label> &nbsp;
+                                <label>
+                                    <input name="answer" type="radio" value="No" >いいえ
+                                </label>
+                              </td>
                             </tr>
                             <td>
-                              <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />：②解答文で解答</label>
+                              <label>
+                                <input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />：②解答文で解答
+                              </label>
                             </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox">
                               <td>
-                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value=""></td>
+                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value="">
+                              </td>
                               <td>
-                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value=""></td>
+                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value="">
+                              </td>
                             </tr>
                           </table>
                         </div>
                       </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control"></textarea> </div>
+                      <div class="col-md-8 col-sm-9">
+                        <textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control"></textarea>
+                      </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-xs-offset-3 col-xs-10"> <input name="Submit" type="submit" value="作成" class="btn btn-primary"> </div>
+                      <div class="col-xs-offset-3 col-xs-10">
+                        <input name="Submit" type="submit" value="作成" class="btn btn-primary">
+                      </div>
                     </div>
                   </form>
                 </section>
@@ -153,14 +188,21 @@
                   <h3>Bパターン</h3>
                   <hr>
                   <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/b" name="signup" id="signup" enctype="multipart/form-data">
-                    <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-md-8 col-sm-9">
+                        <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>
+                      </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea> </div>
+                      <div class="col-md-8 col-sm-9">
+                        <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea>
+                      </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
-    							</label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
+    							    </label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
                           正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
@@ -168,51 +210,67 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>
+                      </label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-    											<option value="">選択してください</option>
-    											<option value="1" >ライオン</option>
-    											<option value="2" >ゾウ</option>
-    											<option value="3" >サル</option>
-    											<option value="4" >ピース</option>
-    											<option value="5" >コウモリ</option>
-    											<option value="6" >アライグマ</option>
-    											<option value="7" >キリン</option>
-    										</select> </div>
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+        											<option value="">選択してください</option>
+        											<option value="1" >ライオン</option>
+        											<option value="2" >ゾウ</option>
+        											<option value="3" >サル</option>
+        											<option value="4" >ピース</option>
+        											<option value="5" >コウモリ</option>
+        											<option value="6" >アライグマ</option>
+        											<option value="7" >キリン</option>
+        										</select>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">難易度<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">難易度<span class="text-danger">*</span>
+                      </label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-    											<option value="">選択してください</option>
-    											<option value="1" >簡単</option>
-    											<option value="2" >普通</option>
-    											<option value="3" >難しい</option>
-    											<option value="4" >最終問題</option>
-    										</select> </div>
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+        											<option value="">選択してください</option>
+        											<option value="1" >簡単</option>
+        											<option value="2" >普通</option>
+        											<option value="3" >難しい</option>
+        											<option value="4" >最終問題</option>
+        										</select>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span>
+                      </label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-    											<option value="">選択してください</option>
-    											<option value="1" >10秒</option>
-    											<option value="2" >15秒</option>
-    										</select> </div>
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+        											<option value="">選択してください</option>
+        											<option value="1" >10秒</option>
+        											<option value="2" >15秒</option>
+        										</select>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control" required></textarea> </div>
+                      <div class="col-md-8 col-sm-9">
+                        <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control" required></textarea>
+                      </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-xs-offset-3 col-xs-10"> <input name="Submit" type="submit" value="作成" class="btn btn-primary"> </div>
+                      <div class="col-xs-offset-3 col-xs-10">
+                        <input name="Submit" type="submit" value="作成" class="btn btn-primary">
+                      </div>
                     </div>
                   </form>
               </div>
