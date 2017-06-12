@@ -41,7 +41,7 @@ $('.tab-title li').on('click', function(e){
 
 // 解答方法
 function entryChange1() {
-  radio = document.getElementsByName('entryPlan')
+  radio = document.getElementsByName('answertype')
   if (radio[0].checked) {
     //フォーム
     document.getElementById('firstBox').style.display = "";
@@ -55,7 +55,7 @@ function entryChange1() {
 
 // 解答方法
 function entryChange2() {
-  radio = document.getElementsByName('entryPlan2')
+  radio = document.getElementsByName('answertype2')
   if (radio[0].checked) {
     //フォーム
     document.getElementById('firstBox2').style.display = "";
