@@ -24,7 +24,9 @@ $app->get('/management', function($request, $response, $args) {
 
 // クイズ作成画面
 $app->get('/management/quizu/make', function($request, $response, $args) {
-    return $this->view->render($response, 'management/makeQuestion.html');
+    $mkc = new App\Controller\MakeQuestionController($this, $response);
+    $mkc->render();
+    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
 
@@ -36,7 +38,9 @@ $app->get('/management/test', function($request, $response, $args) {
     // $val = $mapper->checkUser('admin');
     // var_dump($val);
     // echo base64_encode('password');
-    
+
+    $q = new App\Controller\MakeQuestionController($this, $response);
+    $q->render();
     
 });
 
@@ -60,7 +64,7 @@ $app->post('/management/login', function($request, $response, $args) {
 $app->post('/management/quizu/make/a', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
-    $question = new App\Controller\QuestionController($this, $response);
+    $question = new App\Controller\MakeQuestionController($this, $response);
     $question->addQuestionA($params, $files);
 });
 
