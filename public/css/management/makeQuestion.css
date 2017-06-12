@@ -47,11 +47,11 @@ h1, h2, h3 {
 	transition: all .3s;
 }
 .button {
-	background-color: #26C6DA;
+	background-color: #FF8000;
 	color: #fff;
 }
 .button:hover {
-	background-color: #58D3F7;
+	background-color: #FE9A2E;
   text-decoration: none;
 }
 
@@ -89,7 +89,7 @@ ul, li {
   padding: .8em 0;
   color: #fff;
   text-align: center;
-  background-color: #26C6DA;
+  background-color: #FF8000;
   cursor: pointer;
   overflow: hidden;
 }
@@ -99,7 +99,7 @@ ul, li {
   bottom: 0;
   width: 33.3%;
   height: 2px;
-  background-color: #F06292;
+  background-color: #000;
   -webkit-transition: .45s ease-in-out;
   -moz-transition: .45s ease-in-out;
   -o-transition: .45s ease-in-out;
@@ -191,4 +191,7 @@ article.selected {
     right: 0;
     position: absolute;
     margin: auto;
+}
+.upload {
+  padding: unset;
 }

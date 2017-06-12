@@ -1,4 +1,4 @@
-$(function(){
+$(function (){
 
 $('.tab-title li').on('click', function(e){
   /* タブ */
@@ -6,7 +6,7 @@ $('.tab-title li').on('click', function(e){
   var $tab_contents = $('.tab-contents li');
   $tab_contents.removeClass('active');
   $tab_contents.eq(th).addClass('active');
-  
+
   /* スライドバー */
   var position = $(this).width() * th;  // 位置
   $('.tab-title-bar').css('left', position+'px');
@@ -38,3 +38,38 @@ $('.tab-title li').on('click', function(e){
 });
 
 });
+
+// 解答方法
+function entryChange1() {
+  radio = document.getElementsByName('entryPlan')
+  if (radio[0].checked) {
+    //フォーム
+    document.getElementById('firstBox').style.display = "";
+    document.getElementById('secondBox').style.display = "none";
+  } else if (radio[1].checked) {
+    //フォーム
+    document.getElementById('firstBox').style.display = "none";
+    document.getElementById('secondBox').style.display = "";
+  }
+}
+
+// 解答方法
+function entryChange2() {
+  radio = document.getElementsByName('entryPlan2')
+  if (radio[0].checked) {
+    //フォーム
+    document.getElementById('firstBox2').style.display = "";
+    document.getElementById('secondBox2').style.display = "none";
+  } else if (radio[1].checked) {
+    //フォーム
+    document.getElementById('firstBox2').style.display = "none";
+    document.getElementById('secondBox2').style.display = "";
+  }
+}
+
+
+//オンロードさせ、リロード時に選択を保持
+window.onload = function () { // ページ読み込み時
+    entryChange1(); // 関数呼び出し
+    entryChange2(); // 関数呼び出し
+}
