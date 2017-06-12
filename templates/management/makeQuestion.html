@@ -115,8 +115,8 @@
                               いいえ</label> </td>
                             </tr>
                             <td>
-                              <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />：②解答文で解答</label></td>
-                            </tr>
+                              <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />：②解答文で解答</label>
+                            </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox">
                               <td>
@@ -154,7 +154,7 @@
                   <hr>
                   <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/b" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
+                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea> </div>
@@ -163,8 +163,8 @@
     							</label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="ああああ" aria-describedby="file_upload" required><br /> 不正解の画像
-                          <input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
+                          不正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
                         </div>
                       </div>
                     </div>
@@ -241,8 +241,8 @@
                   </label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          A<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="ああああ" aria-describedby="file_upload" required><br /> B
-                          <input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload">
+                          A<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
+                          B<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
                         </div>
                       </div>
                     </div>
@@ -265,24 +265,28 @@
                     <div class="form-group"> <label class="control-label col-sm-3">難易度<span class="text-danger">*</span></label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >簡単</option>
-                          <option value="2" >普通</option>
-                          <option value="3" >難しい</option>
-                          <option value="4" >最終問題</option>
-                        </select> </div>
+                          <div class="form-group">
+                            <select name="area" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >簡単</option>
+                              <option value="2" >普通</option>
+                              <option value="3" >難しい</option>
+                              <option value="4" >最終問題</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span></label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >10秒</option>
-                          <option value="2" >15秒</option>
-                        </select> </div>
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >10秒</option>
+                              <option value="2" >15秒</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -298,20 +302,23 @@
                             <!-- 表示非表示切り替え -->
                             <tr id="firstBox2">
                               <td> <label>
-                              <input name="answer" type="radio" value="Yes" checked>
-                              はい</label> &nbsp; <label>
-                              <input name="answer" type="radio" value="No" >
-                              いいえ</label> </td>
+                                <input name="answer" type="radio" value="Yes" checked>
+                                はい</label> &nbsp; <label>
+                                <input name="answer" type="radio" value="No" >
+                                いいえ</label>
+                              </td>
                             </tr>
                             <td>
-                              <label><input type="radio" name="entryPlan2" value="hoge2" onclick="entryChange2();" />：②解答文で解答</label></td>
-                            </tr>
+                              <label><input type="radio" name="entryPlan2" value="hoge2" onclick="entryChange2();" />：②解答文で解答</label>
+                            </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox2">
                               <td>
-                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value=""></td>
+                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value="">
+                              </td>
                               <td>
-                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value=""></td>
+                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value="">
+                              </td>
                             </tr>
                           </table>
                         </div>
