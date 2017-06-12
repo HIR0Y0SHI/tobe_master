@@ -50,7 +50,7 @@ $app->get('/api/mock/question/one/{number}', function($request, $response, $args
         'commentary' => '解説が入ります。',
         'solution_time' => '10',
         'difficulty' => '普通',
-        'erea' => 'ペンギン広場'
+        'area' => 'ペンギン広場'
     ];
 
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
@@ -75,7 +75,7 @@ $app->get('/api/mock/question/multiple/{number}', function($request, $response, 
         'commentary' => '解説が入ります。',
         'solution_time' => '10',
         'difficulty' => '最終問題',
-        'erea' => 'ペンギン広場'
+        'area' => 'ペンギン広場'
     ];
 
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
