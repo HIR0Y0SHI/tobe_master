@@ -58,7 +58,15 @@ $app->post('/management/login', function($request, $response, $args) {
 
 // クイズ追加（Aパターン）
 $app->post('/management/quizu/make/a', function($request, $response, $args) {
+    $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
-    exit;
-    return $this->view->render($response, 'management/makeQuestion.html');
+    $question = new App\Controller\QuestionController($this, $response);
+    $question->addQuestionA($params, $files);
 });
+
+function dump($args) {
+    echo '<pre>';
+    var_dump($args);
+    echo '<pre>';
+    exit;
+}
