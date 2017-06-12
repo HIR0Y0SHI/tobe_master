@@ -231,14 +231,16 @@
                   <h3>Cパターン</h3>
                   <hr>
                   <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/c" name="signup" id="signup" enctype="multipart/form-data">
-                    <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
-                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
+                      <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control" required></textarea> </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
-                  </label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br></label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
                           A<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
@@ -249,16 +251,18 @@
                     <div class="form-group"> <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span></label>
                       <div class="col-xs-8">
                         <div class="form-inline">
-                          <div class="form-group"> <select name="erea" class="form-control" required>
-                          <option value="">選択してください</option>
-                          <option value="1" >ライオン</option>
-                          <option value="2" >ゾウ</option>
-                          <option value="3" >サル</option>
-                          <option value="4" >ピース</option>
-                          <option value="5" >コウモリ</option>
-                          <option value="6" >アライグマ</option>
-                          <option value="7" >キリン</option>
-                        </select> </div>
+                          <div class="form-group">
+                            <select name="erea" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >ライオン</option>
+                              <option value="2" >ゾウ</option>
+                              <option value="3" >サル</option>
+                              <option value="4" >ピース</option>
+                              <option value="5" >コウモリ</option>
+                              <option value="6" >アライグマ</option>
+                              <option value="7" >キリン</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
