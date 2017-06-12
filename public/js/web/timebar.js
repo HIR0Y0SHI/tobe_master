@@ -6,9 +6,14 @@
  *
  */
 
+
+var timebarCount = $.cookie("solution_time");
+alert(timebarCount);
+timebarCount = timebarCount/3;
+
 //青色のタイムバー
 var timeBlueBar = function blueBar() {
-    TweenMax.to('#timebar', 5, {
+    TweenMax.to('#timebar', timebarCount, {
         right: '33%',
         ease: Power0.easeNone,
         onComplete: function(){
@@ -20,7 +25,7 @@ var timeBlueBar = function blueBar() {
 
 //黄色のタイムバー
 var timeYellowBar = function yellowBar() {
-    TweenMax.to('#timebar', 5, {
+    TweenMax.to('#timebar', timebarCount, {
         right: '66%',
         ease: Power0.easeNone,
         onComplete: function() {
@@ -32,8 +37,9 @@ var timeYellowBar = function yellowBar() {
 
 //赤色のタイムバー
 var timeRedBar = function redBar() {
-    TweenMax.to('#timebar', 5, {
+    TweenMax.to('#timebar', timebarCount, {
         right: '100%',
+        ease: Power0.easeNone,
         onComplete: function() {
             loadBox();
         }

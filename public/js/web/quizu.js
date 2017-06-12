@@ -6,7 +6,6 @@
  *
  */
 
-
 $(function (){
     $.ajax({
 		type:"GET",
@@ -20,6 +19,8 @@ $(function (){
         var ans = data.choices.ans;
         var inc = data.choices.inc;
         var image = data.image;
+        var solution_time = data.solution_time;
+        $.cookie("solution_time", solution_time, { expires: 1 });
 
         console.log(pattern);
         console.log(question);
@@ -30,6 +31,7 @@ $(function (){
         $("#qu").text(question);
         $("#ans").text(ans);
         $("#inc").text(inc);
+        
         $("#answer").text(ans);
 
         //次の問題数を投げる。
@@ -61,8 +63,6 @@ $(".next").on("click", function(){
         }
     });
 });
-
-
 
 var loadBox = function loadbox() {
     TweenMax.to('#box2', -1, {

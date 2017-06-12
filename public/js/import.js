@@ -19,6 +19,7 @@ if (! new Array().push) return false;
         '/tobe_master/public/js/web/quizu.js',
         '/tobe_master/public/js/web/jquery.cookie.js',
         '/tobe_master/public/js/web/timebar.js',
+        '/tobe_master/public/js/web/memberCheck.js',
         '/tobe_master/public/js/web/typed.min.js'
     );
     for (var i=0; i<scripts.length; i++) {
