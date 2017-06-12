@@ -195,3 +195,9 @@ article.selected {
 .upload {
   padding: unset;
 }
+.correct {
+  background-color: #A9E2F3;
+}
+.incorrect {
+  background-color: #F6CECE;
+}
