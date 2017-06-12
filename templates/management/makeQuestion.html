@@ -80,7 +80,7 @@
                             <select name="area" class="form-control" required>
                               <option value="">選択してください</option>
                               {% for item in area %}
-                              <option value="{{ item['beast_house'] }}" >{{ item['name'] }}</option>
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
                               {% endfor %}
                             </select>
                           </div>
@@ -221,13 +221,9 @@
                           <div class="form-group">
                             <select name="area" class="form-control" required>
         											<option value="">選択してください</option>
-        											<option value="1" >ライオン</option>
-        											<option value="2" >ゾウ</option>
-        											<option value="3" >サル</option>
-        											<option value="4" >ピース</option>
-        											<option value="5" >コウモリ</option>
-        											<option value="6" >アライグマ</option>
-        											<option value="7" >キリン</option>
+        											{% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
         										</select>
                           </div>
                         </div>
@@ -315,13 +311,9 @@
                           <div class="form-group">
                             <select name="area" class="form-control" required>
                               <option value="">選択してください</option>
-                              <option value="1" >ライオン</option>
-                              <option value="2" >ゾウ</option>
-                              <option value="3" >サル</option>
-                              <option value="4" >ピース</option>
-                              <option value="5" >コウモリ</option>
-                              <option value="6" >アライグマ</option>
-                              <option value="7" >キリン</option>
+                              {% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
                             </select>
                           </div>
                         </div>
