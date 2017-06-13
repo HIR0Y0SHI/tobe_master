@@ -23,7 +23,7 @@ $app->get('/management', function($request, $response, $args) {
 
 
 // クイズ作成画面
-$app->get('/management/quizu/make', function($request, $response, $args) {
+$app->get('/management/quiz/make', function($request, $response, $args) {
     $mkc = new App\Controller\MakeQuestionController($this, $response);
     $mkc->render();
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
@@ -61,7 +61,7 @@ $app->post('/management/login', function($request, $response, $args) {
 
 
 // クイズ追加（Aパターン）
-$app->post('/management/quizu/make/a', function($request, $response, $args) {
+$app->post('/management/quiz/make/a', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
     $question = new App\Controller\MakeQuestionController($this, $response);

@@ -12,15 +12,15 @@
 ### WEB側
 
 **クイズ画面TOP**
-* /tobe_master/web/quizu
+* /tobe_master/web/quiz
 
 
 **複数で遊ぶ画面**
-* /tobe_master/web/quizu/multiple
+* /tobe_master/web/quiz/multiple
 
 
 **一人で遊ぶ画面**
-* /tobe_master/web/quizu/one
+* /tobe_master/web/quiz/one
 
 
 
@@ -33,7 +33,7 @@
 * /tobe_master/management
 
 **クイズ追加画面**
-* /tobe_master/management/quizu/make
+* /tobe_master/management/quiz/make
 
 
 ## DB
