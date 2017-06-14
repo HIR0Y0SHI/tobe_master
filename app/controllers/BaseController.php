@@ -3,7 +3,7 @@
 * Created by HIR0Y0SHI on 2017/06/09
 */
 
-namespace App\Controller;
+namespace App\Controllers;
 
 class BaseController {
     protected $app;

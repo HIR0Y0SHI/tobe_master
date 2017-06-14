@@ -26,9 +26,9 @@ $app->get('/web/quiz/multiple', function($request, $response, $args) {
 
 
 
-$app->get('/sample/{name}', '\App\Controller\TestController:test');
+$app->get('/sample/{name}', '\App\Controllers\TestController:test');
 // $app->get('/sample/{name}', function() use ($app) {
-//     $test = new \App\Controller\TestController($app);
+//     $test = new \App\Controllers\TestController($app);
 //     $test->test();
 // });
 

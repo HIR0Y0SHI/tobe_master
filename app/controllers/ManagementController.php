@@ -3,10 +3,10 @@
 * Created by HIR0Y0SHI on 2017/06/10
 */
 
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Models\Management;
-use App\Controller\BaseController;
+use App\Controllers\BaseController;
 
 class ManagementController extends BaseController {
 

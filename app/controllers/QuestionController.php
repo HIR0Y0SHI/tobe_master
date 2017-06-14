@@ -3,9 +3,9 @@
 * Created by HIR0Y0SHI on 2017/06/09
 */
 
-namespace App\Controller;
+namespace App\Controllers;
 
-use App\Controller\BaseController;
+use App\Controllers\BaseController;
 use App\Models\Question;
 
 class QuestionAPIController extends BaseController {

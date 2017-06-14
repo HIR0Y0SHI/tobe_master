@@ -24,7 +24,7 @@ $app->get('/management', function($request, $response, $args) {
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
-    $mkc = new App\Controller\MakeQuestionController($this, $response);
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render();
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
@@ -39,7 +39,7 @@ $app->get('/management/test', function($request, $response, $args) {
     // var_dump($val);
     // echo base64_encode('password');
 
-    $q = new App\Controller\MakeQuestionController($this, $response);
+    $q = new App\Controllers\MakeQuestionController($this, $response);
     $q->render();
     
 });
@@ -54,7 +54,7 @@ $app->get('/management/test', function($request, $response, $args) {
 // ログイン処理
 $app->post('/management/login', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $management = new App\Controller\ManagementController($this, $response);
+    $management = new App\Controllers\ManagementController($this, $response);
     $management->login($params["inputId"], $params["inputPassword"]);
 });
 
@@ -64,7 +64,7 @@ $app->post('/management/login', function($request, $response, $args) {
 $app->post('/management/quiz/make/a', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
-    $question = new App\Controller\MakeQuestionController($this, $response);
+    $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->addQuestionA($params, $files);
 });
 
