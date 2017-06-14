@@ -16,7 +16,7 @@ if (! new Array().push) return false;
         // TweenMaxの読み込み
         '/tobe_master/public/js/web/TweenMax.min.js',
         // web側のjsの読み込み
-        '/tobe_master/public/js/web/quiz.js',
+        '/tobe_master/public/js/web/multi_quiz.js',
         '/tobe_master/public/js/web/jquery.cookie.js',
         '/tobe_master/public/js/web/timebar.js',
         '/tobe_master/public/js/web/memberCheck.js',
