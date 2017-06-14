@@ -8,7 +8,6 @@
 
 
 var timebarCount = $.cookie("solution_time");
-alert(timebarCount);
 timebarCount = timebarCount/3;
 
 //青色のタイムバー
