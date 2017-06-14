@@ -49,6 +49,35 @@ class Question extends Mapper {
     }
 
 
+
+    /**
+    * 獣舎一覧を取得する
+    * 
+    * @access public
+    * @return bool trueなら成功
+    */
+    public function getBeastHouses() {
+        $query = 'SELECT * FROM m_beast_house';
+        $results = [];
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+
+        return $results;
+    }
+
+
+
+
     /**
     * 問題を登録する
     * 

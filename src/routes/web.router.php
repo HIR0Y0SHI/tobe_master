@@ -10,18 +10,18 @@
 /* ==================================================================================================== */
 
 // クイズTOP
-$app->get('/web/quizu', function($request, $response, $args) {
-    return $this->view->render($response, 'web/quizu_top.html');
+$app->get('/web/quiz', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quiz_top.html');
 });
 
 // 一人で遊ぶ
-$app->get('/web/quizu/one', function($request, $response, $args) {
-    return $this->view->render($response, 'web/quizu_one_mode.html');
+$app->get('/web/quiz/one', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quiz_one_mode.html');
 });
 
 // みんなで遊ぶ
-$app->get('/web/quizu/multiple', function($request, $response, $args) {
-    return $this->view->render($response, 'web/quizu_multiple_mode.html');
+$app->get('/web/quiz/multiple', function($request, $response, $args) {
+    return $this->view->render($response, 'web/quiz_multiple_mode.html');
 });
 
 
@@ -50,5 +50,5 @@ $app->get('/db', function($request, $response, $args) {
 
     exit;
 
-    return $this->view->render($response, 'web/quizu_one_mode.html');
+    return $this->view->render($response, 'web/quiz_one_mode.html');
 });

@@ -32,9 +32,16 @@
           <li>Cパターン</li>
           <div class="tab-title-bar"></div>
         </ul>
+
+
+
+        {# エラーメッセージ #}
+			  {% if message is not null %}
+        <div class="alert alert-danger" role="alert">
+          <strong>{{message}}</strong>
+        </div>
+			  {% endif %}
         <ul class="tab-contents">
-
-
 
 
           <!--        Aパターン         -->
@@ -44,7 +51,7 @@
                 <section>
                   <h3>Aパターン</h3>
                   <hr>
-                  <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/a" name="signup" id="signup" enctype="multipart/form-data">
+                  <form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/a" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9">
                         <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>
@@ -70,15 +77,11 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
                               <option value="">選択してください</option>
-                              <option value="1" >ライオン</option>
-                              <option value="2" >ゾウ</option>
-                              <option value="3" >サル</option>
-                              <option value="4" >ピース</option>
-                              <option value="5" >コウモリ</option>
-                              <option value="6" >アライグマ</option>
-                              <option value="7" >キリン</option>
+                              {% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
                             </select>
                           </div>
                         </div>
@@ -187,7 +190,7 @@
                 <section>
                   <h3>Bパターン</h3>
                   <hr>
-                  <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/b" name="signup" id="signup" enctype="multipart/form-data">
+                  <form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/b" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group">
                       <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span>
                       </label>
@@ -216,15 +219,11 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
         											<option value="">選択してください</option>
-        											<option value="1" >ライオン</option>
-        											<option value="2" >ゾウ</option>
-        											<option value="3" >サル</option>
-        											<option value="4" >ピース</option>
-        											<option value="5" >コウモリ</option>
-        											<option value="6" >アライグマ</option>
-        											<option value="7" >キリン</option>
+        											{% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
         										</select>
                           </div>
                         </div>
@@ -236,7 +235,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
         											<option value="">選択してください</option>
         											<option value="1" >簡単</option>
         											<option value="2" >普通</option>
@@ -253,7 +252,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
         											<option value="">選択してください</option>
         											<option value="1" >10秒</option>
         											<option value="2" >15秒</option>
@@ -288,7 +287,7 @@
                 <section>
                   <h3>Cパターン</h3>
                   <hr>
-                  <form class="form-horizontal" method="post" action="/tobe_master/management/quizu/make/c" name="signup" id="signup" enctype="multipart/form-data">
+                  <form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/c" name="signup" id="signup" enctype="multipart/form-data">
                     <div class="form-group">
                       <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9"> <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required> </div>
@@ -310,15 +309,11 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
                               <option value="">選択してください</option>
-                              <option value="1" >ライオン</option>
-                              <option value="2" >ゾウ</option>
-                              <option value="3" >サル</option>
-                              <option value="4" >ピース</option>
-                              <option value="5" >コウモリ</option>
-                              <option value="6" >アライグマ</option>
-                              <option value="7" >キリン</option>
+                              {% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
                             </select>
                           </div>
                         </div>
@@ -343,7 +338,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="erea" class="form-control" required>
+                            <select name="area" class="form-control" required>
                               <option value="">選択してください</option>
                               <option value="1" >10秒</option>
                               <option value="2" >15秒</option>

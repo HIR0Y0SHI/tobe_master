@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <!--
-    テストだよ
+	テストだよ
  -->
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/tobe_master/public/css/web/import_multi.css">
-    <title>テスト</title>
-    <style>
-      #box1, #box2, #box3, #box4{
-        position: absolute;
-      }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="/tobe_master/public/css/web/import_multi.css">
+	<title>テスト</title>
+	<style>
+	#box1, #box2, #box3, #box4{
+		position: absolute;
+	}
 
-      #time {
-			width: 80%;
-			height: 5%;
-			border: 5px solid #333;
-			position: relative;
-			overflow: hidden;
-		}
+	#time {
+		width: 80%;
+		height: 5%;
+		border: 5px solid #333;
+		position: relative;
+		overflow: hidden;
+	}
 
-		#timebar {
-			width: 100%;
-			height: 100%;
-			background-color: skyblue;
-			position: absolute;
-			top: 0;
-		}
-    </style>
+	#timebar {
+		width: 100%;
+		height: 100%;
+		background-color: skyblue;
+		position: absolute;
+		top: 0;
+	}
+	</style>
 </head>
 <body>
 	
-	<!--プレイ者を確認-->
-  <div id="box1" style="width:100%;height:100%;background-color:beige;z-index:10">
-    <h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>
-    <button class="next">kuwanoです</button>
-  </div>
+	<div id="test">
+		
+		<!--プレイ者を確認-->
+		<div id="box1" style="width:100%;height:100%;background-color:beige;z-index:10">
+		  <h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>
+		  <button class="next">kuwanoです</button>
+		</div>
 
-  <!--問題表示-->
-  <div id="box2" style="width:100%;height:100%;background-color:white;z-index:9">
-    <h1 id="qu"></h1>
-    <!--残り時間を表示する-->
-    <div id="time"><div id="timebar"></div></div>
-    <button type="button" id="ans" value=""></button>
-	<button type="button" id="inc" value=""></button>
-  </div>
+		<!--問題表示-->
+		<div id="box2" style="width:100%;height:100%;background-color:white;z-index:9">
+			<h1 id="qu"></h1>
+			<!--残り時間を表示する-->
+			<div id="time"><div id="timebar"></div></div>
+			<button type="button" id="ans" value=""></button>
+			<button type="button" id="inc" value=""></button>
+		</div>
 
-  <!--答えを表示-->
-  <div id="box3" style="width:100%;height:100%;background-color:deeppink;z-index:8">
-    <h1 id="answer"></h1>
-  </div>
+	</div>
 
-  <!--正解者表示-->
-  <div id="box4" style="width:100%;height:100%;background-color:cadetblue;z-index:7">
-    <h1>kuwano正解<br>ひろよしout</h1>
-  </div>
+	<!--答えを表示-->
+	<div id="box3" style="width:100%;height:100%;background-color:deeppink;z-index:8">
+		<h1 id="answer"></h1>
+	</div>
+
+	<!--正解者表示-->
+	<div id="box4" style="width:100%;height:100%;background-color:cadetblue;z-index:7">
+		<h1>kuwano正解<br>ひろよしout</h1>
+	</div>
 
 <script src="/tobe_master/public/js/import.js" type="text/javascript" charset="utf-8"></script>
 </body>
