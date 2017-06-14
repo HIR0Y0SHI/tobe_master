@@ -23,6 +23,21 @@
 * /tobe_master/web/quiz/one
 
 
+### API
+
+**みんなで遊ぶ問題　難易度：簡単**
+* /tobe_master/api/question/multiple/1
+
+**みんなで遊ぶ問題　難易度：普通**
+* /tobe_master/api/question/multiple/1
+
+**みんなで遊ぶ問題　難易度：難しい**
+* /tobe_master/api/question/multiple/1
+
+**みんなで遊ぶ問題　難易度：最終画面**
+* /tobe_master/api/question/multiple/1
+
+
 
 ### 管理側
 
