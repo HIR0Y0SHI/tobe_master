@@ -67,7 +67,6 @@ function entryChange2() {
   }
 }
 
-
 //オンロードさせ、リロード時に選択を保持
 window.onload = function () { // ページ読み込み時
     entryChange1(); // 関数呼び出し
