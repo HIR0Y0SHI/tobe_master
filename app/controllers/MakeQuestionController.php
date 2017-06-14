@@ -71,9 +71,9 @@ class MakeQuestionController extends BaseController {
     * @return bool
     */
     public function uploadFile($file, $fileName) {
-        if ($newfile->getError() === UPLOAD_ERR_OK) {
+        if ($file->getError() === UPLOAD_ERR_OK) {
             echo 'OK';
-            $file->moveTo(QuestionController::QUESTION_IMAGE_PATH . $fileName);
+            $file->moveTo(MakeQuestionController::QUESTION_IMAGE_PATH . $fileName);
             return true;
         }
         return false;
