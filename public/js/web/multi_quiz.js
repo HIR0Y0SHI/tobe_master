@@ -40,21 +40,27 @@ $(function (){
 
 var disp = function disp() {
 	$("#test").empty();
+	var k = 0;
+	alert($.cookie("player"));
+	for (var i = $.cookie("player"); k <= i; k++) {
+		console.log(i);
+		var a = "";
+		a += '<div id="box1" style="width:100%;height:100%;background-color:beige;z-index:10">';
+			a += '<h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>';
+			a += '<button class="next">kuwanoです</button>';
+		a += '</div>';
 
-	var a = "";
-	a += '<div id="box1" style="width:100%;height:100%;background-color:beige;z-index:10">';
-		a += '<h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>';
-		a += '<button class="next">kuwanoです</button>';
-	a += '</div>';
+		a += '<div id="box2" style="width:100%;height:100%;background-color:white;z-index:9">';
+			a += '<h1 id="qu"></h1>';
+			a += '<div id="time"><div id="timebar"></div></div>';
+			a += '<button type="button" id="ans" value=""></button>';
+			a += '<button type="button" id="inc" value=""></button>';
+		a += '</div>';
 
-	a += '<div id="box2" style="width:100%;height:100%;background-color:white;z-index:9">';
-		a += '<h1 id="qu"></h1>';
-		a += '<div id="time"><div id="timebar"></div></div>';
-		a += '<button type="button" id="ans" value=""></button>';
-		a += '<button type="button" id="inc" value=""></button>';
-	a += '</div>';
-
-	$("#test").append(a);
+	
+		$("#test").append(a);
+	}
+	
 };
 disp();
 
