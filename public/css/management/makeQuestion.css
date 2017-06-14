@@ -55,12 +55,8 @@ h1, h2, h3 {
   text-decoration: none;
 }
 
-
-<!--- tab --->
 /* RESET */
-.tab {
 
-}
 ul, li {
   display: block;
   margin: 0;
@@ -201,7 +197,7 @@ article.selected {
 .incorrect {
   background-color: #F6CECE;
 }
-.arearesize {  
+.arearesize {
     resize: vertical;
     overflow: auto;
     height: 100px;

@@ -129,7 +129,7 @@
                             <tr>
                               <td>
                                 <label>
-                                  <input type="radio" name="answertype" value="hoge1" onclick="entryChange1();" checked="checked" />：①はい、いいえで解答
+                                  <input type="radio" name="answertype" value="hoge1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答
                                 </label>
                               </td>
                             </tr>
@@ -146,16 +146,16 @@
                             </tr>
                             <td>
                               <label>
-                                <input type="radio" name="answertype" value="hoge2" onclick="entryChange1();" />：②解答文で解答
+                                <input type="radio" name="answertype" value="hoge2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
                               </label>
                             </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox">
                               <td>
-                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value="" required>
+                                <input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="" required>
                               </td>
                               <td>
-                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value="" required>
+                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="incorrect" placeholder="不正解を書いてください" value="" required>
                               </td>
                             </tr>
                           </table>
