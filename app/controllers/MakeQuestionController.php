@@ -27,9 +27,14 @@ class MakeQuestionController extends BaseController {
         // ファイル名に使う日付を生成
         $date = date('YmdHis');
 
+        $fileName = $date . '_1_1.' . $this->getExpanded($newfile->getClientFilename());
+        $this->uploadFile($newfile, $fileName);
+
+
+
         // echo $params;
         echo '<pre>';
-        var_dump($params);
+        var_dump($fileName);
         // var_dump($this->getExpanded($newfile->getClientFilename()));
         echo '</pre>';
         exit;
