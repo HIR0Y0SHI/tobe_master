@@ -25,17 +25,17 @@
 
 ### API
 
-**みんなで遊ぶ問題　難易度：簡単**
+**みんなで遊ぶ問題　難易度：簡単　問題数：３問**
 * /tobe_master/api/question/multiple/1
 
-**みんなで遊ぶ問題　難易度：普通**
-* /tobe_master/api/question/multiple/1
+**みんなで遊ぶ問題　難易度：普通 問題数：３問**
+* /tobe_master/api/question/multiple/2
 
-**みんなで遊ぶ問題　難易度：難しい**
-* /tobe_master/api/question/multiple/1
+**みんなで遊ぶ問題　難易度：難しい 問題数：３問**
+* /tobe_master/api/question/multiple/3
 
-**みんなで遊ぶ問題　難易度：最終画面**
-* /tobe_master/api/question/multiple/1
+**みんなで遊ぶ問題　難易度：最終画面 問題数：１問**
+* /tobe_master/api/question/multiple/4
 
 
 
