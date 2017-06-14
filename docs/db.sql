@@ -93,7 +93,7 @@ CREATE TABLE `m_management_user` (
 --
 
 INSERT INTO `m_management_user` (`management_user_id`, `login_id`, `password`) VALUES
-(1, 'admin', 'password');
+(1, 'admin', 'cGFzc3dvcmQ=');
 
 -- --------------------------------------------------------
 
