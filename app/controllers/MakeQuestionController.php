@@ -30,10 +30,29 @@ class MakeQuestionController extends BaseController {
         $fileName = $date . '_1_1.' . $this->getExpanded($newfile->getClientFilename());
         $this->uploadFile($newfile, $fileName);
 
+        $message = null;
+        $bh = null;
 
+        // DBの起動確認
+        if (empty($this->app->db)) {
+            $message = 'データベースが起動していません。';
+        }
+
+        // 問題がなければ
+        if (empty($message)) {
+            try {
+                $params = array_merge($params,array('pattern_id'=>'1','problem_image_path'=>$fileName));
+                $question = new Question($this->app->db);
+                $bh = $question->registration($params);
+            } catch (PDOException $e) {
+                $message = 'データベースでエラーが発生しました。';
+            }
+        }
 
         // echo $params;
         echo '<pre>';
+        var_dump($bh);
+        var_dump($params);
         var_dump($fileName);
         // var_dump($this->getExpanded($newfile->getClientFilename()));
         echo '</pre>';
