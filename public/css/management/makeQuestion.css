@@ -198,7 +198,5 @@ article.selected {
   background-color: #F6CECE;
 }
 .arearesize {
-    resize: vertical;
-    overflow: auto;
-    height: 100px;
+    resize: none;
 }

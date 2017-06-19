@@ -34,7 +34,6 @@
         </ul>
 
 
-
         {# エラーメッセージ #}
 			  {% if message is not null %}
         <div class="alert alert-danger" role="alert">
@@ -43,6 +42,7 @@
 			  {% endif %}
         <ul class="tab-contents">
 
+          <p>サンプルテキストエリアのrequired属性の値：<span id="sampleOutput"></span></p>
 
           <!--        Aパターン         -->
           <li class="active">
@@ -353,7 +353,7 @@
                           <table class="table">
                             <tr>
                               <td>
-                                <label><input type="radio" name="answertype2" value="hoge1" onclick="entryChange2();" checked="checked" />：①はい、いいえで解答</label>
+                                <label><input type="radio" name="answertype2" value="hoge1" onclick="entryChange2(),setRequired(false);" checked="checked" />：①はい、いいえで解答</label>
                               </td>
                             </tr>
                             <!-- 表示非表示切り替え -->
@@ -366,15 +366,15 @@
                               </td>
                             </tr>
                             <td>
-                              <label><input type="radio" name="answertype2" value="hoge2" onclick="entryChange2();" />：②解答文で解答</label>
+                              <label><input type="radio" name="answertype2" value="hoge2" onclick="entryChange2(),setRequired(true);" />：②解答文で解答</label>
                             </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox2">
                               <td>
-                                <input type="text" class="form-control correct" name="correct_answer" id="mem_name" placeholder="正解を書いてください" value="">
+                                <input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="" required>
                               </td>
                               <td>
-                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="mem_name" placeholder="不正解を書いてください" value="">
+                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="incorrect" placeholder="不正解を書いてください" value="" required>
                               </td>
                             </tr>
                           </table>

@@ -73,6 +73,7 @@ window.onload = function () { // ページ読み込み時
     entryChange2(); // 関数呼び出し
 }
 
+
 //requiredの追記
 function setRequired( $required ) {
     var $elementReference1 = document.getElementById( "correct" );
@@ -82,4 +83,5 @@ function setRequired( $required ) {
     $elementReference2.required = $required;
     var $required = $elementReference2.required;
     document.getElementById( "sampleOutput" ).innerHTML = $required;
+
 }
