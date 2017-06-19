@@ -85,12 +85,3 @@ function setRequired( $required ) {
     document.getElementById( "sampleOutput" ).innerHTML = $required;
 
 }
-// function setRequired( $required ) {
-//     var $elementReference1 = document.getElementById( "correct" );
-//     var $elementReference2 = document.getElementById( "incorrect" );
-//     $elementReference1.required = $required;
-//     var $required = $elementReference1.required;
-//     $elementReference2.required = $required;
-//     var $required = $elementReference2.required;
-//     document.getElementById( "sampleOutput" ).innerHTML = $required;
-// }
