@@ -13,9 +13,18 @@
     <title>めざせ！とべマスター</title>
 </head>
 <body>
+	<!-- トップページ -->
+	<div class="index">
+		<h1>めざせ！とべマスター<!-- <img src="../../public/images/web/img_logo01.png" srcset="../../public/images/web/img_logo01@2x.png 2x, ../../public/images/web/img_logo01@3x.png 3x" alt="">--></h1>
+		<ul class="btnList01">
+			<li><button type="button" class="one" value="">ひとりであそぶ</button></li>
+			<li><button type="button" class="all" value="">みんなであそぶ</button></li>
+		</ul>
+	</div>
+
 	<!-- 人数選択画面 -->
 	<div class="playerDecide">
-		<ul class="slider playerList">
+		<ul class="playerList01">
 			<li>
 				<img src="../../public/images/web/ico_penguin01.png" srcset="../../public/images/web/ico_penguin01@2x.png 2x, ../../public/images/web/ico_penguin01@3x.png 3x" alt="">
 			</li>
@@ -23,7 +32,7 @@
 				<img src="../../public/images/web/ico_bear01.png" srcset="../../public/images/web/ico_bear01@2x.png 2x, ../../public/images/web/ico_bear01@3x.png 3x" alt="">
 			</li>
 		</ul>
-		<ul class="btnList01">
+		<ul class="btnList02">
 			<li><button type="button" class="btnStyle04 minus" value="">減らす</button></li>
 			<li><button type="button" class="btnStyle04 plus" value="">増やす</button></li>
 		</ul>
@@ -34,9 +43,9 @@
 	
 	<!-- プレイヤー確認画面 -->
 	<div class="playerConfirm">
-		<h1>プレイヤー確認</h1>
+		<h2>プレイヤー確認</h2>
 		<div class="playerArea">
-			<p><img src="../../public/images/web/ico_animal01.png" alt="" class="icon"></p>
+			<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
 			<p class="playerName">あなたは<span class="animal">シロクマ</span>さんですか？</p>
 		</div>
 		<div class="next">
@@ -48,7 +57,7 @@
 	<div class="sec01">
 		<ul class="slider questionImg">
 			<li>
-				<img src="../../public/images/web/dummy.png" alt="">
+				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
 			</li>
 		</ul>
 		<div class="questionArea">
@@ -59,16 +68,12 @@
 			<div class="time"><div class="timebar"></div></div>
 		</div>
 		<div class="playerArea">
-			<p><img src="../../public/images/web/ico_animal01.png" alt="" class="icon"></p>
+			<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt="" class="icon"></p>
 			<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>
 		</div>
 		<ul class="answerArea">
-			<li>
-				<button type="button" id="correct" class="answerBtn btnStyle01" value=""></button>
-			</li>
-			<li>
-				<button type="button" id="incorrect" class="answerBtn btnStyle02" value=""></button>
-			</li>
+			<li><button type="button" id="correct" class="answerBtn btnStyle01" value=""></button></li>
+			<li><button type="button" id="incorrect" class="answerBtn btnStyle02" value=""></button></li>
 		</ul>
 	</div>
 
@@ -76,7 +81,7 @@
 	<div class="sec02">
 		<ul class="slider questionImg">
 			<li>
-				<img src="../../public/images/web/dummy.png" alt="">
+				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
 			</li>
 		</ul>
 		<div class="questionArea">
@@ -90,7 +95,7 @@
 			<p class="answerBtn btnStyle02">あああああ</p>
 		</div>
 		<div class="next">
-			<button type="button" class="btnStyle03" value="">次へ</button>
+			<button type="button" class="btnStyle03" value="">解説へ</button>
 		</div>
 	</div>
 
@@ -98,22 +103,126 @@
 	<div class="sec03">
 		<ul class="slider questionImg">
 			<li>
-				<img src="../../public/images/web/dummy.png" alt="">
+				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
 			</li>
 		</ul>
 		<div class="questionArea">
 			<p class="tC">第<span class="questionNo">1</span>問</p>
-			<p class="questionText">正解は…</p>
+			<p class="questionText">解説！</p>
 		</div>
 		<div class="time" style="width:100%;height:100%;background-color:white;z-index:9">
 			<div class="time"><div class="timebar"></div></div>
 		</div>
-		<div class="correctArea">
-			<p class="answerBtn btnStyle02">あああああ</p>
+		<div class="commentaryArea">
+			<p>ヌートリアは、カピパラと比べ前歯が見えやすく色もオレンジ色をしています。また、ヌートリアには長い尻尾がありますがカピバラにはありません。</p>
 		</div>
 		<div class="next">
-			<button type="button" class="btnStyle03" value="">次へ</button>
+			<button type="button" class="btnStyle03" value="">みんなの解答結果へ</button>
 		</div>
+	</div>
+
+	<!-- みんなの解答結果画面 -->
+	<div class="sec04">
+		<div class="correctPlayer">
+			<h3>正解者</h3>
+			<ul class="playerList02">
+				<li>
+					<img src="../../public/images/web/ico_animal02.png" srcset="../../public/images/web/ico_animal02@2x.png 2x, ../../public/images/web/ico_animal02@3x.png 3x" alt="">
+				</li>
+			</ul>
+		</div>
+		<div class="incorrectPlayer">
+			<h3>不正解者</h3>
+			<ul class="playerList02">
+				<li>
+					<img src="../../public/images/web/ico_animal04.png" srcset="../../public/images/web/ico_animal04@2x.png 2x, ../../public/images/web/ico_animal04@3x.png 3x" alt="">
+				</li>
+			</ul>
+		</div>
+		<div class="dropoutPlayer">
+			<h3>脱落者</h3>
+			<ul class="playerList02">
+				<li>なし</li>
+			</ul>
+		</div>
+		<div class="next">
+			<button type="button" class="btnStyle03" value="">次の問題へ</button>
+		</div>
+	</div>
+
+	<!-- ゲームオーバー画面 -->
+	<div class="gameover">
+		<h2>GAME OVER</h2>
+		<ul class="playerList03">
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="playerName">シロクマ</p>
+					<p class="correct">正解数：<span class="num">4</span></p>
+				</div>
+			</li>
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal02.png" srcset="../../public/images/web/ico_animal02@2x.png 2x, ../../public/images/web/ico_animal02@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="playerName">カンガルー</p>
+					<p class="correct">正解数：<span class="num">0</span></p>
+				</div>
+			</li>
+		</ul>
+		<div class="next">
+			<button type="button" class="btnStyle03" value="">次の問題へ</button>
+		</div>
+	</div>
+
+	<!-- ゲームオーバー画面 -->
+	<div class="gameover">
+		<h2>GAME OVER</h2>
+		<ul class="playerList03">
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="playerName">シロクマ</p>
+					<p class="correct">正解数：<span class="num">4</span></p>
+				</div>
+			</li>
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal02.png" srcset="../../public/images/web/ico_animal02@2x.png 2x, ../../public/images/web/ico_animal02@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="playerName">カンガルー</p>
+					<p class="correct">正解数：<span class="num">0</span></p>
+				</div>
+			</li>
+		</ul>
+		<ul class="btnList03">
+			<li><button type="button" class="btnStyle04" value="">再挑戦する</button></li>
+			<li><button type="button" class="btnStyle05" value="">TOPへ戻る</button></li>
+		</ul>
+	</div>
+
+	<!-- ゲームクリア画面 -->
+	<div class="gameclear">
+		<h2>GAME CLEAR</h2>
+		<ul class="playerList03">
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="master">MASTER</p>
+					<p class="playerName">シロクマ</p>
+					<p class="correct">正解数：<span class="num">10</span></p>
+				</div>
+			</li>
+			<li>
+				<p class="fL"><img src="../../public/images/web/ico_animal02.png" srcset="../../public/images/web/ico_animal02@2x.png 2x, ../../public/images/web/ico_animal02@3x.png 3x" alt=""></p>
+				<div class="fR">
+					<p class="playerName">カンガルー</p>
+					<p class="correct">正解数：<span class="num">0</span></p>
+				</div>
+			</li>
+		</ul>
+		<ul class="btnList03">
+			<li><button type="button" class="btnStyle04" value="">再挑戦する</button></li>
+			<li><button type="button" class="btnStyle05" value="">TOPへ戻る</button></li>
+		</ul>
 	</div>
 	
 <!--	<script src="/tobe_master/public/js/multi_import.js" type="text/javascript" charset="utf-8"></script>-->
