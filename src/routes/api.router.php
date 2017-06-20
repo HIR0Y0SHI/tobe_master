@@ -95,44 +95,59 @@ $app->get('/api/mock/question/multiple/{number}', function($request, $response, 
     $question = 'カピパラはどっち？';
 
     $json = [
-        [
-            'pattern' => 'Bパターン',
-            'question' => mb_convert_encoding($question, "UTF-8", "auto"),
-            'choices' => [
-                'ans' => 'sample.png',
-                'inc' => 'sample.png',
+        'status' => 'Successful',
+
+        'questions' => [
+            [
+                'pattern' => 'Bパターン',
+                'question' => mb_convert_encoding($question, "UTF-8", "auto"),
+                'choices' => [
+                    'ans' => 'sample.png',
+                    'inc' => 'sample.png',
+                ],
+                'commentary' => '解説が入ります。',
+                'solution_time' => '10',
+                'difficulty' => '最終問題',
+                'area' => 'ペンギン広場'
             ],
-            'commentary' => '解説が入ります。',
-            'solution_time' => '10',
-            'difficulty' => '最終問題',
-            'area' => 'ペンギン広場'
-        ],
-        [
-            'pattern' => 'Bパターン',
-            'question' => mb_convert_encoding($question, "UTF-8", "auto"),
-            'choices' => [
-                'ans' => 'sample.png',
-                'inc' => 'sample.png',
+            [
+                'pattern' => 'Bパターン',
+                'question' => mb_convert_encoding($question, "UTF-8", "auto"),
+                'choices' => [
+                    'ans' => 'sample.png',
+                    'inc' => 'sample.png',
+                ],
+                'commentary' => '解説が入ります。',
+                'solution_time' => '10',
+                'difficulty' => '最終問題',
+                'area' => 'ペンギン広場'
             ],
-            'commentary' => '解説が入ります。',
-            'solution_time' => '10',
-            'difficulty' => '最終問題',
-            'area' => 'ペンギン広場'
-        ],
-        [
-            'pattern' => 'Bパターン',
-            'question' => mb_convert_encoding($question, "UTF-8", "auto"),
-            'choices' => [
-                'ans' => 'sample.png',
-                'inc' => 'sample.png',
-            ],
-            'commentary' => '解説が入ります。',
-            'solution_time' => '10',
-            'difficulty' => '最終問題',
-            'area' => 'ペンギン広場'
+            [
+                'pattern' => 'Bパターン',
+                'question' => mb_convert_encoding($question, "UTF-8", "auto"),
+                'choices' => [
+                    'ans' => 'sample.png',
+                    'inc' => 'sample.png',
+                ],
+                'commentary' => '解説が入ります。',
+                'solution_time' => '10',
+                'difficulty' => '最終問題',
+                'area' => 'ペンギン広場'
+            ]
         ]
     ];
 
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
 
+});
+
+
+// エラーの場合
+$app->get('/api/mock/question/error', function($request, $response, $args) {
+    $json = [
+        'status' => 'Failed',
+        'message' => 'データベースが起動していません。'
+    ];
+
+    echo json_encode($json, JSON_UNESCAPED_UNICODE);
 });
