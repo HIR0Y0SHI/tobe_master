@@ -38,6 +38,17 @@ class QuestionAPIController extends BaseController {
         
         $json = [];
 
+        // 問題番号の確認
+        if ($number < 1 || $number > 4) {
+            $json = [
+                'status' => 'failed',
+                'message' => '問題難易度が間違っています。'
+            ];
+
+            return $this->render($json);
+        }
+
+
         // DBのチェック
         if (empty($this->app->db)) {
             $json = [
