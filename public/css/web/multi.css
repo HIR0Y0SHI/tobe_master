@@ -1,8 +1,12 @@
+/*最上部はテスト用です*/
 #box1, #box2, #box3, #box4{
 	position: absolute;
 }
+.box1, .box2, .box3, .box4{
+	position: absolute;
+}
 
-#time {
+.time {
 	width: 80%;
 	height: 5%;
 	border: 5px solid #333;
@@ -10,10 +14,17 @@
 	overflow: hidden;
 }
 
-#timebar {
+.timebar {
 	width: 100%;
 	height: 100%;
 	background-color: skyblue;
 	position: absolute;
 	top: 0;
 }
+
+/*ここから本番用でお願いします。*/
+.sec01,.sec02,.sec03,.sec04{
+	position:absolute;
+	background-color: #fff;
+	height:100%;
+} 
