@@ -42,11 +42,18 @@ class Question extends Mapper {
 
     }
 
-    public function getMultipleQuestions() {
-        $query = 'SELECT * FROM m_questions';
+    /**
+    * みんなで遊ぶ問題を取得する
+    * 
+    * @access public
+    * @param string $number 問題番号
+    * @return int 問題数
+    */
+    public function getMultipleQuestions($number) {
         $results = [];
 
-        $this->makeAPIQuery(1);
+        // クエリーを生成
+        $query = $this->makeAPIQuery($number);
         
         try {
             $stmt = $this->db->query($query);
@@ -71,10 +78,7 @@ class Question extends Mapper {
     */
     private function makeAPIQuery($number) {
         $limit = Question::MUNBER_OF_QUESTIONS_DIC[$number];
-        echo $limit;
-        exit;
-        $query = 'SELECT * FROM v_question_multiple_api ORDER BY RAND() LIMIT 1';
-        
+        return 'SELECT * FROM v_question_multiple_api ORDER BY RAND() LIMIT ' . $limit;
     }
 
 

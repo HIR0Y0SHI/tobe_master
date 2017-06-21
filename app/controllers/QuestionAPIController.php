@@ -40,15 +40,21 @@ class QuestionAPIController extends BaseController {
 
         // DBのチェック
         if (empty($this->app->db)) {
-            $question = new Question($this->app->db);
-            echo $question->getMultipleQuestions();
-            
             $json = [
                 'status' => 'failed',
                 'message' => 'データベースが起動していません。'
             ];
         } else {
-
+            // 問題の取得
+            try {
+                $question = new Question($this->app->db);
+                $json = $question->getMultipleQuestions($number);
+            } catch (PODException $e) {
+                $json = [
+                    'status' => 'failed',
+                    'message' => 'データベースでエラーが発生しました。'
+                ];
+            }
         }
 
        $this->render($json);
