@@ -41,7 +41,7 @@ class QuestionAPIController extends BaseController {
         // 問題番号の確認
         if ($number < 1 || $number > 4) {
             $json = [
-                'status' => 'failed',
+                'status' => 'Failed',
                 'message' => '問題難易度が間違っています。'
             ];
 
@@ -52,17 +52,20 @@ class QuestionAPIController extends BaseController {
         // DBのチェック
         if (empty($this->app->db)) {
             $json = [
-                'status' => 'failed',
+                'status' => 'Failed',
                 'message' => 'データベースが起動していません。'
             ];
         } else {
             // 問題の取得
             try {
                 $question = new Question($this->app->db);
-                $json = $question->getMultipleQuestions($number);
+                $json = [
+                    'status' => 'Successful',
+                    'questions' => $question->getMultipleQuestions($number)
+                ];
             } catch (PODException $e) {
                 $json = [
-                    'status' => 'failed',
+                    'status' => 'Failed',
                     'message' => 'データベースでエラーが発生しました。'
                 ];
             }
