@@ -82,9 +82,9 @@ function setRequired( $required ) {
     var $elementReference1 = document.getElementById( "correct" );
     var $elementReference2 = document.getElementById( "incorrect" );
     $elementReference1.required = $required;
-    var $required = $elementReference1.required;
+    // var $required = $elementReference1.required;
     $elementReference2.required = $required;
-    var $required = $elementReference2.required;
+    // var $required = $elementReference2.required;
     // document.getElementById( "sampleOutput" ).innerHTML = $required;
 }
 // Cパターン
@@ -92,8 +92,8 @@ function setRequired2( $required ) {
     var $elementReference1 = document.getElementById( "correct2" );
     var $elementReference2 = document.getElementById( "incorrect2" );
     $elementReference1.required = $required;
-    var $required = $elementReference1.required;
+    // var $required = $elementReference1.required;
     $elementReference2.required = $required;
-    var $required = $elementReference2.required;
+    // var $required = $elementReference2.required;
     // document.getElementById( "sampleOutput" ).innerHTML = $required;
 }
