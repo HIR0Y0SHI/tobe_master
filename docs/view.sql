@@ -38,6 +38,7 @@ CREATE VIEW v_question_multiple_api AS
         q.incorrect_answer,
         q.commentary,
         p.name AS pattern_name,
+        d.difficulty_id AS difficulty_id,
         d.name AS difficulty_name,
         s.second,
         b.name AS beast_house_name
