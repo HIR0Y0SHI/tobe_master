@@ -71,6 +71,8 @@ function entryChange2() {
 window.onload = function () { // ページ読み込み時
     entryChange1(); // 関数呼び出し
     entryChange2(); // 関数呼び出し
+    setRequired(false);
+    setRequired2(false);
 }
 
 
@@ -78,6 +80,16 @@ window.onload = function () { // ページ読み込み時
 function setRequired( $required ) {
     var $elementReference1 = document.getElementById( "correct" );
     var $elementReference2 = document.getElementById( "incorrect" );
+    $elementReference1.required = $required;
+    var $required = $elementReference1.required;
+    $elementReference2.required = $required;
+    var $required = $elementReference2.required;
+    document.getElementById( "sampleOutput" ).innerHTML = $required;
+
+}
+function setRequired2( $required ) {
+    var $elementReference1 = document.getElementById( "correct2" );
+    var $elementReference2 = document.getElementById( "incorrect2" );
     $elementReference1.required = $required;
     var $required = $elementReference1.required;
     $elementReference2.required = $required;
