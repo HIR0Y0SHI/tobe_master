@@ -23,8 +23,9 @@
 }
 
 /*ここから本番用でお願いします。*/
-.sec01,.sec02,.sec03,.sec04{
+.contentIn > div{
 	position:absolute;
 	background-color: #fff;
 	height:100%;
-} 
+	width: 100%;
+}

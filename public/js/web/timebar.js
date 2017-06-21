@@ -12,31 +12,31 @@ timebarCount = timebarCount/3;
 
 //青色のタイムバー
 var timeBlueBar = function blueBar() {
-    TweenMax.to('#timebar', timebarCount, {
+    TweenMax.to('.timebar', timebarCount, {
         right: '33%',
         ease: Power0.easeNone,
         onComplete: function(){
             timeYellowBar();
-            $("#timebar").css("backgroundColor","yellow");
+            $(".timebar").css("backgroundColor","yellow");
         }
     });
 };
 
 //黄色のタイムバー
 var timeYellowBar = function yellowBar() {
-    TweenMax.to('#timebar', timebarCount, {
+    TweenMax.to('.timebar', timebarCount, {
         right: '66%',
         ease: Power0.easeNone,
         onComplete: function() {
             timeRedBar();
-            $("#timebar").css("backgroundColor","red");
+            $(".timebar").css("backgroundColor","red");
         }
     });
 };
 
 //赤色のタイムバー
 var timeRedBar = function redBar() {
-    TweenMax.to('#timebar', timebarCount, {
+    TweenMax.to('.timebar', timebarCount, {
         right: '100%',
         ease: Power0.easeNone,
         onComplete: function() {
