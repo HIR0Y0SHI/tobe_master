@@ -10,10 +10,14 @@ use App\Models\Question;
 
 class QuestionAPIController extends BaseController {
 
+    // 問題の画像が格納されているパス
     const QUESTION_IMAGE_PATH = __DIR__ . '/../../public/images/questions/';
+
+
 
     /**
     * 一人で遊ぶ問題を取得する
+    * 実装するか分からない
     * 
     * @access public
     * @param string $number 問題番号
@@ -32,18 +36,31 @@ class QuestionAPIController extends BaseController {
     */
     public function multipleQuestionAPI($number) {
         
+        $json = [];
+
+        // DBのチェック
+        if (empty($this->app->db)) {
+            $question = new Question($this->app->db);
+            echo $question->getMultipleQuestions();
+            
+            $json = [
+                'status' => 'failed',
+                'message' => 'データベースが起動していません。'
+            ];
+        } else {
+
+        }
+
+       $this->render($json);
     }
 
 
+    
 
+ 
     // TEST
-    public function render() {
-        $q = new Question($this->app->db);
-        $r = $q->getBeastHouses();
-        echo '<pre>';
-        var_dump($r);
-        echo '</pre>';
-        // $this->app->view->render($this->response, 'management/login.html');
+    private function render($json) {
+         echo json_encode($json, JSON_UNESCAPED_UNICODE);
     }
 
 }

@@ -26,8 +26,9 @@ class MakeQuestionController extends BaseController {
         $newfile = $files['problem_image'];
         // ファイル名に使う日付を生成
         $date = date('YmdHis');
-
+        // 画像ファイル名生成
         $fileName = $date . '_1_1.' . $this->getExpanded($newfile->getClientFilename());
+        // 画像ファイル登録
         $this->uploadFile($newfile, $fileName);
 
         $message = null;
@@ -49,6 +50,7 @@ class MakeQuestionController extends BaseController {
             }
         }
 
+        //$this->app->view->render($this->response, 'management/makeQuestion.html');
         // echo $params;
         echo '<pre>';
         var_dump($bh);
@@ -56,6 +58,7 @@ class MakeQuestionController extends BaseController {
         var_dump($fileName);
         // var_dump($this->getExpanded($newfile->getClientFilename()));
         echo '</pre>';
+
         exit;
     }
     
