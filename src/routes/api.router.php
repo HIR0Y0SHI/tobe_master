@@ -17,8 +17,7 @@ $app->get('/api/question/one/{number}', function($request, $response, $args) {
 
 $app->get('/api/question/multiple/{number}', function($request, $response, $args) {
     $qc = new App\Controllers\QuestionAPIController($this, $response);
-    $qc->multipleQuestionAPI(1);
-    // return $response;
+    $qc->multipleQuestionAPI($args['number']);
 });
 
 
