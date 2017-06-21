@@ -198,18 +198,20 @@
                         <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>
                       </div>
                     </div>
-                    <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
                       <div class="col-md-8 col-sm-9">
                         <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control arearesize" required></textarea>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
-    							    </label>
+                      <label class="control-label col-sm-3">問題画像
+                        <span class="text-danger">*</span><br>
+                      </label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
-                          不正解の画像<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          正解の画像<input type="file" name="correct_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
+                          不正解の画像<input type="file" name="incorrect_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
                         </div>
                       </div>
                     </div>
@@ -235,7 +237,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="area" class="form-control" required>
+                            <select name="difficulty" class="form-control" required>
         											<option value="">選択してください</option>
         											<option value="1" >簡単</option>
         											<option value="2" >普通</option>
@@ -252,7 +254,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="area" class="form-control" required>
+                            <select name="solution_time" class="form-control" required>
         											<option value="">選択してください</option>
         											<option value="1" >10秒</option>
         											<option value="2" >15秒</option>
@@ -263,7 +265,7 @@
                     </div>
                     <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
                       <div class="col-md-8 col-sm-9">
-                        <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize" required></textarea>
+                        <textarea name="commentary" id="commentary2" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize" required></textarea>
                       </div>
                     </div>
                     <div class="form-group">
