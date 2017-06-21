@@ -78,7 +78,7 @@ class Question extends Mapper {
     */
     private function makeAPIQuery($number) {
         $limit = Question::MUNBER_OF_QUESTIONS_DIC[$number];
-        return 'SELECT * FROM v_question_multiple_api ORDER BY RAND() LIMIT ' . $limit;
+        return 'SELECT * FROM v_question_multiple_api WHERE difficulty_id = ' . $number . ' ORDER BY RAND() LIMIT ' . $limit;
     }
 
 
