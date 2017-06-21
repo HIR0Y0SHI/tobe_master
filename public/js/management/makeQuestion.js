@@ -77,6 +77,7 @@ window.onload = function () { // ページ読み込み時
 
 
 //requiredの追記
+// Aパターン
 function setRequired( $required ) {
     var $elementReference1 = document.getElementById( "correct" );
     var $elementReference2 = document.getElementById( "incorrect" );
@@ -84,9 +85,9 @@ function setRequired( $required ) {
     var $required = $elementReference1.required;
     $elementReference2.required = $required;
     var $required = $elementReference2.required;
-    document.getElementById( "sampleOutput" ).innerHTML = $required;
-
+    // document.getElementById( "sampleOutput" ).innerHTML = $required;
 }
+// Cパターン
 function setRequired2( $required ) {
     var $elementReference1 = document.getElementById( "correct2" );
     var $elementReference2 = document.getElementById( "incorrect2" );
@@ -94,6 +95,5 @@ function setRequired2( $required ) {
     var $required = $elementReference1.required;
     $elementReference2.required = $required;
     var $required = $elementReference2.required;
-    document.getElementById( "sampleOutput" ).innerHTML = $required;
-
+    // document.getElementById( "sampleOutput" ).innerHTML = $required;
 }
