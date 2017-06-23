@@ -15,12 +15,12 @@ $(function (){
 		crossdomain: true
 	}).done(function(data){
 		var i = 0;
-			var question = data[i].question;
-			var pattern = data[i].pattern;
-			var correct = data[i].choices.ans;
-			var incorrect = data[i].choices.inc;
-			var image = data[i].image;
-			var solution_time = data[i].solution_time;
+			var question = data.questions[i].question;
+			var pattern = data.questions[i].pattern;
+			var correct = data.questions[i].choices.ans;
+			var incorrect = data.questions[i].choices.inc;
+			var image = data.questions[i].image;
+			var solution_time = data.questions[i].solution_time;
 			$.cookie("solution_time", solution_time, { expires: 1 });
 			
 			$(".questionText").text(question);
@@ -77,18 +77,23 @@ disp();
  *
  */
 
-$(".next").on("click", function(){
-	TweenMax.to('.box1', -1, {
-		display: 'none',
+$(".outputQuestion").on("click", function(){
+	TweenMax.to('.playerConfirm', -1, {
+		zIndex: '-1',
 		onComplete: function(){// 処理完了後に実行される
+			$(".sec01").css("z-index","999");
 			timeBlueBar();
 		}
 	});
 });
 
 var loadBox = function loadbox() {
-	TweenMax.to('.box2', -1, {
-		display: 'none'
+	TweenMax.to('#quizRepeat', -1, {
+		zIndex: '-1',
+		onComplete: function(){
+			$(".sec01").css("z-index","-1");
+			$(".sec02").css("z-index","999");
+		}
 	});
 };
 
@@ -99,5 +104,8 @@ $("#box3").on("click", function(){
 });
 
 
-$(".sec01").css("z-index","999");
+
 $(".contentIn > div").css("z-index","-1");
+$("#quizRepeat > .sec01").css("z-index","-1");
+$("#quizRepeat > .playerConfirm").css("z-index","998");
+$("#quizRepeat").css("z-index","999");

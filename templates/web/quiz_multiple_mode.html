@@ -42,39 +42,42 @@
 		</div>
 	</div>
 	
-	<!-- プレイヤー確認画面 -->
-	<div class="playerConfirm">
-		<h2>プレイヤー確認</h2>
-		<div class="playerArea">
-			<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
-			<p class="playerName">あなたは<span class="animal">シロクマ</span>さんですか？</p>
+	<!--繰り返し用のdiv-->
+	<div id="quizRepeat">
+		<!-- プレイヤー確認画面 -->
+		<div class="playerConfirm">
+			<h2>プレイヤー確認</h2>
+			<div class="playerArea">
+				<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>
+				<p class="playerName">あなたは<span class="animal">シロクマ</span>さんですか？</p>
+			</div>
+			<div class="outputQuestion">
+				<button type="button" class="btnStyle03 outputQuestion" value="">はい</button>
+			</div>
 		</div>
-		<div class="next">
-			<button type="button" class="btnStyle03" value="">はい</button>
-		</div>
-	</div>
 
-	<!-- クイズ出題画面 -->
-	<div class="sec01 active">
-		<ul class="slider questionImg">
-			<li>
-				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
-			</li>
-		</ul>
-		<div class="questionArea">
-			<p class="tC">第<span class="questionNo">1</span>問</p>
-			<p class="questionText">この動物はカピバラ？それともヌートリア？</p>
+		<!-- クイズ出題画面 -->
+		<div class="sec01 active">
+			<ul class="slider questionImg">
+				<li>
+					<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
+				</li>
+			</ul>
+			<div class="questionArea">
+				<p class="tC">第<span class="questionNo">1</span>問</p>
+				<p class="questionText">この動物はカピバラ？それともヌートリア？</p>
+			</div>
+			<div class="time"><div class="timebar"></div></div>
+			<div class="playerArea">
+				<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt="" class="icon"></p>
+				<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>
+			</div>
+			<ul class="answerArea">
+				<li><button type="button" id="correct" class="answerBtn btnStyle01" value=""></button></li>
+				<li><button type="button" id="incorrect" class="answerBtn btnStyle02" value=""></button></li>
+			</ul>
 		</div>
-		<div class="time"><div class="timebar"></div></div>
-		<div class="playerArea">
-			<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt="" class="icon"></p>
-			<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>
-		</div>
-		<ul class="answerArea">
-			<li><button type="button" id="correct" class="answerBtn btnStyle01" value=""></button></li>
-			<li><button type="button" id="incorrect" class="answerBtn btnStyle02" value=""></button></li>
-		</ul>
-	</div>
+	</div><!--quizRepeat-->
 
 	<!-- 解答画面 -->
 	<div class="sec02">
@@ -83,12 +86,11 @@
 				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
 			</li>
 		</ul>
-		<div class="questionArea">
+		<div class="textArea question">
 			<p class="tC">第<span class="questionNo">1</span>問</p>
 			<p class="questionText">正解は…</p>
 		</div>
 		
-		<div class="time"><div class="timebar"></div></div>
 		<div class="correctArea">
 			<p class="answerBtn btnStyle02">あああああ</p>
 		</div>
@@ -104,11 +106,10 @@
 				<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">
 			</li>
 		</ul>
-		<div class="questionArea">
+		<div class="textArea answer">
 			<p class="tC">第<span class="questionNo">1</span>問</p>
-			<p class="questionText">解説！</p>
+			<p class="answerText">解説！</p>
 		</div>
-		<div class="time"><div class="timebar"></div></div>
 		<div class="commentaryArea">
 			<p>ヌートリアは、カピパラと比べ前歯が見えやすく色もオレンジ色をしています。また、ヌートリアには長い尻尾がありますがカピバラにはありません。</p>
 		</div>
