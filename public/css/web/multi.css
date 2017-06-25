@@ -1,31 +1,44 @@
-/*最上部はテスト用です*/
-#box1, #box2, #box3, #box4{
-	position: absolute;
+.clearfix {
+  *zoom: 1;
 }
-.box1, .box2, .box3, .box4{
-	position: absolute;
-}
-
-.time {
-	width: 80%;
-	height: 5%;
-	border: 5px solid #333;
-	position: relative;
-	overflow: hidden;
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.timebar {
-	width: 100%;
-	height: 100%;
-	background-color: skyblue;
-	position: absolute;
-	top: 0;
+.contentIn {
+  position: relative;
+  background-color: #fff;
 }
-
-/*ここから本番用でお願いします。*/
-.contentIn > div{
+.contentIn > div {
+  width: 100%;
+  height: 1vh;
+  background-color: #fff;
+  position: absolute;
+}
+#quizRepeat > div {
 	position:absolute;
 	background-color: #fff;
 	height:100%;
 	width: 100%;
+}
+.contentIn > div.active {
+  z-index: 999 !important;
+}
+
+.time {
+  width: 80%;
+  height: 5%;
+  border: 5px solid #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.timebar {
+  width: 100%;
+  height: 100%;
+  background-color: skyblue;
+  position: absolute;
+  top: 0;
 }

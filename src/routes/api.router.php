@@ -56,7 +56,6 @@ $app->get('/api/mock/question/multiple/4', function($request, $response, $args) 
 });
 
 
-
 // エラーの場合
 $app->get('/api/mock/question/error', function($request, $response, $args) {
     $json = [
