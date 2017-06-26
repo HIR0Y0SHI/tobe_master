@@ -121,21 +121,52 @@ class Question extends Mapper {
     */
     public function registration($prams) {
         $result = false;
-        $query = 'INSERT INTO  m_questions (pattern_id, difficulty_id ,solution_time_id ,beast_house_id ,title ,problem_statement ,problem_image_path ,correct_answer ,incorrect_answer ,commentary)';
-        $query .= ' VALUES (:pattern_id, :difficulty_id, :solution_time_id, :beast_house_id, :title, :problem_statement, :problem_image_path, :correct_answer, :incorrect_answer, :commentary)';
+        $sqlflg = 1;
+        switch ($prams[pattern_id]) {
+            case 1:
+                $query = 'INSERT INTO  m_questions (pattern_id, difficulty_id ,solution_time_id ,beast_house_id ,title ,problem_statement ,problem_image_path ,correct_answer ,incorrect_answer ,commentary)';
+                $query .= ' VALUES (:pattern_id, :difficulty_id, :solution_time_id, :beast_house_id, :title, :problem_statement, :problem_image_path, :correct_answer, :incorrect_answer, :commentary)';
+                $sqlflg = 1;
+                break;
+            case 2:
+                $query = 'INSERT INTO  m_questions (pattern_id, difficulty_id ,solution_time_id ,beast_house_id ,title ,problem_statement ,first_image_path ,second_image_path ,commentary)';
+                $query .= ' VALUES (:pattern_id, :difficulty_id, :solution_time_id, :beast_house_id, :title, :problem_statement, :first_image_path, :second_image_path, :commentary)';
+                $sqlflg = 2;
+                break;
+            case 3:
+                $query = 'INSERT INTO  m_questions (pattern_id, difficulty_id ,solution_time_id ,beast_house_id ,title ,problem_statement ,first_image_path ,second_image_path ,correct_answer ,incorrect_answer ,commentary)';
+                $query .= ' VALUES (:pattern_id, :difficulty_id, :solution_time_id, :beast_house_id, :title, :problem_statement, :first_image_path, :second_image_path, :correct_answer, :incorrect_answer, :commentary)';
+                $sqlflg = 3;
+                break;
+        }
+
 
         try {
-
             $stmt = $this->db->prepare($query);
+            switch ($sqlflg) {
+                case 1:
+                    $stmt->bindParam(':problem_image_path', $prams[problem_image_path], \PDO::PARAM_STR);
+                    $stmt->bindParam(':correct_answer', $prams[correct_answer], \PDO::PARAM_STR);
+                    $stmt->bindParam(':incorrect_answer', $prams[incorrect_answer], \PDO::PARAM_STR);
+                    break;
+                case 2:
+                    $stmt->bindParam(':first_image_path', $prams[first_image_path], \PDO::PARAM_STR);
+                    $stmt->bindParam(':second_image_path', $prams[second_image_path], \PDO::PARAM_STR);
+                    break;
+                case 3:
+                    $stmt->bindParam(':correct_answer', $prams[correct_answer], \PDO::PARAM_STR);
+                    $stmt->bindParam(':incorrect_answer', $prams[incorrect_answer], \PDO::PARAM_STR);
+                    $stmt->bindParam(':first_image_path', $prams[first_image_path], \PDO::PARAM_STR);
+                    $stmt->bindParam(':second_image_path', $prams[second_image_path], \PDO::PARAM_STR);
+                    break;
+            }
+
             $stmt->bindParam(':pattern_id', $prams[pattern_id], \PDO::PARAM_INT);
             $stmt->bindParam(':difficulty_id', $prams[difficulty], \PDO::PARAM_INT);
             $stmt->bindParam(':solution_time_id', $prams[solution_time], \PDO::PARAM_INT);
             $stmt->bindParam(':beast_house_id', $prams[area], \PDO::PARAM_INT);
             $stmt->bindParam(':title', $prams[title], \PDO::PARAM_STR);
             $stmt->bindParam(':problem_statement', $prams[introduction], \PDO::PARAM_STR);
-            $stmt->bindParam(':problem_image_path', $prams[problem_image_path], \PDO::PARAM_STR);
-            $stmt->bindParam(':correct_answer', $prams[correct_answer], \PDO::PARAM_STR);
-            $stmt->bindParam(':incorrect_answer', $prams[incorrect_answer], \PDO::PARAM_STR);
             $stmt->bindParam(':commentary', $prams[commentary], \PDO::PARAM_STR);
 
             $stmt->execute();

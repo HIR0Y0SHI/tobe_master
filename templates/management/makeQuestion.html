@@ -129,7 +129,7 @@
                             <tr>
                               <td>
                                 <label>
-                                  <input type="radio" name="answertype" value="hoge1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答
+                                  <input type="radio" name="answertype" value="answertype1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答
                                 </label>
                               </td>
                             </tr>
@@ -146,7 +146,7 @@
                             </tr>
                             <td>
                               <label>
-                                <input type="radio" name="answertype" value="hoge2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
+                                <input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
                               </label>
                             </td>
                             <!-- 表示非表示切り替え -->
@@ -302,8 +302,8 @@
                       <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br></label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          A<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
-                          B<input type="file" name="file_nm" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          A<input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
+                          B<input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
                         </div>
                       </div>
                     </div>
@@ -325,7 +325,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="area" class="form-control" required>
+                            <select name="difficulty" class="form-control" required>
                               <option value="">選択してください</option>
                               <option value="1" >簡単</option>
                               <option value="2" >普通</option>
@@ -340,7 +340,7 @@
                       <div class="col-xs-8">
                         <div class="form-inline">
                           <div class="form-group">
-                            <select name="area" class="form-control" required>
+                            <select name="solution_time" class="form-control" required>
                               <option value="">選択してください</option>
                               <option value="1" >10秒</option>
                               <option value="2" >15秒</option>
@@ -355,7 +355,7 @@
                           <table class="table">
                             <tr>
                               <td>
-                                <label><input type="radio" name="answertype2" value="hoge1" onclick="entryChange2(),setRequired2(false);" checked="checked" />：①はい、いいえで解答</label>
+                                <label><input type="radio" name="answertype2" value="answertype1" onclick="entryChange2(),setRequired2(false);" checked="checked" />：①はい、いいえで解答</label>
                               </td>
                             </tr>
                             <!-- 表示非表示切り替え -->
@@ -368,7 +368,7 @@
                               </td>
                             </tr>
                             <td>
-                              <label><input type="radio" name="answertype2" value="hoge2" onclick="entryChange2(),setRequired2(true);" />：②解答文で解答</label>
+                              <label><input type="radio" name="answertype2" value="answertype2" onclick="entryChange2(),setRequired2(true);" />：②解答文で解答</label>
                             </td>
                             <!-- 表示非表示切り替え -->
                             <tr id="secondBox2">
@@ -385,7 +385,7 @@
                     </div>
 
                     <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
-                      <div class="col-md-8 col-sm-9"> <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize"></textarea> </div>
+                      <div class="col-md-8 col-sm-9"> <textarea name="commentary" id="mem_name" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize"></textarea> </div>
                     </div>
                     <div class="form-group">
                       <div class="col-xs-offset-3 col-xs-10"> <input name="Submit" type="submit" value="作成" class="btn btn-primary"> </div>

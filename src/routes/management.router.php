@@ -81,6 +81,28 @@ $app->post('/management/quiz/make/a', function($request, $response, $args) {
     $question->addQuestionA($params, $files);
 });
 
+
+
+// クイズ追加（Bパターン）
+$app->post('/management/quiz/make/b', function($request, $response, $args) {
+    $files = $request->getUploadedFiles();
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->addQuestionB($params, $files);
+});
+
+
+
+// クイズ追加（Cパターン）
+$app->post('/management/quiz/make/c', function($request, $response, $args) {
+    $files = $request->getUploadedFiles();
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->addQuestionC($params, $files);
+});
+
+
+
 function dump($args) {
     echo '<pre>';
     var_dump($args);
