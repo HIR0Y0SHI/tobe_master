@@ -19,6 +19,9 @@ h1, h2, h3 {
 .link {
   float: right;
 }
+.text-center {
+  margin-top: 20px;
+}
 
 <!--- button --->
 .button {

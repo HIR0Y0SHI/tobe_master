@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>エリア一覧</title>
+  	<!-- <link rel="stylesheet" href="css/quizTop.css"/> -->
+  	<!-- BootstrapのCSS読み込み -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery読み込み -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row　row_quiz">
+		<div class="col-md-12">
+			<h1 class="text-center"> エリア管理 </h1>
+			<p class="link"> <a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ管理へ</a> <a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ作成へ</a> </p>
+		</div>
+
+	</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th class="">番号</th>
+				<th class="">エリア名</th>
+				<th class="">編集</th>
+				<th class="">削除</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- <form action="" method="get"> -->
+			<tr>
+				<th scope="row">1</th>
+				<td class=""><a href="#" title="" role="button" class="btn-link">エリア１</a></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areachange1">
+				  編集
+				</button></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areachange2">削除</button></td>
+			</tr>
+		<!-- </form> -->
+
+		<!-- モーダルウィンドウを表示するボタンを設置 -->
+
+
+		<!-- 表示されるモーダルウィンドウ -->
+		<div class="modal fade" id="areachange1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">エリア編集</h4>
+		      </div>
+		      <div class="modal-body">
+						<form method="post" action="/tobe_master/management/area/">
+				 		<p>エリア名を入力して下さい。</p>
+						<input type="text" class="form-control" name="title" id="area" placeholder="エリア名を入力して下さい" value="" required>
+					</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+		        <button type="button" class="btn btn-primary">変更する</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</div><!-- col -->
+
+
+    <div class="modal fade" id="areachange2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">エリア削除</h4>
+		      </div>
+		      <div class="modal-body">
+						<form method="post" action="/tobe_master/management/area/">
+				 		<p>削除してよろしいですか？</p>
+						<input type="text" class="form-control" name="title" id="area" placeholder="エリア名を入力して下さい" value="" required>
+					</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+		        <button type="button" class="btn btn-primary">削除する</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		</div><!-- col -->
+
+
+		</tbody>
+	</table>
+</div><!-- class=container -->
+</body>
+</html>
