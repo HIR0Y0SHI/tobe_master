@@ -15,18 +15,17 @@ $(function (){
 		crossdomain: true
 	}).done(function(data){
 		var i = 0;
-			var question = data.questions[i].question;
-			var pattern = data.questions[i].pattern;
-			var correct = data.questions[i].choices.ans;
-			var incorrect = data.questions[i].choices.inc;
-			var image = data.questions[i].image;
-			var solution_time = data.questions[i].solution_time;
-			$.cookie("solution_time", solution_time, { expires: 1 });
+			var question = data.questions[i].problem_statement;
+			var image = data.questions[i].problem_image_path;
+			var correct = data.questions[i].correct_answer;
+			var incorrect = data.questions[i].incorrect_answer;
+			var pattern = data.questions[i].pattern_name;
+			var second = data.questions[i].second;
+			$.cookie("second", second, { expires: 1 });
 			
 			$(".questionText").text(question);
-			$("#correct").text(correct);
-			$("#incorrect").text(incorrect);	
-		// $("#answer").text(ans);
+			$(".correct").text(correct);
+			$(".incorrect").text(incorrect);	
 
 		//次の問題数を投げる。
 
@@ -39,35 +38,50 @@ $(function (){
 });
 
 var disp = function disp() {
-	$("#test").empty();
-	// var k = 0;
-	// // ここのplayerのクッキー発行はテスト用
-	// $.cookie("player", 3, { expires: 1 });
-	// for (var i = $.cookie("player"); k <= i; k++) {
-	// 	console.log(i);
+	$("#quizRepeat").empty();
 	var a = "";
-	// for (var i = 0; i < 3; i++) {
+	var zindex = 999;
+	for(i = 0;i < 3;i++){
+
+		$('.secPage'+i+',.confPage'+i+'').css("z-index",zindex-i);
 		
+		a = '';
 
-		a += '<div class="box1" style="width:100%;height:100%;background-color:beige;z-index:10">';
-			a += '<h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>';
-			a += '<button class="next">kuwanoです</button>';
+		a += '<div class="playerConfirm confPage'+i+'">';
+			a += '<h2>プレイヤー確認</h2>';
+			a += '<div class="playerArea">';
+				a += '<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>';
+				a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
+			a += '</div>';
+			a += '<div class="outputQuestion'+i+'">';
+				a += '<button type="button" class="btnStyle03 outputQuestion'+i+'" value="">はい</button>';
+			a += '</div>';
 		a += '</div>';
 
-		a += '<div class="box2" style="width:100%;height:100%;background-color:white;z-index:9">';
-			a += '<h1 id="questionText"></h1>';
+		a += '<div class="sec01 active secPage'+i+'">';
+			a += '<ul class="slider questionImg">';
+				a += '<li>';
+					a += '<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">';
+				a += '</li>';
+			a += '</ul>';
+			a += '<div class="questionArea">';
+				a += '<p class="tC">第<span class="questionNo">1</span>問</p>';
+				a += '<p class="questionText">この動物はカピバラ？それともヌートリア？</p>';
+			a += '</div>';
 			a += '<div class="time"><div class="timebar"></div></div>';
-			a += '<button type="button" id="correct" value=""></button>';
-			a += '<button type="button" id="incorrect" value=""></button>';
+			a += '<div class="playerArea">';
+				a += '<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt="" class="icon"></p>';
+				a += '<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>';
+			a += '</div>';
+			a += '<ul class="answerArea">';
+				a += '<li><button type="button" class="correct" class="answerBtn btnStyle01" value=""></button></li>';
+				a += '<li><button type="button" class="incorrect" class="answerBtn btnStyle02" value=""></button></li>';
+			a += '</ul>';
 		a += '</div>';
 
-	$("#test").append(a);
-	// }
-	// };
-	
+		$("#quizRepeat").append(a);
+	}
 };
-disp();
-
 
 /**
  *
@@ -77,11 +91,11 @@ disp();
  *
  */
 
-$(".outputQuestion").on("click", function(){
+$(".outputQuestion0").on("click", function(){
 	TweenMax.to('.playerConfirm', -1, {
 		zIndex: '-1',
 		onComplete: function(){// 処理完了後に実行される
-			$(".sec01").css("z-index","999");
+			$(".secPage0").css("z-index","999");
 			timeBlueBar();
 		}
 	});
@@ -97,15 +111,9 @@ var loadBox = function loadbox() {
 	});
 };
 
-$("#box3").on("click", function(){
-	TweenMax.to('#box3', -1, {
-		display: 'none'
-	});
-});
-
-
 
 $(".contentIn > div").css("z-index","-1");
-$("#quizRepeat > .sec01").css("z-index","-1");
-$("#quizRepeat > .playerConfirm").css("z-index","998");
 $("#quizRepeat").css("z-index","999");
+$("#quizRepeat > .sec01").css("z-index","-1");
+$("#quizRepeat > .playerConfirm").css("z-index","999");
+disp();
