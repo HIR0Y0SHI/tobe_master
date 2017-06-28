@@ -1,5 +1,30 @@
+@charset "UTF-8";
+/* ↓まえだ確認用 */
+.contentIn > div:not(#quizRepeat),
+#quizRepeat > div {
+  display: none;
+}
+
+#quizRepeat > div.active {
+  display: block !important;
+}
+
+/* ↑まえだ確認用 */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  color: #000;
+  font-size: 14px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+  font-weight: normal;
+  line-height: 1.7;
+}
+
 .clearfix {
   *zoom: 1;
+  clear: both;
 }
 .clearfix:after {
   content: "";
@@ -11,20 +36,80 @@
   position: relative;
   background-color: #fff;
 }
-.contentIn > div {
+.contentIn > div,
+.contentIn #quizRepeat > div {
   width: 100%;
-  height: 1vh;
+  height: 100vh;
   background-color: #fff;
   position: absolute;
 }
-#quizRepeat > div {
-	position:absolute;
-	background-color: #fff;
-	height:100%;
-	width: 100%;
-}
-.contentIn > div.active {
+.contentIn .active {
   z-index: 999 !important;
+}
+
+.tC {
+  text-align: center !important;
+}
+
+.tR {
+  text-align: right !important;
+}
+
+.tL {
+  text-align: left !important;
+}
+
+div[class^="sec"] {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: #fff;
+  background: url(../../images/web/bg01@3x.png) no-repeat;
+  background-size: 100%;
+}
+
+.questionArea,
+.textArea {
+  width: 100%;
+  height: auto;
+  min-height: 138px;
+  padding: 3% 5%;
+  color: #fff;
+  background: url(../../images/web/img_board01@3x.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.questionArea:before,
+.textArea:before {
+  content: '';
+  display: block;
+  padding-top: 44.2%;
+}
+.questionArea > .inner,
+.textArea > .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 5%;
+}
+.questionArea > .inner > .tC,
+.textArea > .inner > .tC {
+  padding: 10px 0 5px;
+}
+
+.slider {
+  margin: 9% 0 6%;
+  overflow: hidden;
+}
+.slider > li {
+  width: 100%;
+  text-align: center;
+}
+.slider > li img {
+  width: 70%;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.69);
 }
 
 .time {
@@ -34,8 +119,7 @@
   position: relative;
   overflow: hidden;
 }
-
-.timebar {
+.time > .timebar {
   width: 100%;
   height: 100%;
   background-color: skyblue;
