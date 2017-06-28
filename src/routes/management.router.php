@@ -38,8 +38,14 @@ $app->get('/management', function($request, $response, $args) {
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render();
+    $mkc->render('makeQuestion.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
+});
+
+// エリア作成画面
+$app->get('/management/area', function($request, $response, $args) {
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc->render('category.html');
 });
 
 
