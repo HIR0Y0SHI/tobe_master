@@ -32,6 +32,9 @@ $app->get('/login', function($request, $response, $args) {
 // MEMO: 画面がまだない
 $app->get('/management', function($request, $response, $args) {
     // return $this->view->render($response, 'management/login.html');
+    // $_SESSION['user'] = 'dgfhgvj,hbk.jnlk;slefmanl:wdbf;ai';
+    $auth = new App\Auth();
+    $auth->check();
 });
 
 

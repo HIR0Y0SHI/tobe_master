@@ -11,7 +11,9 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/app/bootstrap.php';
 
-@session_start();
+@session_start([
+    'cookie_lifetime' => 10,
+]);
 
 // Instantiate the app
 $settings = require __DIR__ . '/src/settings.php';
