@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>エリア一覧</title>
-  	<!-- <link rel="stylesheet" href="css/quizTop.css"/> -->
-  	<!-- BootstrapのCSS読み込み -->
-    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery読み込み -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="css/quizTop.css"/> -->
+	<!-- BootstrapのCSS読み込み -->
+	<link href="/tobe_master/public/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery読み込み -->
+	<script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
+	<!-- BootstrapのJS読み込み -->
+	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -33,68 +33,60 @@
 		</thead>
 		<tbody>
 			<!-- <form action="" method="get"> -->
+			{% for item in area %}
 			<tr>
-				<th scope="row">1</th>
-				<td class=""><a href="#" title="" role="button" class="btn-link">エリア１</a></td>
-				<td><button type="button"  data-toggle="modal" data-target="#areachange1">
-				  編集
-				</button></td>
-				<td><button type="button"  data-toggle="modal" data-target="#areachange2">削除</button></td>
+				<th scope="row">{{ item['beast_house_id'] }}</th>
+				<td class=""><a href="#" title="" role="button" class="btn-link">{{ item['name'] }}</a></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areachange{{ item['beast_house_id'] }}">編集</button></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
 			</tr>
-		<!-- </form> -->
+			{% endfor %}
+			<!-- </form> -->
 
-		<!-- モーダルウィンドウを表示するボタンを設置 -->
+			<!-- モーダルウィンドウを表示するボタンを設置 -->
 
+			<!-- 表示されるモーダルウィンドウ -->
+			{% for item in area %}
+			<div class="modal fade" id="areachange{{ item['beast_house_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">エリア編集</h4>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/tobe_master/management/area/">
+								<p>エリア名を入力して下さい。</p>
+								<input type="text" class="form-control" name="name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
+								<input type="submit" class="form-control btn btn-primary" name="update" value="変更">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 
-		<!-- 表示されるモーダルウィンドウ -->
-		<div class="modal fade" id="areachange1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">エリア編集</h4>
-		      </div>
-		      <div class="modal-body">
-						<form method="post" action="/tobe_master/management/area/">
-				 		<p>エリア名を入力して下さい。</p>
-						<input type="text" class="form-control" name="title" id="area" placeholder="エリア名を入力して下さい" value="" required>
-					</form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
-		        <button type="button" class="btn btn-primary">変更する</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		</div><!-- col -->
-
-
-    <div class="modal fade" id="areachange2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">エリア削除</h4>
-		      </div>
-		      <div class="modal-body">
-						<form method="post" action="/tobe_master/management/area/">
-				 		<p>削除してよろしいですか？</p>
-						<input type="text" class="form-control" name="title" id="area" placeholder="エリア名を入力して下さい" value="" required>
-					</form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
-		        <button type="button" class="btn btn-primary">削除する</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		</div><!-- col -->
-
-
+			<div class="modal fade" id="areadelete{{ item['beast_house_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">エリア削除</h4>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/tobe_master/management/area/">
+								<p>削除してよろしいですか？</p>
+								<input type="hidden" class="form-control" name="beast_house_id" id="beast_house_id" value="{{ item['beast_house_id'] }}">
+								<input type="submit" class="form-control btn btn-primary" name="title" value="削除">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- col -->
+			{% endfor %}
 		</tbody>
 	</table>
-</div><!-- class=container -->
+</div>
+<!-- class=container -->
 </body>
 </html>

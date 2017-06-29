@@ -188,7 +188,7 @@ class MakeQuestionController extends BaseController {
     }
 
     // TEST
-    public function render() {
+    public function render($path) {
         $message = null;
         $bh = null;
 
@@ -207,7 +207,7 @@ class MakeQuestionController extends BaseController {
             }
         }
 
-        $this->app->view->render($this->response, 'management/makeQuestion.html', array('message' => $message, 'area' => $bh));
+        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh));
     }
 
 
