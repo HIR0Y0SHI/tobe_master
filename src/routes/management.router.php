@@ -37,6 +37,12 @@ $app->get('/management', function($request, $response, $args) {
     $auth->check();
 });
 
+// クイズ管理画面
+$app->get('/management/topQuestion', function($request, $response, $args) {
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc->render('topQuestion.html');
+});
+
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
@@ -48,7 +54,7 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('category.html');
+    $mkc->render('area.html');
 });
 
 
@@ -63,7 +69,7 @@ $app->get('/management/test', function($request, $response, $args) {
 
     $q = new App\Controllers\MakeQuestionController($this, $response);
     $q->render();
-    
+
 });
 
 
