@@ -110,19 +110,27 @@ div[class^="sec"] {
 
 [class*="btnStyle"] {
   width: 100%;
+  margin: 0 auto;
   padding: 0;
+  color: #fff;
+  text-align: center;
   font-size: 18px;
   font-size: 5.625vw;
   font-weight: bold;
+  letter-spacing: -.04em;
   border: none;
   outline: none;
 }
 
 .answerBtn {
-  color: #fff;
   line-height: 29.1vw;
   white-space: nowrap;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.next {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .btnStyle01 {
@@ -135,6 +143,16 @@ div[class^="sec"] {
   background-size: cover;
 }
 
+.btnStyle03 {
+  padding: 2% 0;
+  font-size: 14px;
+  font-size: 4.375vw;
+  font-weight: normal;
+  border: solid 1px #484A4B;
+  border-radius: 5px;
+  background-color: #60D3FF;
+}
+
 .playerArea {
   margin: 3% 0;
 }
@@ -144,7 +162,7 @@ div[class^="sec"] {
 .playerArea .icon {
   width: 20%;
   margin: 0 auto;
-  background-color: skyblue;
+  background-color: #60D3FF;
 }
 .playerArea .playerName {
   margin-top: 1%;
@@ -168,7 +186,14 @@ div[class^="sec"] {
 .time > .timebar {
   width: 100%;
   height: 100%;
-  background-color: skyblue;
+  background-color: #60D3FF;
   position: absolute;
   top: 0;
+}
+
+.correctArea {
+  margin: 8% 0 12%;
+}
+.correctArea .btnStyle02 {
+  width: 45%;
 }
