@@ -197,3 +197,13 @@ div[class^="sec"] {
 .correctArea .btnStyle02 {
   width: 45%;
 }
+
+.commentaryArea {
+  padding: 3% 5%;
+}
+.commentaryArea > p {
+  height: 24vh;
+  font-size: 14px;
+  font-size: 4.375vw;
+  line-height: 1.5;
+}
