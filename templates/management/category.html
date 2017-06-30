@@ -11,6 +11,8 @@
 	<script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
 	<!-- BootstrapのJS読み込み -->
 	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link href="/tobe_master/public/css/management/area.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -18,24 +20,34 @@
 	<div class="row　row_quiz">
 		<div class="col-md-12">
 			<h1 class="text-center"> エリア管理 </h1>
-			<p class="link"> <a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ管理へ</a> <a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ作成へ</a> </p>
+			<div class="link">
+				<a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ管理へ</a>
+				<a href="http://localhost/tobe_master/management/quiz/make" role="button" class="btn btn-link button">クイズ作成へ</a>
+			</div>
+		</div>
+
+		<div class="add">
+			<form method="post" action="/tobe_master/management/" name="" id="" enctype="">
+			<input type="text" class="newarea" name="newarea" placeholder="追加するエリア名を入力して下さい" value="" required>
+			<input name="Submit" type="submit" value="エリア追加" class="btn btn-primary">
+		</form>
 		</div>
 
 	</div>
-	<table class="table table-hover">
+	<table class="table table-hover table-size">
 		<thead>
 			<tr>
-				<th class="">番号</th>
-				<th class="">エリア名</th>
-				<th class="">編集</th>
-				<th class="">削除</th>
+				<th class="num">番号</th>
+				<th class="name">エリア名</th>
+				<th class="rename">編集</th>
+				<th class="delete">削除</th>
 			</tr>
 		</thead>
 		<tbody>
 			<!-- <form action="" method="get"> -->
 			{% for item in area %}
 			<tr>
-				<th scope="row">{{ item['beast_house_id'] }}</th>
+				<th scope="row" class="num">{{ item['beast_house_id'] }}</th>
 				<td class=""><a href="#" title="" role="button" class="btn-link">{{ item['name'] }}</a></td>
 				<td><button type="button"  data-toggle="modal" data-target="#areachange{{ item['beast_house_id'] }}">編集</button></td>
 				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
@@ -58,7 +70,7 @@
 							<form method="post" action="/tobe_master/management/area/">
 								<p>エリア名を入力して下さい。</p>
 								<input type="text" class="form-control" name="name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
-								<input type="submit" class="form-control btn btn-primary" name="update" value="変更">
+								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
 							</form>
 						</div>
 					</div>
@@ -76,7 +88,7 @@
 							<form method="post" action="/tobe_master/management/area/">
 								<p>削除してよろしいですか？</p>
 								<input type="hidden" class="form-control" name="beast_house_id" id="beast_house_id" value="{{ item['beast_house_id'] }}">
-								<input type="submit" class="form-control btn btn-primary" name="title" value="削除">
+								<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
 							</form>
 						</div>
 					</div>

@@ -8,10 +8,11 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(248,220,133), rgb(255, 183, 76));
+    background-image: linear-gradient(rgb(200, 197, 197), rgb(242, 242, 242));
 }
 
 .card-container.card {
+  margin-top: 130px;
     max-width: 350px;
     padding: 40px 40px;
 }
