@@ -14,8 +14,7 @@ class Auth {
     public static function check($app, $response) {
         
         if (!isset($_SESSION['user'])) {
-            $app->view->render($response, 'management/login.html');
-            exit;
+            return $app->view->render($response, 'management/login.html');
         }
     }
 
