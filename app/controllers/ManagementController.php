@@ -43,6 +43,9 @@ class ManagementController extends BaseController {
                      ユーザーが存在する
                     */
 
+                    // セッション保存
+                    App\Auth::login($user);
+
                     // 管理TOPをレンダー
                     // TODO: 遷移先を管理TOP画面に変更する
                     return $this->app->view->render($this->response, 'management/makeQuestion.html');

@@ -14,9 +14,15 @@ class Auth {
     public static function check($app, $response) {
         
         if (!isset($_SESSION['user'])) {
-            $app->view->render($response, 'management/login.html');
+            return $app->view->render($response, 'management/login.html');
         }
     }
+
+
+    public static function login($user) {
+        $_SESSION['user'] = base64_encode($user);
+    }
+
 
     public static function logout() {
         unset($_SESSION);
