@@ -9,7 +9,7 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-require __DIR__ . '/app/bootstrap.php';
+require_once __DIR__ . '/app/bootstrap.php';
 
 // @session_set_cookie_params(10);
 @session_start();
@@ -21,7 +21,7 @@ $app = new \Slim\App($settings);
 
 
 // Register src
-require __DIR__ . '/src/bootstrap.php';
+require_once __DIR__ . '/src/bootstrap.php';
 
 // Run app
 $app->run();
