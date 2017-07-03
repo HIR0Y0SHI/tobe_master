@@ -11,16 +11,14 @@ class Auth {
     //     session_start();
     // }
 
-    public function check() {
+    public static function check($app, $response) {
         
         if (!isset($_SESSION['user'])) {
-            echo 'ない';
-        } else {
-            echo $_SESSION['user'];
+            $app->view->render($response, 'management/login.html');
         }
     }
 
-    public function logout() {
+    public static function logout() {
         unset($_SESSION);
     }
 }

@@ -33,12 +33,15 @@ $app->get('/login', function($request, $response, $args) {
 $app->get('/management', function($request, $response, $args) {
     // return $this->view->render($response, 'management/login.html');
     // $_SESSION['user'] = 'dgfhgvj,hbk.jnlk;slefmanl:wdbf;ai';
-    $auth = new App\Auth();
-    $auth->check();
+
+    App\Auth::check($this, $response);
 });
 
 // クイズ管理画面
 $app->get('/management/quiz', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('topQuestion.html');
 });
@@ -46,6 +49,9 @@ $app->get('/management/quiz', function($request, $response, $args) {
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('makeQuestion.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
@@ -53,6 +59,9 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
 
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('area.html');
 });
