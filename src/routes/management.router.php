@@ -125,7 +125,35 @@ $app->post('/management/quiz/make/c', function($request, $response, $args) {
     $question->addQuestionC($params, $files);
 });
 
+// エリア追加
+$app->post('/management/area/create', function($request, $response, $args) {
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\AreaController($this, $response);
+    echo '<pre>';
+    var_dump($params);
+    echo '<pre>';
+    //$question->addArea($params);
+});
 
+// エリア更新
+$app->post('/management/area/update', function($request, $response, $args) {
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\AreaController($this, $response);
+    echo '<pre>';
+    var_dump($params);
+    echo '<pre>';
+    //$question->addArea($params);
+});
+
+// エリア削除
+$app->post('/management/area/delete', function($request, $response, $args) {
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\AreaController($this, $response);
+    echo '<pre>';
+    var_dump($params);
+    echo '<pre>';
+    //$question->addArea($params);
+});
 
 function dump($args) {
     echo '<pre>';

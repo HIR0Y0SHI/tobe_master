@@ -1,5 +1,10 @@
 @charset "UTF-8";
 /* ↓まえだ確認用 */
+div.active {
+  display: block !important;
+  z-index: 999 !important;
+}
+
 /* ↑まえだ確認用 */
 *, *:before, *:after {
   box-sizing: border-box;
@@ -76,11 +81,11 @@ div[class^="sec"] {
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 2% 5% 0;
+  padding: 2% 8% 0;
 }
 .questionArea > .inner > .tC,
 .textArea > .inner > .tC {
-  padding: 10px 0 5px;
+  padding: 10px 0;
 }
 
 .slider {
@@ -144,6 +149,7 @@ div[class^="sec"] {
 }
 
 .btnStyle03 {
+  width: 100%;
   padding: 2% 0;
   font-size: 14px;
   font-size: 4.375vw;
@@ -151,6 +157,31 @@ div[class^="sec"] {
   border: solid 1px #484A4B;
   border-radius: 5px;
   background-color: #60D3FF;
+}
+
+.playerList02 {
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 100%;
+  height: 20vh;
+  padding: 2% 4%;
+  text-align: center;
+  letter-spacing: -.4em;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.playerList02 > li {
+  letter-spacing: normal;
+}
+.playerList02 > li > img {
+  width: 100%;
+}
+.playerList02 > li > span {
+  font-size: 10px;
+  font-size: 3.125vw;
 }
 
 .playerArea {
@@ -206,4 +237,27 @@ div[class^="sec"] {
   font-size: 14px;
   font-size: 4.375vw;
   line-height: 1.5;
+}
+
+.sec04 {
+  background-color: #007E32 !important;
+}
+.sec04 > .inner {
+  height: 100vh;
+  padding: 5% 2%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.sec04 > .inner div[class$="Player"] {
+  margin-bottom: 8%;
+}
+.sec04 > .inner div[class$="Player"] h3 {
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+.sec04 > .inner .dropoutPlayer > .playerList02 {
+  background-color: #6b6b6b;
+}
+.sec04 > .inner > .next {
+  width: 100%;
 }
