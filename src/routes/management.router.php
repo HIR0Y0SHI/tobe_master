@@ -38,7 +38,7 @@ $app->get('/management', function($request, $response, $args) {
 });
 
 // クイズ管理画面
-$app->get('/management/topQuestion', function($request, $response, $args) {
+$app->get('/management/quiz', function($request, $response, $args) {
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('topQuestion.html');
 });
