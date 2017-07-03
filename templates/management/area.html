@@ -67,8 +67,9 @@
 							<h4 class="modal-title" id="myModalLabel">エリア編集</h4>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/">
+							<form method="post" action="/tobe_master/management/area/make">
 								<p>エリア名を入力して下さい。</p>
+								<input type="hidden" name="beast_house_id" value="area{{ item['beast_house_id'] }}">
 								<input type="text" class="form-control" name="name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
 								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
 							</form>
@@ -85,7 +86,7 @@
 							<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">エリア削除</h4>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/">
+							<form method="post" action="/tobe_master/management/area/delete">
 								<p>削除してよろしいですか？</p>
 								<input type="hidden" class="form-control" name="beast_house_id" id="beast_house_id" value="{{ item['beast_house_id'] }}">
 								<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
