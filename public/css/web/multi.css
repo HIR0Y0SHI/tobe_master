@@ -1,21 +1,13 @@
 @charset "UTF-8";
 /* ↓まえだ確認用 */
-div.active {
-  display: block !important;
-  z-index: 999 !important;
-}
-
 /* ↑まえだ確認用 */
-*, *:before, *:after {
-  box-sizing: border-box;
+/* 共通クラス */
+.fL {
+  float: left !important;
 }
 
-body {
-  color: #000;
-  font-size: 14px;
-  font-size: 4.375vw;
-  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
-  font-weight: normal;
+.fR {
+  float: right !important;
 }
 
 .clearfix {
@@ -26,6 +18,30 @@ body {
   content: "";
   display: table;
   clear: both;
+}
+
+.tL {
+  text-align: left !important;
+}
+
+.tC {
+  text-align: center !important;
+}
+
+.tR {
+  text-align: right !important;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  color: #000;
+  font-size: 14px;
+  font-size: 4.375vw;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+  font-weight: normal;
 }
 
 .contentIn {
@@ -41,21 +57,20 @@ body {
   position: absolute;
 }
 
-.tL {
-  text-align: left !important;
-}
-
-.tC {
-  text-align: center !important;
-}
-
-.tR {
-  text-align: right !important;
-}
-
 div[class^="sec"] {
   background: url(../../images/web/bg01@3x.png) no-repeat;
   background-size: 100%;
+}
+
+div[class^="game"] {
+  padding: 10% 2% 5%;
+}
+div[class^="game"] > h2 {
+  margin-bottom: 10%;
+  text-align: center;
+  font-size: 36px;
+  font-size: 11.25vw;
+  font-weight: bold;
 }
 
 .questionArea,
@@ -101,6 +116,63 @@ div[class^="sec"] {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.69);
 }
 
+/* btnList */
+.btnList03 {
+  margin-top: 6%;
+}
+.btnList03 > li + li {
+  margin-top: 3%;
+}
+
+/* btnStyle */
+[class*="btnStyle"] {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-size: 5.625vw;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.btnStyle01 {
+  letter-spacing: -.04em;
+  background: url(../../images/web/btn01@3x.png) no-repeat;
+  background-size: cover;
+}
+
+.btnStyle02 {
+  letter-spacing: -.04em;
+  background: url(../../images/web/btn02@3x.png) no-repeat;
+  background-size: cover;
+}
+
+.btnStyle03 {
+  padding: 2% 0;
+  font-size: 14px;
+  font-size: 4.375vw;
+  font-weight: normal;
+  border: solid 1px #484A4B;
+  border-radius: 5px;
+  background-color: #60D3FF;
+}
+
+.btnStyle04, .btnStyle05 {
+  padding: 2% 0;
+  font-size: 24px;
+  font-size: 7.5vw;
+  border: solid 1px #95989a;
+  border-radius: 5px;
+  background-color: #FF4d4d;
+}
+
+.btnStyle05 {
+  background-color: #5d5d5d;
+}
+
 .answerArea {
   padding-bottom: 2%;
   overflow: hidden;
@@ -111,20 +183,6 @@ div[class^="sec"] {
 }
 .answerArea > li + li {
   margin-left: 4%;
-}
-
-[class*="btnStyle"] {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  color: #fff;
-  text-align: center;
-  font-size: 18px;
-  font-size: 5.625vw;
-  font-weight: bold;
-  letter-spacing: -.04em;
-  border: none;
-  outline: none;
 }
 
 .answerBtn {
@@ -138,27 +196,7 @@ div[class^="sec"] {
   margin: 0 auto;
 }
 
-.btnStyle01 {
-  background: url(../../images/web/btn01@3x.png) no-repeat;
-  background-size: cover;
-}
-
-.btnStyle02 {
-  background: url(../../images/web/btn02@3x.png) no-repeat;
-  background-size: cover;
-}
-
-.btnStyle03 {
-  width: 100%;
-  padding: 2% 0;
-  font-size: 14px;
-  font-size: 4.375vw;
-  font-weight: normal;
-  border: solid 1px #484A4B;
-  border-radius: 5px;
-  background-color: #60D3FF;
-}
-
+/* playerList */
 .playerList02 {
   display: flex;
   -webkit-justify-content: center;
@@ -169,12 +207,8 @@ div[class^="sec"] {
   height: 20vh;
   padding: 2% 4%;
   text-align: center;
-  letter-spacing: -.4em;
   border-radius: 5px;
   background-color: #fff;
-}
-.playerList02 > li {
-  letter-spacing: normal;
 }
 .playerList02 > li > img {
   width: 100%;
@@ -182,6 +216,44 @@ div[class^="sec"] {
 .playerList02 > li > span {
   font-size: 10px;
   font-size: 3.125vw;
+}
+
+.playerList03 {
+  height: 58vh;
+  letter-spacing: -.4em;
+  overflow: hidden;
+}
+.playerList03 > li {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
+  width: 50%;
+  letter-spacing: -.4em;
+}
+.playerList03 > li:nth-child(n+3) {
+  margin-top: 4%;
+}
+.playerList03 > li > * {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
+  width: 50%;
+}
+.playerList03 > li > *.image img {
+  width: 100%;
+}
+.playerList03 > li > *.text {
+  color: #fff;
+  font-size: 12px;
+  font-size: 3.75vw;
+}
+.playerList03 > li > *.text > .master {
+  margin-bottom: 10px;
+  color: #FFCF33;
+  font-weight: bold;
+}
+.playerList03 > li > *.text > .playerName {
+  margin-bottom: 10px;
 }
 
 .playerArea {
@@ -260,4 +332,18 @@ div[class^="sec"] {
 }
 .sec04 > .inner > .next {
   width: 100%;
+}
+
+.gameover {
+  background-color: #292929 !important;
+}
+.gameover > h2 {
+  color: #FF4d4d;
+}
+
+.gameclear > h2 {
+  color: #60D3FF;
+}
+.gameclear .playerList03 > li > .text {
+  color: #000;
 }
