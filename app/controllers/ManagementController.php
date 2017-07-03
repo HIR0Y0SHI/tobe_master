@@ -44,7 +44,7 @@ class ManagementController extends BaseController {
                     */
 
                     // セッション保存
-                    App\Auth::login($user);
+                    \App\Auth::login($user);
 
                     // 管理TOPをレンダー
                     // TODO: 遷移先を管理TOP画面に変更する
