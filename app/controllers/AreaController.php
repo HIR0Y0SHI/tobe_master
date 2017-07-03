@@ -8,7 +8,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\Area;
 
-class MakeAreaController extends BaseController {
+class AreaController extends BaseController {
 
     /**
      * エリアを追加する
@@ -17,7 +17,7 @@ class MakeAreaController extends BaseController {
      * @param array $params
      */
     public function addArea($params) {
-        
+
         echo '<pre>';
         //var_dump($bh);
         var_dump($params);
