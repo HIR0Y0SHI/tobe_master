@@ -128,7 +128,7 @@ $app->post('/management/quiz/make/c', function($request, $response, $args) {
 // エリア追加
 $app->post('/management/area/create', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\AreaController($this, $response);
+    $question = new App\Controllers\MakeAreaController($this, $response);
     echo '<pre>';
     var_dump($params);
     echo '<pre>';
@@ -138,7 +138,7 @@ $app->post('/management/area/create', function($request, $response, $args) {
 // エリア更新
 $app->post('/management/area/update', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\AreaController($this, $response);
+    $question = new App\Controllers\MakeAreaController($this, $response);
     echo '<pre>';
     var_dump($params);
     echo '<pre>';
@@ -148,7 +148,7 @@ $app->post('/management/area/update', function($request, $response, $args) {
 // エリア削除
 $app->post('/management/area/delete', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\AreaController($this, $response);
+    $question = new App\Controllers\MakeAreaController($this, $response);
     echo '<pre>';
     var_dump($params);
     echo '<pre>';
