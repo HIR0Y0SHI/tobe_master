@@ -14,6 +14,8 @@
   <!-- BootstrapのJS読み込み -->
   <script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   <script src="/tobe_master/public/js/management/makeQuestion.js"></script>
+  <script src="/tobe_master/public/js/management/editing.js"></script>
+
 </head>
 
 <body>
@@ -22,7 +24,7 @@
       <div class="col-md-12">
         <h1 class="text-center"> クイズ作成 </h1>
         <div class="link">
-          <a href="makeQuestion.html" role="button" class="btn btn-link button">クイズ管理へ</a>
+          <a href="http://localhost/tobe_master/management/quiz" role="button" class="btn btn-link button">クイズ管理へ</a>
           <a href="http://localhost/tobe_master/management/area" role="button" class="btn btn-link button">エリア管理へ</a>
         </div>
       </div>
@@ -70,8 +72,9 @@
                       </label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          <input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          <div class="input-file_A"><input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required></div>
                         </div>
+                        <div class="preview" style="margin-top:10px;" /></div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -213,8 +216,11 @@
                       </label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          正解の画像<input type="file" name="correct_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
-                          不正解の画像<input type="file" name="incorrect_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          正解の画像<div class="input-file1"><input type="file" name="preview1_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div><br />
+                          <div class="preview1" style="margin-top:10px;" /></div><br />
+
+                          不正解の画像<div class="input-file2"><input type="file" name="inpreview1_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div>
+                          <div class="preview2" style="margin-top:10px;" /></div>
                         </div>
                       </div>
                     </div>
@@ -305,8 +311,10 @@
                       <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br></label>
                       <div class="col-md-5 col-sm-8">
                         <div class="input-group">
-                          A<input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required><br />
-                          B<input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required>
+                          A<div class="input-fileA"><input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div><br />
+                          <div class="preview_A" style="margin-top:10px;" /></div>
+                          B<div class="input-fileB"><input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div>
+                          <div class="preview_B" style="margin-top:10px;" /></div>
                         </div>
                       </div>
                     </div>

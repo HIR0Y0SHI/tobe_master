@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>クイズ編集</title>
+  <!-- <link rel="stylesheet" href="css/quizTop.css"/> -->
+  <!-- BootstrapのCSS読み込み -->
+  <link href="/tobe_master/public/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/tobe_master/public/css/management/makeQuestion.css" rel="stylesheet">
+  <!-- jQuery読み込み -->
+  <script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
+  <!-- BootstrapのJS読み込み -->
+  <script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="/tobe_master/public/js/management/makeQuestion.js"></script>
+  <script src="/tobe_master/public/js/management/editing.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row　row_quiz">
+      <div class="col-md-12">
+        <h1 class="text-center"> クイズ編集 </h1>
+      </div>
+      <!-- class=col-md-12 -->
+
+
+        {# エラーメッセージ #}
+			  {% if message is not null %}
+        <div class="alert alert-danger" role="alert">
+          <strong>{{message}}</strong>
+        </div>
+			  {% endif %}
+
+          <!--        Aパターン         -->
+                <div class="col-md-8 form_box">
+                  <h3>Aパターン</h3>
+                  <hr>
+                  <form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/a" name="signup" id="signup" enctype="multipart/form-data">
+                    <div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
+                      <div class="col-md-8 col-sm-9">
+                        <input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>
+                      </div>
+                    </div>
+                    <div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
+                      <div class="col-md-8 col-sm-9">
+                        <textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control arearesize" required></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
+                      </label>
+                      <div class="col-md-5 col-sm-8">
+                        <div class="input-group">
+                          <div class="input-file_A"><input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required></div>
+                        </div>
+                        <div class="preview" style="margin-top:10px;" /></div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="area" class="form-control" required>
+                              <option value="">選択してください</option>
+                              {% for item in area %}
+                              <option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">難易度<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="difficulty" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >簡単</option>
+                              <option value="2" >普通</option>
+                              <option value="3" >難しい</option>
+                              <option value="4" >最終問題</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">解答時間<span class="text-danger">*</span>
+                      </label>
+                      <div class="col-xs-8">
+                        <div class="form-inline">
+                          <div class="form-group">
+                            <select name="solution_time" class="form-control" required>
+                              <option value="">選択してください</option>
+                              <option value="1" >10秒</option>
+                              <option value="2" >15秒</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small>
+                      </label>
+                      <div class="col-md-8 col-sm-9">
+                        <div class="input-group answer">
+                          <span class="input-group-addon" id="file_upload">解答方法</span>
+                          <table class="table">
+                            <tr>
+                              <td>
+                                <label>
+                                  <input type="radio" name="answertype" value="answertype1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答
+                                </label>
+                              </td>
+                            </tr>
+                            <!-- 表示非表示切り替え -->
+                            <tr id="firstBox">
+                              <td>
+                                <label>
+                                    <input name="answer" type="radio" value="Yes" checked>はい
+                                </label> &nbsp;
+                                <label>
+                                    <input name="answer" type="radio" value="No" >いいえ
+                                </label>
+                              </td>
+                            </tr>
+                            <td>
+                              <label>
+                                <input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
+                              </label>
+                            </td>
+                            <!-- 表示非表示切り替え -->
+                            <tr id="secondBox">
+                              <td>
+                                <input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="" required>
+                              </td>
+                              <td>
+                                <input type="text" class="form-control incorrect" name="incorrect_answer" id="incorrect" placeholder="不正解を書いてください" value="" required>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
+                      <div class="col-md-8 col-sm-9">
+                        <textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-xs-offset-3 col-xs-10">
+                        <input name="Submit" type="submit" value="作成" class="btn btn-primary">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+    </div>
+    <!-- class=row　row_quiz -->
+  </div>
+  <!-- class=container -->
+</body>
+
+</html>
