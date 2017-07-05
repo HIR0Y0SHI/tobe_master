@@ -92,12 +92,21 @@ var disp = function disp() {
         a += '</div>';
         a += '</div>';
 
-        a += '<div class="sec01 secPage' + i + '">';
-        a += '<ul class="slider questionImg">';
-        a += '<li>';
-        a += '<img src="../../public/images/web/dummy.png" alt="">';
-        a += '</li>';
-        a += '</ul>';
+		a += '<div class="sec01 secPage' + i + '">';
+
+		a += '<div class="swiper-container">';
+		a += '<ul class="swiper-wrapper slider questionImg">';
+		a += '<li class="swiper-slide">';
+		a += '<img src="../../public/images/web/dummy.png" alt="">';
+		a += '</li>';
+		a += '<li class="swiper-slide">';
+		a += '<img src="../../public/images/web/dummy.png" alt="">';
+		a += '</li>';
+		a += '</ul>';
+		a += '<div class="swiper-pagination"></div>';
+		a += '<div class="swiper-button-prev"></div>';
+		a += '<div class="swiper-button-next"></div>';
+		a += '</div>';
 		
         a += '<div class="questionArea">';
         a += '<div class="inner">';
