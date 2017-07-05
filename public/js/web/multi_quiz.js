@@ -66,7 +66,7 @@ var disp = function disp() {
         a += '<div class="playerConfirm confPage' + i + '">';
         a += '<h2>プレイヤー確認</h2>';
         a += '<div class="playerArea">';
-        a += '<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>';
+        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>';
         a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
         a += '</div>';
         a += '<div class="outputQuestion">';
@@ -77,7 +77,7 @@ var disp = function disp() {
         a += '<div class="sec01 secPage' + i + '">';
         a += '<ul class="slider questionImg">';
         a += '<li>';
-        a += '<img src="../../public/images/web/dummy.png" srcset="../../public/images/web/dummy@2x.png 2x, ../../public/images/web/dummy@3x.png 3x" alt="">';
+        a += '<img src="../../public/images/web/dummy.png" alt="">';
         a += '</li>';
         a += '</ul>';
         a += '<div class="questionArea">';
@@ -88,7 +88,7 @@ var disp = function disp() {
         a += '</div>';
         a += '<div class="time"><div class="timebar"></div></div>';
         a += '<div class="playerArea">';
-        a += '<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt="" class="icon"></p>';
+        a += '<p><img src="../../public/images/web/ico_animal01.png" alt="" class="icon"></p>';
         a += '<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>';
         a += '</div>';
         a += '<ul class="answerArea">';
