@@ -63,7 +63,7 @@ body {
 }
 
 div[class^="sec"] {
-  background: url(../../images/web/bg01@3x.png) no-repeat;
+  background: url(../../images/web/bg01.png) no-repeat;
   background-size: 100%;
 }
 
@@ -84,7 +84,7 @@ div[class^="game"] > h2 {
   height: auto;
   min-height: 138px;
   color: #fff;
-  background: url(../../images/web/img_board01@3x.png) no-repeat;
+  background: url(../../images/web/img_board01.png) no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -96,12 +96,14 @@ div[class^="game"] > h2 {
 }
 .questionArea > .inner,
 .textArea > .inner {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   padding: 2% 8% 0;
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
 }
 .questionArea > .inner > .tC,
 .textArea > .inner > .tC {
@@ -129,6 +131,18 @@ div[class^="game"] > h2 {
   margin-top: 5%;
 }
 
+.btnList02 {
+  margin-bottom: 4%;
+  overflow: hidden;
+}
+.btnList02 > li {
+  width: 48%;
+  float: left;
+}
+.btnList02 > li + li {
+  margin-left: 4%;
+}
+
 .btnList03 {
   margin-top: 6%;
 }
@@ -152,13 +166,13 @@ div[class^="game"] > h2 {
 
 .btnStyle01 {
   letter-spacing: -.04em;
-  background: url(../../images/web/btn01@3x.png) no-repeat;
+  background: url(../../images/web/btn01.png) no-repeat;
   background-size: cover;
 }
 
 .btnStyle02 {
   letter-spacing: -.04em;
-  background: url(../../images/web/btn02@3x.png) no-repeat;
+  background: url(../../images/web/btn02.png) no-repeat;
   background-size: cover;
 }
 
@@ -176,7 +190,7 @@ div[class^="game"] > h2 {
   padding: 2% 0;
   font-size: 24px;
   font-size: 7.5vw;
-  border: solid 1px #95989a;
+  border: solid 1px #95989A;
   border-radius: 5px;
   background-color: #FF4d4d;
 }
@@ -212,6 +226,41 @@ div[class^="game"] > h2 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
 }
 
+.btnStyle08 {
+  padding: 3% 0 3% 15%;
+  color: #000;
+  font-weight: normal;
+  border: solid 1px #000;
+  border-radius: 5px;
+  background-color: #fff;
+  position: relative;
+}
+.btnStyle08:before {
+  content: '';
+  display: block;
+  width: 15%;
+  height: 60%;
+  margin: auto;
+}
+.btnStyle08.plus:before {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 17%;
+  background: url(../../images/web/ico_plus01.png) no-repeat;
+  background-size: 100%;
+}
+.btnStyle08.minus:before {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 17%;
+  background: url(../../images/web/ico_minus01.png) no-repeat;
+  background-size: 100%;
+}
+
 .answerArea {
   padding-bottom: 2%;
   overflow: hidden;
@@ -236,6 +285,37 @@ div[class^="game"] > h2 {
 }
 
 /* playerList */
+.playerList01 {
+  height: 76vh;
+  margin-bottom: 8%;
+  overflow: hidden;
+}
+.playerList01 > li {
+  width: 48%;
+  height: 24vh;
+  padding: 2%;
+  text-align: center;
+  border: solid 1px #000;
+  float: left;
+}
+.playerList01 > li:nth-child(2n) {
+  margin-left: 4%;
+}
+.playerList01 > li:nth-child(n+3) {
+  margin-top: 4%;
+}
+.playerList01 > li > img {
+  width: auto;
+  height: 18vh;
+}
+.playerList01 > li > span {
+  display: block;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 12px;
+  font-size: 3.75vw;
+}
+
 .playerList02 {
   display: flex;
   -webkit-justify-content: center;
@@ -249,10 +329,9 @@ div[class^="game"] > h2 {
   border-radius: 5px;
   background-color: #fff;
 }
-.playerList02 > li > img {
-  width: 100%;
-}
 .playerList02 > li > span {
+  display: block;
+  text-align: center;
   font-size: 10px;
   font-size: 3.125vw;
 }
@@ -296,16 +375,23 @@ div[class^="game"] > h2 {
 }
 
 .index {
-  padding: 45% 0;
-  background: url(../../images/web/bg01@3x.png) no-repeat;
+  padding: 42% 0;
+  background: url(../../images/web/bg01.png) no-repeat;
   background-size: auto 100%;
 }
 .index > h1 {
   margin-bottom: 10%;
   height: 20vh;
   text-indent: -9999px;
-  background: url(../../images/web/logo01@3x.png) no-repeat;
+  background: url(../../images/web/logo01.png) no-repeat;
   background-size: 100%;
+}
+
+.playerDecide {
+  padding: 5%;
+}
+.playerDecide .next {
+  width: 100%;
 }
 
 .playerArea {
