@@ -11,7 +11,7 @@
 	<script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
 	<!-- BootstrapのJS読み込み -->
 	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<link href="/tobe_master/public/css/management/area.css" rel="stylesheet">
+	<link href="/tobe_master/public/css/management/topquiz.css" rel="stylesheet">
 
 
 </head>
@@ -21,7 +21,7 @@
 		<div class="col-md-12">
 			<h1 class="text-center"> クイズ管理 </h1>
 			<div class="link">
-				<a href="makeQuestion.html" role="button" class="btn btn-link button">エリア管理へ</a>
+				<a href="http://localhost/tobe_master/management/area" role="button" class="btn btn-link button">エリア管理へ</a>
 				<a href="http://localhost/tobe_master/management/quiz/make" role="button" class="btn btn-link button">クイズ作成へ</a>
 			</div>
 		</div>
@@ -32,10 +32,9 @@
 		<thead>
 			<tr>
 				<th class="num">番号</th>
-				<th class="name">タイトル</th>
-				<th class="name">問題文</th>
-				<th class="name">獣舎</th>
-				<th class="name">問題パターン</th>
+				<th class="title">タイトル</th>
+				<th class="introduction">問題文</th>
+				<th class="area">獣舎</th>
 				<th class="rename">編集</th>
 				<th class="delete">削除</th>
 			</tr>
@@ -47,8 +46,23 @@
 				<td>タイトル</td>
 				<td>問題文</td>
 				<td>スネークハウス</td>
-				<td>Aパターン</td>
-				<td><button type="button"  data-toggle="modal" data-target="#areachange{{ item['beast_house_id'] }}">編集</button></td>
+				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_A'"value="編集"></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
+			</tr>
+			<tr>
+				<th scope="row" class="num">1</th>
+				<td>タイトル</td>
+				<td>問題文</td>
+				<td>スネークハウス</td>
+				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_B'"value="編集"></td>
+				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
+			</tr>
+			<tr>
+				<th scope="row" class="num">1</th>
+				<td>タイトル</td>
+				<td>問題文</td>
+				<td>スネークハウス</td>
+				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_C'"value="編集"></td>
 				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
 			</tr>
 
@@ -57,23 +71,7 @@
 			<!-- モーダルウィンドウを表示するボタンを設置 -->
 
 			<!-- 表示されるモーダルウィンドウ -->
-			<div class="modal fade" id="areachange{{ item['beast_house_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="myModalLabel">クイズ編集</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/">
-								<p>エリア名を入力して下さい。</p>
-								<input type="text" class="form-control" name="name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
-								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+
 
 			<div class="modal fade" id="areadelete{{ item['beast_house_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">

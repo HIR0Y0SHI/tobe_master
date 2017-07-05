@@ -1,5 +1,10 @@
 @charset "UTF-8";
 /* ↓まえだ確認用 */
+div.active {
+  display: block !important;
+  z-index: 9999 !important;
+}
+
 /* ↑まえだ確認用 */
 /* 共通クラス */
 .fL {
@@ -117,6 +122,13 @@ div[class^="game"] > h2 {
 }
 
 /* btnList */
+.btnList01 {
+  padding: 0 5%;
+}
+.btnList01 > li + li {
+  margin-top: 5%;
+}
+
 .btnList03 {
   margin-top: 6%;
 }
@@ -171,6 +183,33 @@ div[class^="game"] > h2 {
 
 .btnStyle05 {
   background-color: #5d5d5d;
+}
+
+.btnStyle06, .btnStyle07 {
+  padding: 3% 0;
+  font-size: 28px;
+  font-size: 8.75vw;
+  border: solid 3px #000;
+  border-radius: 5px;
+  background: #F0858A;
+  background: -moz-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0858A), color-stop(100%, #F5AA9A));
+  background: -webkit-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -o-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -ms-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: linear-gradient(to bottom, #F0858A 0%, #F5AA9A 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
+}
+
+.btnStyle07 {
+  background: #51D0FF;
+  background: -moz-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #51D0FF), color-stop(100%, #8CF3FF));
+  background: -webkit-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -o-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -ms-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: linear-gradient(to bottom, #51D0FF 0%, #8CF3FF 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
 }
 
 .answerArea {
@@ -254,6 +293,19 @@ div[class^="game"] > h2 {
 }
 .playerList03 > li > *.text > .playerName {
   margin-bottom: 10px;
+}
+
+.index {
+  padding: 45% 0;
+  background: url(../../images/web/bg01@3x.png) no-repeat;
+  background-size: auto 100%;
+}
+.index > h1 {
+  margin-bottom: 10%;
+  height: 20vh;
+  text-indent: -9999px;
+  background: url(../../images/web/logo01@3x.png) no-repeat;
+  background-size: 100%;
 }
 
 .playerArea {

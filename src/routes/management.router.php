@@ -43,7 +43,7 @@ $app->get('/management', function($request, $response, $args) {
 $app->get('/management/quiz', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
-    
+
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('topQuestion.html');
 });
@@ -53,18 +53,49 @@ $app->get('/management/quiz', function($request, $response, $args) {
 $app->get('/management/quiz/make', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
-    
+
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('makeQuestion.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
+
+// クイズ編集画面(A)
+$app->get('/management/quiz/editing_A', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc->render('editing_A.html');
+    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
+});
+
+// クイズ編集画面(B)
+$app->get('/management/quiz/editing_B', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc->render('editing_B.html');
+    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
+});
+
+// クイズ編集画面(C)
+$app->get('/management/quiz/editing_C', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+
+    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc->render('editing_C.html');
+    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
+});
+
 
 
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
-    
+
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('area.html');
 });
