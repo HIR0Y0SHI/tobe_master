@@ -12,9 +12,11 @@ if (! new Array().push) return false;
         // JQueryの読み込み
         '/tobe_master/public/js/jquery-3.1.1.min.js',
         // BootstrapのJS読み込み 
-        '/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js',
-        // TweenMaxの読み込み
-        '/tobe_master/public/js/web/TweenMax.min.js',
+		'/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js',
+		// TweenMaxの読み込み
+		'/tobe_master/public/js/web/TweenMax.min.js',
+		// TweenMaxの読み込み
+		'/tobe_master/public/js/web/swiper.min.js',
         // web側のjsの読み込み
         '/tobe_master/public/js/web/jquery.cookie.js',
         '/tobe_master/public/js/web/multi_quiz.js',

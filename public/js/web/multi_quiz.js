@@ -7,6 +7,16 @@
  */
 
 $(function() {
+	var mySwiper = new Swiper ('.swiper-container', {
+		effect: "flip",
+		loop: true,
+		pagination: '.swiper-pagination',
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+	})
+});
+
+$(function() {
     $.ajax({
         type: "GET",
         url: "/tobe_master/api/mock/question/multiple/1",
@@ -88,6 +98,7 @@ var disp = function disp() {
         a += '<img src="../../public/images/web/dummy.png" alt="">';
         a += '</li>';
         a += '</ul>';
+		
         a += '<div class="questionArea">';
         a += '<div class="inner">';
         a += '<p class="tC">第<span class="questionNo">1</span>問</p>';

@@ -24,7 +24,7 @@
 	</div>
 
 	<!-- 人数選択画面 -->
-	<div class="playerDecide active">
+	<div class="playerDecide">
 		<ul class="playerList01">
 			<li>
 				<img src="../../public/images/web/ico_penguin01.png" alt=""><span>ペンギン</span>
@@ -57,12 +57,20 @@
 		</div>
 
 		<!-- クイズ出題画面 -->
-		<div class="sec01">
-			<ul class="slider questionImg">
-				<li>
-					<img src="../../public/images/web/dummy.png" alt="">
-				</li>
-			</ul>
+		<div class="sec01 active">
+			<div class="swiper-container">
+				<ul class="swiper-wrapper slider questionImg">
+					<li class="swiper-slide">
+						<img src="../../public/images/web/dummy.png" alt="">
+					</li>
+					<li class="swiper-slide">
+						<img src="../../public/images/web/dummy.png" alt="">
+					</li>
+				</ul>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 			<div class="questionArea">
 				<div class="inner">
 					<p class="tC">第<span class="questionNo">1</span>問</p>
@@ -83,8 +91,11 @@
 
 	<!-- 解答画面 -->
 	<div class="sec02">
-		<ul class="slider questionImg">
-			<li>
+		<ul class="swiper-wrapper slider questionImg">
+			<li class="swiper-slide">
+				<img src="../../public/images/web/dummy.png" alt="">
+			</li>
+			<li class="swiper-slide">
 				<img src="../../public/images/web/dummy.png" alt="">
 			</li>
 		</ul>
@@ -105,8 +116,11 @@
 
 	<!-- 解説画面 -->
 	<div class="sec03">
-		<ul class="slider questionImg">
-			<li>
+		<ul class="swiper-wrapper slider questionImg">
+			<li class="swiper-slide">
+				<img src="../../public/images/web/dummy.png" alt="">
+			</li>
+			<li class="swiper-slide">
 				<img src="../../public/images/web/dummy.png" alt="">
 			</li>
 		</ul>
