@@ -8,10 +8,13 @@
 
 
 var timebarCount = $.cookie("second");
+console.log("カウント時間" + timebarCount);
 timebarCount = timebarCount / 3;
 
 //青色のタイムバー
 var timeBlueBar = function blueBar() {
+    $('.timebar').css('right', '0%');
+    $(".timebar").css("backgroundColor", "#60D3FF");
     TweenMax.to('.timebar', timebarCount, {
         right: '33%',
         ease: Power0.easeNone,

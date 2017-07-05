@@ -37,9 +37,10 @@ $(function() {
     });
 });
 
+// プレイヤー数分の繰り返し表示
 var repeat = function repeat() {
     var zindex = 998;
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 6; i++) {
         (function(n) {
             $('.confPage' + i).css("z-index", zindex - i);
             $('.confPage' + i + ' > .outputQuestion').on('click', function() {
@@ -48,9 +49,9 @@ var repeat = function repeat() {
                 timeBlueBar();
             });
 
-            var nextQuestion = function nextQuestion() {
-                $('.confPage' + n + 1).css("z-index", "999");
-                $('.secPage' + n + 1).css('z-index', "-1");
+            nextQuestion = function nextQuestion() {
+                $('.secPage' + n - 1).css('z-index', "-1");
+                $('.confPage' + n).css("z-index", "999");
             };
         })(i);
     }
@@ -59,7 +60,7 @@ var repeat = function repeat() {
 var disp = function disp() {
     $("#quizRepeat").empty();
     var a = "";
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 6; i++) {
 
         a = '';
         a += '<div class="playerConfirm confPage' + i + '">';
