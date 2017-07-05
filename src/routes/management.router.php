@@ -96,7 +96,7 @@ $app->get('/management/area', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
+    $mkc = new App\Controllers\MakeAreaController($this, $response);
     $mkc->render('area.html');
 });
 
@@ -162,31 +162,25 @@ $app->post('/management/quiz/make/c', function($request, $response, $args) {
 // エリア追加
 $app->post('/management/area/create', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\MakeAreaController($this, $response);
-    echo '<pre>';
-    var_dump($params);
-    echo '<pre>';
-    //$question->addArea($params);
+    $area = new App\Controllers\MakeAreaController($this, $response);
+    $area->addArea($params);
+    $area->render('area.html');
 });
 
 // エリア更新
 $app->post('/management/area/update', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\MakeAreaController($this, $response);
-    echo '<pre>';
-    var_dump($params);
-    echo '<pre>';
-    //$question->addArea($params);
+    $area = new App\Controllers\MakeAreaController($this, $response);
+    $area->updateArea($params);
+    $area->render('area.html');
 });
 
 // エリア削除
 $app->post('/management/area/delete', function($request, $response, $args) {
     $params = $request->getParsedBody();
-    $question = new App\Controllers\MakeAreaController($this, $response);
-    echo '<pre>';
-    var_dump($params);
-    echo '<pre>';
-    //$question->addArea($params);
+    $area = new App\Controllers\MakeAreaController($this, $response);
+    $area->deleteArea($params);
+    $area->render('area.html');
 });
 
 function dump($args) {

@@ -23,8 +23,21 @@ class Area extends Mapper {
      * @return bool trueなら成功
      */
     public function registration($prams) {
-        $result = null;
+        $result = false;
+        $query = 'INSERT INTO  m_beast_house (name)';
+        $query .= ' VALUES(:name)';
+        try {
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindParam(':name', $prams[area_name], \PDO::PARAM_STR);
+            $stmt->execute();
+
+            $result = true;
+        } catch (PDOException $e) {
+            throw $e;
+        }
         return $result;
+
     }
     /**
      * エリアを更新する
@@ -34,18 +47,70 @@ class Area extends Mapper {
      * @return bool trueなら成功
      */
     public function update($prams) {
-        $result = null;
+        $result = false;
+        $query = 'Update m_beast_house set name = :name ';
+        $query .= ' where beast_house_id = :delete_no';
+        try {
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindParam(':delete_no', $prams[beast_house_id], \PDO::PARAM_INT);
+            $stmt->bindParam(':name', $prams[area_name], \PDO::PARAM_STR);
+            $stmt->execute();
+
+            $result = true;
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        echo '<pre>';
+        var_dump($prams);
+        echo '</pre>';
+//return $result;
+}
+/**
+* エリアを削除する
+*
+* @access public
+* @param string $prams 入力パラメータ
+* @return bool trueなら成功
+*/
+    public function delete($prams) {
+        $result = false;
+        $query = 'Delete from m_beast_house ';
+        $query .= ' where beast_house_id = :delete_no';
+        try {
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindParam(':delete_no', $prams[beast_house_id], \PDO::PARAM_STR);
+            $stmt->execute();
+
+            $result = true;
+        } catch (PDOException $e) {
+            throw $e;
+        }
         return $result;
     }
     /**
-     * エリアを削除する
+     * 獣舎一覧を取得する
      *
      * @access public
-     * @param string $prams 入力パラメータ
      * @return bool trueなら成功
      */
-    public function delete($prams) {
-        $result = null;
-        return $result;
+    public function getBeastHouses() {
+        $query = 'SELECT * FROM m_beast_house';
+        $results = [];
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+
+        return $results;
     }
 }

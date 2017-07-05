@@ -27,8 +27,8 @@
 		</div>
 
 		<div class="add">
-			<form method="post" action="/tobe_master/management/" name="" id="" enctype="">
-			<input type="text" class="newarea" name="newarea" placeholder="追加するエリア名を入力して下さい" value="" required>
+			<form method="post" action="/tobe_master/management/area/create" name="" id="" enctype="">
+			<input type="text" class="newarea" name="area_name" placeholder="追加するエリア名を入力して下さい" value="" required>
 			<input name="Submit" type="submit" value="エリア追加" class="btn btn-primary">
 		</form>
 		</div>
@@ -67,10 +67,10 @@
 							<h4 class="modal-title" id="myModalLabel">エリア編集</h4>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/make">
+							<form method="post" action="/tobe_master/management/area/update">
 								<p>エリア名を入力して下さい。</p>
-								<input type="hidden" name="beast_house_id" value="area{{ item['beast_house_id'] }}">
-								<input type="text" class="form-control" name="name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
+								<input type="hidden" name="beast_house_id" value="{{ item['beast_house_id'] }}">
+								<input type="text" class="form-control" name="area_name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" required>
 								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
 							</form>
 						</div>
