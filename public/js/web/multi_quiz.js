@@ -36,11 +36,11 @@ $(function() {
         console.log('3:' + errorThrown);
     });
 });
-
+var playerQuantity = 2;
 // プレイヤー数分の繰り返し表示
 var repeat = function repeat() {
     var zindex = 998;
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < playerQuantity; i++) {
         (function(n) {
             $('.confPage' + i).css("z-index", zindex - i);
             $('.confPage' + i + ' > .outputQuestion').on('click', function() {
@@ -48,25 +48,37 @@ var repeat = function repeat() {
                 $('.secPage' + n).css('z-index', "999");
                 timeBlueBar();
             });
-
-            nextQuestion = function nextQuestion() {
-                $('.secPage' + n - 1).css('z-index', "-1");
-                $('.confPage' + n).css("z-index", "999");
-            };
         })(i);
     }
 }
 
+var asd = 0;
+nextQuestion = function nextQuestion() {
+    asd++;
+    if (asd != playerQuantity) {
+        $('.secPage' + asd - 1).css('z-index', "-1");
+        $('.confPage' + asd).css("z-index", "999");
+    } else {
+        $('.secPage' + asd - 1).css('z-index', "-1");
+        $('.sec02').css("z-index", "999");
+    }
+
+};
+
 var disp = function disp() {
     $("#quizRepeat").empty();
     var a = "";
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < playerQuantity; i++) {
 
         a = '';
         a += '<div class="playerConfirm confPage' + i + '">';
         a += '<h2>プレイヤー確認</h2>';
-        a += '<div class="playerArea">';
-        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>';
+        a += '<div class="playerArea">'; <<
+        << << < Updated upstream
+        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>'; ===
+        === =
+        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>'; >>>
+        >>> > Stashed changes
         a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
         a += '</div>';
         a += '<div class="outputQuestion">';

@@ -1,0 +1,10 @@
+diff a/public/js/web/multi_quiz.js b/public/js/web/multi_quiz.js	(rejected hunks)
+@@ -66,7 +66,7 @@
+         a += '<div class="playerConfirm confPage' + i + '">';
+         a += '<h2>プレイヤー確認</h2>';
+         a += '<div class="playerArea">';
+-        a += '<p><img src="../../public/images/web/ico_animal01.png" srcset="../../public/images/web/ico_animal01@2x.png 2x, ../../public/images/web/ico_animal01@3x.png 3x" alt=""></p>';
++        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>';
+         a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
+         a += '</div>';
+         a += '<div class="outputQuestion">';
