@@ -14,7 +14,12 @@ class Auth {
     public static function check($app, $response) {
         
         if (!isset($_SESSION['user'])) {
-            return $app->view->render($response, 'management/login.html');
+            // return $app->view->render($response, 'management/login.html');
+            // return $response->withRedirect($app->router->pathFor('login'));
+
+            // Redirectの処理がうまく動かないので強制
+            header('Location: /tobe_master/login');
+            exit;
         }
     }
 

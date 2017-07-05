@@ -11,7 +11,7 @@ if (PHP_SAPI == 'cli-server') {
 
 require_once __DIR__ . '/app/bootstrap.php';
 
-// @session_set_cookie_params(10);
+ini_set('session.gc_maxlifetime', 10);
 @session_start();
 
 

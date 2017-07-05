@@ -26,7 +26,7 @@
 // ログイン画面
 $app->get('/login', function($request, $response, $args) {
     return $this->view->render($response, 'management/login.html');
-});
+})->setName('login');
 
 
 // 管理TOP画面
