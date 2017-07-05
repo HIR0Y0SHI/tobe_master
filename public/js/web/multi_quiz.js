@@ -73,12 +73,8 @@ var disp = function disp() {
         a = '';
         a += '<div class="playerConfirm confPage' + i + '">';
         a += '<h2>プレイヤー確認</h2>';
-        a += '<div class="playerArea">'; <<
-        << << < Updated upstream
-        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>'; ===
-        === =
-        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>'; >>>
-        >>> > Stashed changes
+        a += '<div class="playerArea">';
+        a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>';
         a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
         a += '</div>';
         a += '<div class="outputQuestion">';
