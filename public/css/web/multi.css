@@ -63,7 +63,7 @@ body {
 }
 
 div[class^="sec"] {
-  background: url(/tobe_master/images/web/bg01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/bg01.png) no-repeat;
   background-size: 100%;
 }
 
@@ -84,7 +84,7 @@ div[class^="game"] > h2 {
   height: auto;
   min-height: 138px;
   color: #fff;
-  background: url(/tobe_master/images/web/img_board01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/img_board01.png) no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -167,13 +167,13 @@ div[class^="game"] > h2 {
 
 .btnStyle01 {
   letter-spacing: -.04em;
-  background: url(/tobe_master/images/web/btn01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/btn01.png) no-repeat;
   background-size: cover;
 }
 
 .btnStyle02 {
   letter-spacing: -.04em;
-  background: url(/tobe_master/images/web/btn02.png) no-repeat;
+  background: url(/tobe_master/public/images/web/btn02.png) no-repeat;
   background-size: cover;
 }
 
@@ -249,7 +249,7 @@ div[class^="game"] > h2 {
   right: auto;
   bottom: 0;
   left: 17%;
-  background: url(/tobe_master/images/web/ico_plus01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/ico_plus01.png) no-repeat;
   background-size: 100%;
 }
 .btnStyle08.minus:before {
@@ -258,7 +258,7 @@ div[class^="game"] > h2 {
   right: auto;
   bottom: 0;
   left: 17%;
-  background: url(/tobe_master/images/web/ico_minus01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/ico_minus01.png) no-repeat;
   background-size: 100%;
 }
 
@@ -377,14 +377,14 @@ div[class^="game"] > h2 {
 
 .index {
   padding: 42% 0;
-  background: url(/tobe_master/images/web/bg01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/bg01.png) no-repeat;
   background-size: auto 100%;
 }
 .index > h1 {
   margin-bottom: 10%;
   height: 20vh;
   text-indent: -9999px;
-  background: url(/tobe_master/images/web/logo01.png) no-repeat;
+  background: url(/tobe_master/public/images/web/logo01.png) no-repeat;
   background-size: 100%;
 }
 
