@@ -375,26 +375,6 @@ div[class^="game"] > h2 {
   margin-bottom: 10px;
 }
 
-.index {
-  padding: 42% 0;
-  background: url(/tobe_master/public/images/web/bg01.png) no-repeat;
-  background-size: auto 100%;
-}
-.index > h1 {
-  margin-bottom: 10%;
-  height: 20vh;
-  text-indent: -9999px;
-  background: url(/tobe_master/public/images/web/logo01.png) no-repeat;
-  background-size: 100%;
-}
-
-.playerDecide {
-  padding: 5%;
-}
-.playerDecide .next {
-  width: 100%;
-}
-
 .playerConfirm {
   padding: 5%;
 }
