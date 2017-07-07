@@ -55,3 +55,8 @@ $container['notFoundHandler'] = function ($c) {
             ->write('Page not found');
     };
 };
+
+
+$container['session'] = function ($c) {
+  return new \SlimSession\Helper;
+};
