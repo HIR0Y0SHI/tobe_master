@@ -11,8 +11,10 @@ if (PHP_SAPI == 'cli-server') {
 
 require_once __DIR__ . '/app/bootstrap.php';
 
-ini_set('session.gc_maxlifetime', 10);
-@session_start();
+// ini_set('session.gc_probability', 1);
+// ini_set('session.gc_divisor', 1);
+// ini_set('session.gc_maxlifetime', 24*60*60);
+// @session_start();
 
 
 // Instantiate the app

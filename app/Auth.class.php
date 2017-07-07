@@ -18,8 +18,8 @@ class Auth {
             // return $response->withRedirect($app->router->pathFor('login'));
 
             // Redirectの処理がうまく動かないので強制
-            header('Location: /tobe_master/login');
-            exit;
+            // header('Location: /tobe_master/login');
+            // exit;
         }
     }
 

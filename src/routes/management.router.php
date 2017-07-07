@@ -42,7 +42,7 @@ $app->get('/management', function($request, $response, $args) {
 // クイズ管理画面
 $app->get('/management/quiz', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('topQuestion.html');
@@ -52,7 +52,7 @@ $app->get('/management/quiz', function($request, $response, $args) {
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('makeQuestion.html');
@@ -62,7 +62,7 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
 // クイズ編集画面(A)
 $app->get('/management/quiz/editing_A', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('editing_A.html');
@@ -72,7 +72,7 @@ $app->get('/management/quiz/editing_A', function($request, $response, $args) {
 // クイズ編集画面(B)
 $app->get('/management/quiz/editing_B', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('editing_B.html');
@@ -82,7 +82,7 @@ $app->get('/management/quiz/editing_B', function($request, $response, $args) {
 // クイズ編集画面(C)
 $app->get('/management/quiz/editing_C', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeQuestionController($this, $response);
     $mkc->render('editing_C.html');
@@ -94,7 +94,7 @@ $app->get('/management/quiz/editing_C', function($request, $response, $args) {
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
 
-    App\Auth::check($this, $response);
+    // App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeAreaController($this, $response);
     $mkc->render('area.html');
@@ -123,7 +123,7 @@ $app->get('/management/test', function($request, $response, $args) {
 /* ==================================================================================================== */
 
 // ログイン処理
-$app->post('/management/login', function($request, $response, $args) {
+$app->post('/login', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $management = new App\Controllers\ManagementController($this, $response);
     $management->login($params["inputId"], $params["inputPassword"]);
