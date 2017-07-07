@@ -395,6 +395,22 @@ div[class^="game"] > h2 {
   width: 100%;
 }
 
+.playerConfirm {
+  padding: 5%;
+}
+.playerConfirm h2 {
+  text-align: center;
+}
+.playerConfirm .playerArea {
+  padding: 12vh 0;
+}
+.playerConfirm .playerArea > p img {
+  background-color: #60D3FF;
+}
+.playerConfirm .playerArea > .playerName {
+  margin-top: 4vh;
+}
+
 .playerArea {
   margin: 3% 0;
 }
