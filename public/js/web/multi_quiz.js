@@ -7,13 +7,13 @@
  */
 
 $(function() {
-	var mySwiper = new Swiper ('.swiper-container', {
-		effect: "flip",
-		loop: true,
-		pagination: '.swiper-pagination',
-		nextButton: '.swiper-button-next',
-		prevButton: '.swiper-button-prev',
-	})
+    var mySwiper = new Swiper('.swiper-container', {
+        effect: "flip",
+        loop: true,
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    })
 });
 
 $(function() {
@@ -92,22 +92,22 @@ var disp = function disp() {
         a += '</div>';
         a += '</div>';
 
-		a += '<div class="sec01 secPage' + i + '">';
+        a += '<div class="sec01 secPage' + i + '">';
 
-		a += '<div class="swiper-container">';
-		a += '<ul class="swiper-wrapper slider questionImg">';
-		a += '<li class="swiper-slide">';
-		a += '<img src="../../public/images/web/dummy.png" alt="">';
-		a += '</li>';
-		a += '<li class="swiper-slide">';
-		a += '<img src="../../public/images/web/dummy.png" alt="">';
-		a += '</li>';
-		a += '</ul>';
-		a += '<div class="swiper-pagination"></div>';
-		a += '<div class="swiper-button-prev"></div>';
-		a += '<div class="swiper-button-next"></div>';
-		a += '</div>';
-		
+        a += '<div class="swiper-container">';
+        a += '<ul class="swiper-wrapper slider questionImg">';
+        a += '<li class="swiper-slide">';
+        a += '<img src="../../public/images/web/dummy.png" alt="">';
+        a += '</li>';
+        a += '<li class="swiper-slide">';
+        a += '<img src="../../public/images/web/dummy.png" alt="">';
+        a += '</li>';
+        a += '</ul>';
+        a += '<div class="swiper-pagination"></div>';
+        a += '<div class="swiper-button-prev"></div>';
+        a += '<div class="swiper-button-next"></div>';
+        a += '</div>';
+
         a += '<div class="questionArea">';
         a += '<div class="inner">';
         a += '<p class="tC">第<span class="questionNo">1</span>問</p>';
@@ -129,24 +129,17 @@ var disp = function disp() {
     }
 };
 
-var nextPlayer = function nextPlayer() {
-    TweenMax.to('.secpage');
+// sec02,03の.nextクリックでsec03,04の読み込み
+var nextPage = function nextPage() {
+    for (var i = 2; i > 5; i++) {
+        $('.next').on('click', function() {
+            (function(n) {
+                $('sec0' + n).css('z-index', '-1');
+                $('sec0' + n + 1).css('z-index', '999');
+            })(i);
+        });
+    }
 };
-
-/**
- *TweenMaxを使って、アニメーションなどの制御を行う
- */
-
-var loadBox = function loadbox() {
-    TweenMax.to('#quizRepeat', -1, {
-        zIndex: '-1',
-        onComplete: function() {
-            $(".sec01").css("z-index", "-1");
-            $(".sec02").css("z-index", "999");
-        }
-    });
-};
-
 
 // デザインとかその他もろもろ最初に実行したいやつら
 $(".contentIn > div").css("z-index", "-1");
