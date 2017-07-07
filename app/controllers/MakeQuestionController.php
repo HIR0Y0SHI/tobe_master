@@ -12,8 +12,6 @@ class MakeQuestionController extends BaseController {
 
     const QUESTION_IMAGE_PATH = __DIR__ . '/../../public/images/questions/';
 
-
-
     /**
     * Aパターンの問題を追加する
     * 
@@ -63,15 +61,6 @@ class MakeQuestionController extends BaseController {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
-
-        //$this->app->view->render($this->response, 'management/makeQuestion.html');
-        echo '<pre>';
-        var_dump($bh);
-        var_dump($params);
-        var_dump($fileName);
-        echo '</pre>';
-
-        exit;
     }
 
     /**
@@ -114,14 +103,14 @@ class MakeQuestionController extends BaseController {
             }
         }
 
-        //$this->app->view->render($this->response, 'management/makeQuestion.html');
+        /*//$this->app->view->render($this->response, 'management/makeQuestion.html');
         echo '<pre>';
         //var_dump($bh);
         var_dump($params);
         var_dump($files);
         echo '</pre>';
 
-        exit;
+        exit;*/
     }
 
     /**
@@ -179,18 +168,19 @@ class MakeQuestionController extends BaseController {
             }
         }
 
-        //$this->app->view->render($this->response, 'management/makeQuestion.html');
+       /* //$this->app->view->render($this->response, 'management/makeQuestion.html');
         echo '<pre>';
         //var_dump($bh);
         var_dump($params);
         var_dump($files);
-        exit;
+        exit;*/
     }
 
-    // TEST
+    // クイズ管理画面、再表示メソッド
     public function render($path) {
         $message = null;
         $bh = null;
+        $questions = null;
 
         // DBの起動確認
         if (empty($this->app->db)) {
@@ -202,12 +192,13 @@ class MakeQuestionController extends BaseController {
             try {
                 $question = new Question($this->app->db);
                 $bh = $question->getBeastHouses();
+                $questions = $question->getQuestion();
             } catch (PDOException $e) {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
 
-        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh));
+        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions));
     }
 
 
@@ -222,7 +213,6 @@ class MakeQuestionController extends BaseController {
     */
     public function uploadFile($file, $fileName) {
         if ($file->getError() === UPLOAD_ERR_OK) {
-            echo 'OK';
             $file->moveTo(MakeQuestionController::QUESTION_IMAGE_PATH . $fileName);
             return true;
         }

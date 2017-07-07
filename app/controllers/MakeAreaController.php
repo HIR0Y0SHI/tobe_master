@@ -7,6 +7,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Area;
+use App\Models\Question;
 
 class MakeAreaController extends BaseController {
     
@@ -107,7 +108,7 @@ class MakeAreaController extends BaseController {
         // 問題がなければ
         if (empty($message)) {
             try {
-                $question = new Area($this->app->db);
+                $question = new Question($this->app->db);
                 $bh = $question->getBeastHouses();
             } catch (PDOException $e) {
                 $message = 'データベースでエラーが発生しました。';

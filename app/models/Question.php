@@ -82,7 +82,31 @@ class Question extends Mapper {
     }
 
 
+    /**
+     * クイズ一覧を取得する
+     *
+     * @access public
+     * @return bool trueなら成功
+     */
+    public function getQuestion() {
 
+        $query = 'SELECT * FROM m_questions as q INNER JOIN m_beast_house as b ';
+        $query.= 'ON q.beast_house_id = b.beast_house_id ORDER BY question_id ';
+        $results = [];
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        return $results;
+    }
 
     /**
     * 獣舎一覧を取得する

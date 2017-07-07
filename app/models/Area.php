@@ -61,10 +61,7 @@ class Area extends Mapper {
         } catch (PDOException $e) {
             throw $e;
         }
-        echo '<pre>';
-        var_dump($prams);
-        echo '</pre>';
-//return $result;
+        return $result;
 }
 /**
 * エリアを削除する
