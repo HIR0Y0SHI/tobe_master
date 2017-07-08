@@ -12,7 +12,17 @@
 	<!-- BootstrapのJS読み込み -->
 	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<link href="/tobe_master/public/css/management/topquiz.css" rel="stylesheet">
+	<!--<style type="text/css">
 
+		.modal-content{
+			width: 800px;
+			height: auto;
+		}
+		.modal-dialog {
+			width: 800px;
+			margin: auto;
+		}
+	</style>-->
 
 </head>
 <body>
@@ -40,38 +50,179 @@
 			</tr>
 		</thead>
 		<tbody>
+
 			<!-- <form action="" method="get"> -->
+			<!--<tr>-->
+				<!--<th scope="row" class="num">1</th>-->
+				<!--<td>タイトル</td>-->
+				<!--<td>問題文</td>-->
+				<!--<td>スネークハウス</td>-->
+				<!--<td><input type="button" onclick="location.href='/tobe_master/management/quiz/editing_A'"value="編集"></td>-->
+				<!--&lt;!&ndash;<td><button type="button"  data-toggle="modal" data-target="#test">編集</button></td>&ndash;&gt;-->
+				<!--<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>-->
+			<!--</tr>-->
+			{% for item in questions %}
 			<tr>
-				<th scope="row" class="num">1</th>
-				<td>タイトル</td>
-				<td>問題文</td>
-				<td>スネークハウス</td>
-				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_A'"value="編集"></td>
+				<th scope="row" class="num">{{ item['question_id'] }}</th>
+				<td>{{ item['title'] }}</td>
+				<td>{{ item['commentary'] }}</td>
+				<td>{{ item['name'] }}</td>
+				<td><input type="button" onclick="location.href='/tobe_master/management/quiz/editing_'" value="編集"></td>
 				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
 			</tr>
-			<tr>
-				<th scope="row" class="num">1</th>
-				<td>タイトル</td>
-				<td>問題文</td>
-				<td>スネークハウス</td>
-				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_B'"value="編集"></td>
-				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
-			</tr>
-			<tr>
-				<th scope="row" class="num">1</th>
-				<td>タイトル</td>
-				<td>問題文</td>
-				<td>スネークハウス</td>
-				<td><input type="button" onclick="location.href='http://localhost/tobe_master/management/quiz/editing_C'"value="編集"></td>
-				<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>
-			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
 
 			<!-- </form> -->
 
 			<!-- モーダルウィンドウを表示するボタンを設置 -->
 
 			<!-- 表示されるモーダルウィンドウ -->
+			<!--<div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+				<!--<div class="modal-dialog" role="document">-->
+					<!--<div class="modal-content">-->
+						<!--<div class="modal-header">-->
+							<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+							<!--<h4 class="modal-title" id="myModalLabel">クイズ編集</h4>-->
+						<!--</div>-->
+						<!--<div class="modal-body">-->
+							<!--<form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/a" name="signup" id="signup" enctype="multipart/form-data">-->
+								<!--<div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>-->
+									<!--<div class="col-md-8 col-sm-9">-->
+										<!--<input type="text" class="form-control" name="title" id="mem_name" placeholder="タイトルを書いてください" value="" required>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>-->
+									<!--<div class="col-md-8 col-sm-9">-->
+										<!--<textarea name="introduction" id="mem_name" cols="45" rows="8" placeholder="問題文を書いてください" class="form-control arearesize" required></textarea>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>-->
+									<!--</label>-->
+									<!--<div class="col-md-5 col-sm-8">-->
+										<!--<div class="input-group">-->
+											<!--<div class="input-file_A"><input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required></div>-->
+										<!--</div>-->
+										<!--<div class="preview" style="margin-top:10px;" /></div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>-->
+									<!--</label>-->
+									<!--<div class="col-xs-8">-->
+										<!--<div class="form-inline">-->
+											<!--<div class="form-group">-->
+												<!--<select name="area" class="form-control" required>-->
+													<!--<option value="">選択してください</option>-->
+													<!--{% for item in area %}-->
+													<!--<option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>-->
+													<!--{% endfor %}-->
+												<!--</select>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="control-label col-sm-3">難易度<span class="text-danger">*</span>-->
+									<!--</label>-->
+									<!--<div class="col-xs-8">-->
+										<!--<div class="form-inline">-->
+											<!--<div class="form-group">-->
+												<!--<select name="difficulty" class="form-control" required>-->
+													<!--<option value="">選択してください</option>-->
+													<!--<option value="1" >簡単</option>-->
+													<!--<option value="2" >普通</option>-->
+													<!--<option value="3" >難しい</option>-->
+													<!--<option value="4" >最終問題</option>-->
+												<!--</select>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="control-label col-sm-3">解答時間<span class="text-danger">*</span>-->
+									<!--</label>-->
+									<!--<div class="col-xs-8">-->
+										<!--<div class="form-inline">-->
+											<!--<div class="form-group">-->
+												<!--<select name="solution_time" class="form-control" required>-->
+													<!--<option value="">選択してください</option>-->
+													<!--<option value="1" >10秒</option>-->
+													<!--<option value="2" >15秒</option>-->
+												<!--</select>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small>-->
+									<!--</label>-->
+									<!--<div class="col-md-8 col-sm-9">-->
+										<!--<div class="input-group answer">-->
+											<!--<span class="input-group-addon" id="file_upload">解答方法</span>-->
+											<!--<table class="table">-->
+												<!--<tr>-->
+													<!--<td>-->
+														<!--<label>-->
+															<!--<input type="radio" name="answertype" value="answertype1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答-->
+														<!--</label>-->
+													<!--</td>-->
+												<!--</tr>-->
+												<!--&lt;!&ndash; 表示非表示切り替え &ndash;&gt;-->
+												<!--<tr id="firstBox">-->
+													<!--<td>-->
+														<!--<label>-->
+															<!--<input name="answer" type="radio" value="Yes" checked>はい-->
+														<!--</label> &nbsp;-->
+														<!--<label>-->
+															<!--<input name="answer" type="radio" value="No" >いいえ-->
+														<!--</label>-->
+													<!--</td>-->
+												<!--</tr>-->
+												<!--<td>-->
+													<!--<label>-->
+														<!--<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答-->
+													<!--</label>-->
+												<!--</td>-->
+												<!--&lt;!&ndash; 表示非表示切り替え &ndash;&gt;-->
+												<!--<tr id="secondBox">-->
+													<!--<td>-->
+														<!--<input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="" required>-->
+													<!--</td>-->
+													<!--<td>-->
+														<!--<input type="text" class="form-control incorrect" name="incorrect_answer" id="incorrect" placeholder="不正解を書いてください" value="" required>-->
+													<!--</td>-->
+												<!--</tr>-->
+											<!--</table>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group"> <label class="control-label col-sm-3">問題解説</label>-->
+									<!--<div class="col-md-8 col-sm-9">-->
+										<!--<textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize"></textarea>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<div class="col-xs-offset-3 col-xs-10">-->
+										<!--<input name="Submit" type="submit" value="作成" class="btn btn-primary">-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</form>-->
+						<!--</div>-->
 
+							<!--&lt;!&ndash;<form method="post" action="/tobe_master/management/area/update">&ndash;&gt;-->
+								<!--&lt;!&ndash;<p>エリア名を入力して下さい。</p>&ndash;&gt;-->
+								<!--&lt;!&ndash;<input type="hidden" name="beast_house_id" value="{{ item['beast_house_id'] }}">&ndash;&gt;-->
+								<!--&lt;!&ndash;<input type="text" class="form-control" name="area_name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" value="{{ item['name'] }}" required>&ndash;&gt;-->
+								<!--&lt;!&ndash;<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">&ndash;&gt;-->
+							<!--&lt;!&ndash;</form>&ndash;&gt;-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 
 			<div class="modal fade" id="areadelete{{ item['beast_house_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -91,8 +242,6 @@
 				</div>
 			</div>
 
-		</tbody>
-	</table>
 </div>
 <!-- class=container -->
 </body>

@@ -44,8 +44,8 @@ $app->get('/management/quiz', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('topQuestion.html');
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->render('topquestion.html');
 });
 
 
@@ -54,8 +54,8 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('makeQuestion.html');
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->render('makeQuestion.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
@@ -64,8 +64,8 @@ $app->get('/management/quiz/editing_A', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('editing_A.html');
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->render('editing_A.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
@@ -74,8 +74,8 @@ $app->get('/management/quiz/editing_B', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('editing_B.html');
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->render('editing_B.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
@@ -84,8 +84,8 @@ $app->get('/management/quiz/editing_C', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
 
-    $mkc = new App\Controllers\MakeQuestionController($this, $response);
-    $mkc->render('editing_C.html');
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->render('editing_C.html');
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
