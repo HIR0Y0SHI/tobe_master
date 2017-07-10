@@ -20,7 +20,6 @@ $(function() {
     $.ajax({
         type: "GET",
         url: "/tobe_master/api/mock/question/multiple/1",
-        // /api/mock/question/multiple/{number}
         dataType: "json",
         crossdomain: true
     }).done(function(data) {
@@ -46,7 +45,7 @@ $(function() {
         console.log('3:' + errorThrown);
     });
 });
-var playerQuantity = 2;
+var playerQuantity = 1;
 // プレイヤー数分の繰り返し表示
 var repeat = function repeat() {
     var zindex = 998;
@@ -136,6 +135,7 @@ var nextPage = function nextPage() {
             (function(n) {
                 $('sec0' + n).css('z-index', '-1');
                 $('sec0' + n + 1).css('z-index', '999');
+                alert(n);
             })(i);
         });
     }
