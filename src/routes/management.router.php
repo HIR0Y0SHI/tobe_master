@@ -138,9 +138,7 @@ $app->get('/management/test', function($request, $response, $args) {
 
 // ログイン処理
 $app->post('/login', function($request, $response, $args) {
-
-    App\Auth::check($this, $response);
-
+    
     $params = $request->getParsedBody();
     $management = new App\Controllers\ManagementController($this, $response);
     $management->login($params["inputId"], $params["inputPassword"]);
