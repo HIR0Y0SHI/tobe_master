@@ -57,6 +57,7 @@ $container['notFoundHandler'] = function ($c) {
 };
 
 
+// slim-session
 $container['session'] = function ($c) {
   return new \SlimSession\Helper;
 };

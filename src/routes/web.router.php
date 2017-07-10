@@ -14,10 +14,6 @@ $app->get('/web/quiz', function($request, $response, $args) {
     return $this->view->render($response, 'web/quiz_top.html');
 });
 
-// 一人で遊ぶ
-$app->get('/web/quiz/one', function($request, $response, $args) {
-    return $this->view->render($response, 'web/quiz_one_mode.html');
-});
 
 // みんなで遊ぶ
 $app->get('/web/quiz/multiple', function($request, $response, $args) {
