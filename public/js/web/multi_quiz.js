@@ -6,16 +6,18 @@
  *
  */
 
+//swiperの実行
 $(function() {
     var mySwiper = new Swiper('.swiper-container', {
-        effect: "flip",
         loop: true,
+        paginationClickable: true,
         pagination: '.swiper-pagination',
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
     })
 });
 
+//ajaxでapiから値を受け取り格納する
 $(function() {
     $.ajax({
         type: "GET",
@@ -61,6 +63,7 @@ var repeat = function repeat() {
     }
 }
 
+//人数分の繰り返し処理
 var asd = 0;
 nextQuestion = function nextQuestion() {
     asd++;
@@ -74,6 +77,7 @@ nextQuestion = function nextQuestion() {
 
 };
 
+//人数分の繰り返し表示処理
 var disp = function disp() {
     $("#quizRepeat").empty();
     var a = "";
@@ -130,15 +134,19 @@ var disp = function disp() {
 
 // sec02,03の.nextクリックでsec03,04の読み込み
 var nextPage = function nextPage() {
-    for (var i = 2; i > 5; i++) {
-        $('.next').on('click', function() {
-            (function(n) {
-                $('sec0' + n).css('z-index', '-1');
-                $('sec0' + n + 1).css('z-index', '999');
-                alert(n);
-            })(i);
-        });
-    }
+    $('.next02').on('click', function() {
+        $('.sec02').css('z-index', '-1');
+        $('.sec03').css('z-index', '999');
+    });
+    $('.next03').on('click', function() {
+        $('.sec03').css('z-index', '-1');
+        $('.sec04').css('z-index', '999');
+    });
+
+    //次の問題へ
+    $('.next04').on('click', function() {
+
+    });
 };
 
 // デザインとかその他もろもろ最初に実行したいやつら
@@ -147,3 +155,4 @@ $("#quizRepeat").css("z-index", "900");
 $("#quizRepeat > div").css("z-index", "-1");
 disp();
 repeat();
+nextPage();

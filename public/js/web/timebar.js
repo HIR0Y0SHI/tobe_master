@@ -8,6 +8,7 @@
 
 
 var timebarCount = $.cookie("second");
+timebarCount = 3;
 console.log("カウント時間" + timebarCount);
 timebarCount = timebarCount / 3;
 
