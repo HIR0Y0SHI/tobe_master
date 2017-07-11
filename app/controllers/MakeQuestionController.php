@@ -181,6 +181,8 @@ class MakeQuestionController extends BaseController {
         $message = null;
         $bh = null;
         $questions = null;
+        $difficulty = null;
+        $solution = null;
 
         // DBの起動確認
         if (empty($this->app->db)) {
@@ -193,12 +195,15 @@ class MakeQuestionController extends BaseController {
                 $question = new Question($this->app->db);
                 $bh = $question->getBeastHouses();
                 $questions = $question->getQuestion();
+                $difficulty = $question->getDifficulty();
+                $solution = $question->getSolution();
+
             } catch (PDOException $e) {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
 
-        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions));
+        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions, 'difficulty' => $difficulty, 'solution' => $solution));
     }
 
 

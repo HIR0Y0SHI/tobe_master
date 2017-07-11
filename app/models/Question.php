@@ -97,11 +97,32 @@ class Question extends Mapper {
         try {
             $stmt = $this->db->prepare($query);
             $stmt->execute();
-
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = $row;
             }
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        return $results;
+    }
 
+    /**
+     * 難易度一覧を取得する
+     *
+     * @access public
+     * @return bool trueなら成功
+     */
+    public function getDifficulty() {
+
+        $query = 'SELECT * FROM m_difficulty ';
+        $results = [];
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
         } catch (PDOException $e) {
             throw $e;
         }
@@ -133,7 +154,28 @@ class Question extends Mapper {
         return $results;
     }
 
+    /**
+     * 時間一覧を取得する
+     *
+     * @access public
+     * @return bool trueなら成功
+     */
+    public function getSolution() {
 
+        $query = 'SELECT * FROM m_solution_time ';
+        $results = [];
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        return $results;
+    }
 
 
     /**
