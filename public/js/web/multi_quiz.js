@@ -34,9 +34,15 @@ $(function() {
         var second = data.questions[i].second;
         $.cookie("second", second, { expires: 1 });
 
+        // 問題
         $(".questionText").text(question);
+        // 正解
         $(".correct").text(correct);
-        $(".incorrect").text(incorrect);
+
+        // 解答をランダム表示
+        // 1か2をランダムで取得
+        var r = Math.round(Math.random() + 1);
+        (r == 1) ? $(".answer01").text(correct) + $(".answer02").text(incorrect): $(".answer02").text(correct) + $(".answer01").text(incorrect);
 
         //次の問題数を投げる。
 
@@ -47,8 +53,9 @@ $(function() {
         console.log('3:' + errorThrown);
     });
 });
-var playerQuantity = 1;
+
 // プレイヤー数分の繰り返し表示
+var playerQuantity = 2;
 var repeat = function repeat() {
     var zindex = 998;
     for (var i = 0; i < playerQuantity; i++) {
@@ -63,7 +70,18 @@ var repeat = function repeat() {
     }
 }
 
-//人数分の繰り返し処理
+// 選択された回答を取得
+var answerCheck = function answerCheck() {
+    $('.answer01').on('click', function() {
+        $(this).text();
+    });
+
+    $('.answer02').on('click', function() {
+        $(this).text();
+    });
+}
+
+//プレイヤー確認と問題の表示
 var asd = 0;
 nextQuestion = function nextQuestion() {
     asd++;
@@ -77,9 +95,29 @@ nextQuestion = function nextQuestion() {
 
 };
 
-//人数分の繰り返し表示処理
+//htmlを整形して、表示する
 var disp = function disp() {
     $("#quizRepeat").empty();
+
+    //最初の○○さんですか？の画像と名前の配列
+    var animals = [];
+    animals[0] = "シロクマ";
+    animals[1] = "トラ";
+    animals[2] = "キツネ";
+    animals[3] = "ゾウ";
+    animals[4] = "ウサギ";
+    animals[5] = "ペンギン";
+
+    var animalsImage = [];
+    animalsImage[0] = '';
+    animalsImage[1] = '';
+    animalsImage[2] = '';
+    animalsImage[3] = '';
+    animalsImage[4] = '';
+    animalsImage[5] = '';
+
+
+    //整形
     var a = "";
     for (i = 0; i < playerQuantity; i++) {
 
@@ -88,7 +126,7 @@ var disp = function disp() {
         a += '<h2>プレイヤー確認</h2>';
         a += '<div class="playerArea">';
         a += '<p><img src="../../public/images/web/ico_animal01.png" alt=""></p>';
-        a += '<p class="playerName">あなたは<span class="animal animalNumber">シロクマ</span>さんですか？</p>';
+        a += '<p class="playerName">あなたは<span class="animal' + i + ' animalNumber">シロクマ</span>さんですか？</p>';
         a += '</div>';
         a += '<div class="outputQuestion">';
         a += '<button type="button" class="btnStyle03" value="">はい</button>';
@@ -120,15 +158,16 @@ var disp = function disp() {
         a += '<div class="time"><div class="timebar"></div></div>';
         a += '<div class="playerArea">';
         a += '<p><img src="../../public/images/web/ico_animal01.png" alt="" class="icon"></p>';
-        a += '<p class="playerName"><span class="animal">シロクマ</span>さんのターン</p>';
+        a += '<p class="playerName"><span class="animal' + i + '">シロクマ</span>さんのターン</p>';
         a += '</div>';
         a += '<ul class="answerArea">';
-        a += '<li><button type="button" class="correct answerBtn btnStyle01" value=""></button></li>';
-        a += '<li><button type="button" class="incorrect answerBtn btnStyle02" value=""></button></li>';
+        a += '<li><button type="button" class="answer01 answerBtn btnStyle01" value=""></button></li>';
+        a += '<li><button type="button" class="answer02 answerBtn btnStyle02" value=""></button></li>';
         a += '</ul>';
         a += '</div>';
 
         $("#quizRepeat").append(a);
+        $('.animal' + i).text(animals[i]);
     }
 };
 
@@ -156,3 +195,4 @@ $("#quizRepeat > div").css("z-index", "-1");
 disp();
 repeat();
 nextPage();
+answerCheck();
