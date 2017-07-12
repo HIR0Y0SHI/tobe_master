@@ -17,6 +17,27 @@ $(function() {
     })
 });
 
+
+// Deferredの宣言
+var dfd = $.Deferred();
+
+//最初の○○さんですか？の画像と名前の配列を宣言
+var animals = [];
+animals[0] = "シロクマ";
+animals[1] = "トラ";
+animals[2] = "キツネ";
+animals[3] = "ゾウ";
+animals[4] = "ウサギ";
+animals[5] = "ペンギン";
+
+var animalsImage = [];
+animalsImage[0] = '';
+animalsImage[1] = '';
+animalsImage[2] = '';
+animalsImage[3] = '';
+animalsImage[4] = '';
+animalsImage[5] = '';
+
 //ajaxでapiから値を受け取り格納する
 $(function() {
     $.ajax({
@@ -25,12 +46,13 @@ $(function() {
         dataType: "json",
         crossdomain: true
     }).done(function(data) {
-        var i = 0;
+        var i = 1;
         var question = data.questions[i].problem_statement;
         var image = data.questions[i].problem_image_path;
         var correct = data.questions[i].correct_answer;
         var incorrect = data.questions[i].incorrect_answer;
         var pattern = data.questions[i].pattern_name;
+        var commentary = data.questions[i].commentary;
         var second = data.questions[i].second;
         $.cookie("second", second, { expires: 1 });
 
@@ -38,6 +60,9 @@ $(function() {
         $(".questionText").text(question);
         // 正解
         $(".correct").text(correct);
+        $.cookie("correct", correct, { expires: 1 });
+        // 解説
+        $('.commentaryArea > p').text(commentary);
 
         // 解答をランダム表示
         // 1か2をランダムで取得
@@ -70,16 +95,48 @@ var repeat = function repeat() {
     }
 }
 
-// 選択された回答を取得
-var answerCheck = function answerCheck() {
+// 配列を宣言
+var answer = "";
+var answerPlayerName = "";
+var correctGroup = [];
+var incorrectGroup = [];
+var dropGroup = [];
+// 選択された回答に .selected を付与
+var answerSelect = function answerSelect() {
     $('.answer01').on('click', function() {
-        $(this).text();
+        $(this).addClass('selected');
+        $('.answer02').removeClass('selected');
     });
 
     $('.answer02').on('click', function() {
-        $(this).text();
+        $(this).addClass('selected');
+        $('.answer01').removeClass('selected');
     });
 }
+var answerCheck = function answerCheck() {
+    answer = $('').text();
+    console.log(answer);
+    answerPlayerName = '';
+    console.log(answerPlayerName);
+    anwswerCheckIF(answer, answerPlayerName);
+
+};
+var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
+    (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName) + dfd.resolve(): incorrectGroup.push(answerPlayerName) + dropGroup.push(answerPlayerName) + dfd.resolve();
+    dfd.promise().then(function() {
+        // 正解者と不正解者の配列を空にする
+        $.cookie("correctGroup", "", { expires: 1 });
+        $.cookie("incorrectGroup", "", { expires: 1 });
+        // 正解者と不正解者を配列に入れる
+        $.cookie("correctGroup", correctGroup, { expires: 1 });
+        $.cookie("incorrectGroup", incorrectGroup, { expires: 1 });
+
+        $.cookie("dropGroup", dropGroup, { expires: 1 });
+
+        console.log("正解:" + $.cookie("correctGroup"));
+        console.log("不正解:" + $.cookie("incorrectGroup"));
+    });
+};
 
 //プレイヤー確認と問題の表示
 var asd = 0;
@@ -98,24 +155,6 @@ nextQuestion = function nextQuestion() {
 //htmlを整形して、表示する
 var disp = function disp() {
     $("#quizRepeat").empty();
-
-    //最初の○○さんですか？の画像と名前の配列
-    var animals = [];
-    animals[0] = "シロクマ";
-    animals[1] = "トラ";
-    animals[2] = "キツネ";
-    animals[3] = "ゾウ";
-    animals[4] = "ウサギ";
-    animals[5] = "ペンギン";
-
-    var animalsImage = [];
-    animalsImage[0] = '';
-    animalsImage[1] = '';
-    animalsImage[2] = '';
-    animalsImage[3] = '';
-    animalsImage[4] = '';
-    animalsImage[5] = '';
-
 
     //整形
     var a = "";
@@ -156,17 +195,22 @@ var disp = function disp() {
         a += '</div>';
         a += '</div>';
         a += '<div class="time"><div class="timebar"></div></div>';
+
         a += '<div class="playerArea">';
         a += '<p><img src="../../public/images/web/ico_animal01.png" alt="" class="icon"></p>';
         a += '<p class="playerName"><span class="animal' + i + '">シロクマ</span>さんのターン</p>';
         a += '</div>';
+
         a += '<ul class="answerArea">';
         a += '<li><button type="button" class="answer01 answerBtn btnStyle01" value=""></button></li>';
         a += '<li><button type="button" class="answer02 answerBtn btnStyle02" value=""></button></li>';
         a += '</ul>';
         a += '</div>';
 
+        // 出力
         $("#quizRepeat").append(a);
+
+        // 繰り返しの部分の動物名をセット
         $('.animal' + i).text(animals[i]);
     }
 };
@@ -188,11 +232,12 @@ var nextPage = function nextPage() {
     });
 };
 
-// デザインとかその他もろもろ最初に実行したいやつら
+// デザインとかその他もろもろ最初の方に実行したいやつら
+// プレイヤー数が無ければ実行しないようにしないといけない
 $(".contentIn > div").css("z-index", "-1");
 $("#quizRepeat").css("z-index", "900");
 $("#quizRepeat > div").css("z-index", "-1");
 disp();
 repeat();
 nextPage();
-answerCheck();
+answerSelect();
