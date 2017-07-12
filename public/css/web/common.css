@@ -286,10 +286,11 @@ div.next {
 .playerList01 > li {
   width: 48%;
   height: 24vh;
-  padding: 2%;
+  padding: 0.8% 0;
   text-align: center;
   border: solid 1px #000;
   float: left;
+  position: relative;
 }
 .playerList01 > li:nth-child(2n) {
   margin-left: 4%;
@@ -299,14 +300,23 @@ div.next {
 }
 .playerList01 > li > img {
   width: auto;
-  height: 18vh;
+  height: 23vh;
 }
 .playerList01 > li > span {
   display: block;
-  margin-top: 5px;
+  width: 100%;
+  padding: 5px 0;
+  color: #fff;
   text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   font-size: 12px;
   font-size: 3.75vw;
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .playerList02 {
