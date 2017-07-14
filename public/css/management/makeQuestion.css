@@ -54,6 +54,15 @@ h1 {
   text-decoration: none;
 }
 
+.logout {
+	background-color: #808080;
+	color: #fff;
+}
+.logout:hover {
+	background-color: #C0C0C0;
+  text-decoration: none;
+}
+
 /* RESET */
 
 ul, li {

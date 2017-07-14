@@ -38,6 +38,14 @@ h1 {
 	background-color: #FE9A2E;
   text-decoration: none;
 }
+.logout {
+	background-color: #808080;
+	color: #fff;
+}
+.logout:hover {
+	background-color: #C0C0C0;
+  text-decoration: none;
+}
 .link {
   float: right;
   margin-top: -60px;
@@ -74,8 +82,10 @@ margin-right: 5px;
   text-align: center;
 }
 .introduction {
-  width: 300px;
-  text-align: center;
+  width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .area {
   width: 200px;
@@ -83,8 +93,12 @@ margin-right: 5px;
 }
 .table-size {
   margin: auto;
-  width: 90%;
+  width: 1000px;
   text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .update {
   width: 100px;

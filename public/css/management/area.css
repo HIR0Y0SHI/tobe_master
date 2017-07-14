@@ -38,6 +38,16 @@ h1 {
 	background-color: #FE9A2E;
   text-decoration: none;
 }
+.logout {
+	background-color: #808080;
+	color: #fff;
+}
+.logout:hover {
+	background-color: #C0C0C0;
+  text-decoration: none;
+}
+
+
 .link {
   float: right;
   margin-top: -60px;
