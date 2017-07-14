@@ -154,7 +154,13 @@ div[class^="game"] > h2 {
   font-size: 5.625vw;
   font-weight: bold;
   border: none;
+  border: 2px solid transparent;
+  border-radius: 7px;
   outline: none;
+}
+
+button.selected {
+  border: 2px solid #333;
 }
 
 .btnStyle01 {

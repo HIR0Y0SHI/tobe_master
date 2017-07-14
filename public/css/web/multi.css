@@ -122,7 +122,3 @@
 .gameclear .playerList03>li>.text {
     color: #000;
 }
-
-.selected {
-    border: 2px solid #333;
-}
