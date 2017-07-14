@@ -62,6 +62,7 @@ $(function(){
 <div class="container">
 	<div class="row　row_quiz">
 		<div class="col-md-12">
+			<button role="button" class="btn btn-link button search" data-toggle="modal" data-target="#search_modal">絞り込み検索</button>
 			<h1 class="text-center"> クイズ管理 </h1>
 			<div class="link">
 				<a href="http://localhost/tobe_master/management/area" role="button" class="btn btn-link button">エリア管理へ</a>
@@ -304,6 +305,83 @@ $(function(){
 				</div>
 			</div>
 	{% endfor %}
+
+	<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">検索フォーム</h4>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="/tobe_master/management/area/">
+						<p>絞り込み検索</p>
+						<div class="form-group"> <label class="control-label col-sm-3">キーワード</label>
+							<div class="col-md-8 col-sm-9">
+								<input type="text" class="form-control" name="title" id="mem_name" value="" placeholder="検索キーワードを入力して下さい">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">獣舎
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<select name="area" class="form-control">
+											<option value="">選択してください</option>
+											{% for item in area %}
+												{% if question['name'] == item['name'] %}
+													<option value="{{ item['beast_house_id'] }}" selected>{{ item['name'] }}</option>
+												{% else %}
+													<option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">難易度
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<select name="difficulty" class="form-control">
+											<option value="">選択してください</option>
+											{% for difficulty in difficulty %}
+												{% if question['difficulty_id']  == difficulty['difficulty_id'] %}
+													<option value="{{ difficulty['difficulty_id'] }}" selected>{{ difficulty['name'] }}</option>
+												{% else %}
+													<option value="{{ difficulty['difficulty_id'] }}" >{{ difficulty['name'] }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">解説の有無
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<label>
+												<input type="checkbox" name="commentary" value="" />：解説あり
+												<input type="checkbox" name="commentary" value="" />：解説なし
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" class="form-control" name="question_id" id="question_id" value="{{ question['question_id'] }}">
+						<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="検索">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
 <!-- class=container -->
