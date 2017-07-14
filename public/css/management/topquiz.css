@@ -82,10 +82,9 @@ margin-right: 5px;
   text-align: center;
 }
 .introduction {
-  width: 450px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 400px;
+  text-align: center;
+  visibility: hidden;
 }
 .area {
   width: 200px;
