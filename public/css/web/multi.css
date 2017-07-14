@@ -1,107 +1,128 @@
 .playerConfirm {
-  padding: 5%;
+    padding: 5%;
 }
+
 .playerConfirm h2 {
-  text-align: center;
+    text-align: center;
 }
+
 .playerConfirm .playerArea {
-  padding: 12vh 0;
+    padding: 12vh 0;
 }
-.playerConfirm .playerArea > p img {
-  background-color: #60D3FF;
+
+.playerConfirm .playerArea>p img {
+    background-color: #60D3FF;
 }
-.playerConfirm .playerArea > .playerName {
-  margin-top: 4vh;
+
+.playerConfirm .playerArea>.playerName {
+    margin-top: 4vh;
 }
 
 .playerArea {
-  margin: 3% 0;
+    margin: 3% 0;
 }
-.playerArea > p {
-  text-align: center;
+
+.playerArea>p {
+    text-align: center;
 }
+
 .playerArea .icon {
-  width: 20%;
-  margin: 0 auto;
-  background-color: #60D3FF;
+    width: 20%;
+    margin: 0 auto;
+    background-color: #60D3FF;
 }
+
 .playerArea .playerName {
-  margin-top: 1%;
-  font-size: 12px;
-  font-size: 3.75vw;
+    margin-top: 1%;
+    font-size: 12px;
+    font-size: 3.75vw;
 }
 
 .answerArea {
-  width: 94%;
-  margin: 0 auto;
+    width: 94%;
+    margin: 0 auto;
 }
 
 .time {
-  width: 95%;
-  height: 2%;
-  margin: -2% auto 0;
-  border: 3px solid #333;
-  position: relative;
-  overflow: hidden;
+    width: 95%;
+    height: 2%;
+    margin: -2% auto 0;
+    border: 3px solid #333;
+    position: relative;
+    overflow: hidden;
 }
-.time > .timebar {
-  width: 100%;
-  height: 100%;
-  background-color: #60D3FF;
-  position: absolute;
-  top: 0;
+
+.time>.timebar {
+    width: 100%;
+    height: 100%;
+    background-color: #60D3FF;
+    position: absolute;
+    top: 0;
 }
 
 .correctArea {
-  margin: 8% 0 12%;
+    margin: 8% 0 12%;
 }
+
 .correctArea .btnStyle02 {
-  width: 45%;
+    width: 45%;
 }
 
 .commentaryArea {
-  padding: 3% 5%;
+    padding: 3% 5%;
 }
-.commentaryArea > p {
-  height: 24vh;
-  font-size: 14px;
-  font-size: 4.375vw;
-  line-height: 1.5;
+
+.commentaryArea>p {
+    height: 24vh;
+    font-size: 14px;
+    font-size: 4.375vw;
+    line-height: 1.5;
 }
 
 .sec04 {
-  background-color: #007E32 !important;
+    background-color: #007E32 !important;
 }
-.sec04 > .inner {
-  height: 100vh;
-  padding: 5% 2%;
-  background-color: rgba(0, 0, 0, 0.5);
+
+.sec04>.inner {
+    height: 100vh;
+    padding: 5% 2%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.sec04 > .inner div[class$="Player"] {
-  margin-bottom: 8%;
+
+.sec04>.inner div[class$="Player"] {
+    margin-bottom: 8%;
 }
-.sec04 > .inner div[class$="Player"] h3 {
-  margin-bottom: 10px;
-  color: #fff;
-  text-align: center;
+
+.sec04>.inner div[class$="Player"] h3 {
+    margin-bottom: 10px;
+    color: #fff;
+    text-align: center;
 }
-.sec04 > .inner .dropoutPlayer > .playerList02 {
-  background-color: #6b6b6b;
+
+.sec04>.inner .dropoutPlayer>.playerList02 {
+    background-color: #6b6b6b;
 }
-.sec04 > .inner > .next {
-  width: 100%;
+
+.sec04>.inner>.next {
+    width: 100%;
 }
 
 .gameover {
-  background-color: #292929 !important;
-}
-.gameover > h2 {
-  color: #FF4d4d;
+    background-color: #292929 !important;
 }
 
-.gameclear > h2 {
-  color: #60D3FF;
+.gameover>h2 {
+    color: #FF4d4d;
 }
-.gameclear .playerList03 > li > .text {
-  color: #000;
+
+.gameclear>h2 {
+    color: #60D3FF;
+}
+
+.gameclear .playerList03>li>.text {
+    color: #000;
+}
+
+.selected {
+    border: 2px solid #333;
 }

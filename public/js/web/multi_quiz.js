@@ -31,12 +31,12 @@ animals[4] = "ウサギ";
 animals[5] = "ペンギン";
 
 var animalsImage = [];
-animalsImage[0] = '';
-animalsImage[1] = '';
-animalsImage[2] = '';
-animalsImage[3] = '';
-animalsImage[4] = '';
-animalsImage[5] = '';
+animalsImage[0] = '/tobe_master/public/images/sample.jpg';
+animalsImage[1] = '/tobe_master/public/images/sample.jpg';
+animalsImage[2] = '/tobe_master/public/images/sample.jpg';
+animalsImage[3] = '/tobe_master/public/images/sample.jpg';
+animalsImage[4] = '/tobe_master/public/images/sample.jpg';
+animalsImage[5] = '/tobe_master/public/images/sample.jpg';
 
 //ajaxでapiから値を受け取り格納する
 $(function() {
@@ -80,7 +80,7 @@ $(function() {
 });
 
 // プレイヤー数分の繰り返し表示
-var playerQuantity = 2;
+var playerQuantity = 4;
 var repeat = function repeat() {
     var zindex = 998;
     for (var i = 0; i < playerQuantity; i++) {
@@ -103,27 +103,64 @@ var incorrectGroup = [];
 var dropGroup = [];
 // 選択された回答に .selected を付与
 var answerSelect = function answerSelect() {
-    $('.answer01').on('click', function() {
-        $(this).addClass('selected');
+
+    // .answer01,02につけた .selectedを消す
+    var answerReset = function() {
+        $('.answer01').removeClass('selected');
         $('.answer02').removeClass('selected');
+    };
+
+    $('.answer01').on('click', function() {
+        answerReset();
+        $(this).addClass('selected');
     });
 
     $('.answer02').on('click', function() {
+        answerReset();
         $(this).addClass('selected');
-        $('.answer01').removeClass('selected');
     });
+
 }
 var answerCheck = function answerCheck() {
-    answer = $('').text();
-    console.log(answer);
-    answerPlayerName = '';
-    console.log(answerPlayerName);
+    // 選択された回答を取得
+    answer = $('.selected').text();
+    // 解答したプレイヤー名を取得
+    answerPlayerName = $('.selected').parent('li').parent('.answerArea').prev('.playerArea').find('.playerName').find('span').text();
     anwswerCheckIF(answer, answerPlayerName);
-
 };
 var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
-    (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName) + dfd.resolve(): incorrectGroup.push(answerPlayerName) + dropGroup.push(answerPlayerName) + dfd.resolve();
+    for (key in animals) {
+        if (animals[key] == answerPlayerName) {
+            answerPlayerName = key;
+        }
+    }
+    (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName): incorrectGroup.push(answerPlayerName) + dropGroup.push(answerPlayerName);
+    dfd.resolve()
     dfd.promise().then(function() {
+        if ($('.correctPlayer > ul').empty()) {
+            // console.log("qwe");
+        }
+
+        // 正解者、不正解者、脱落者の画像を表示する
+        var correctCharaImage = "";
+        for (i in correctGroup) {
+            correctCharaImage += "<li><img src='" + animalsImage[i] + "' alt='asd'></li>";
+        }
+        $('.correctPlayer > ul').append(correctCharaImage);
+
+        $('.incorrectPlayer > ul').empty();
+        var incorrectCharaImage = "";
+        for (i in incorrectGroup) {
+            incorrectCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
+        }
+        $('.incorrectPlayer > ul').append(incorrectCharaImage);
+
+        $('.dropoutPlayer > ul').empty();
+        var dropCharaImage = "";
+        for (i in $.cookie("dropGroup")) {
+            dropCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
+        }
+        $('.correctPlayer > ul').append(dropCharaImage);
         // 正解者と不正解者の配列を空にする
         $.cookie("correctGroup", "", { expires: 1 });
         $.cookie("incorrectGroup", "", { expires: 1 });
@@ -135,6 +172,7 @@ var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
 
         console.log("正解:" + $.cookie("correctGroup"));
         console.log("不正解:" + $.cookie("incorrectGroup"));
+        console.log("脱落:" + $.cookie("dropGroup"));
     });
 };
 
