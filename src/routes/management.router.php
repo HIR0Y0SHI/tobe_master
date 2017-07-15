@@ -37,9 +37,8 @@ $app->get('/management', function($request, $response, $args) {
     // $_SESSION['user'] = 'dgfhgvj,hbk.jnlk;slefmanl:wdbf;ai';
     $session = new \SlimSession\Helper;
     echo $session->user;
-
-    exit;
     App\Auth::check($this, $response);
+    exit;
 });
 
 
@@ -104,7 +103,6 @@ $app->get('/management/quiz/editing_C', function($request, $response, $args) {
 });
 
 
-
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
 
@@ -155,6 +153,7 @@ $app->post('/management/quiz/make/a', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->addQuestionA($params, $files);
+    $question->render('makeQuestion.html');
 });
 
 
@@ -168,6 +167,7 @@ $app->post('/management/quiz/make/b', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->addQuestionB($params, $files);
+    $question->render('makeQuestion.html');
 });
 
 
@@ -181,8 +181,62 @@ $app->post('/management/quiz/make/c', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->addQuestionC($params, $files);
+    $question->render('makeQuestion.html');
 });
 
+
+// クイズ編集（Aパターン）
+$app->post('/management/quiz/update/a', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    $files = $request->getUploadedFiles();
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\UpdateQuestionController($this, $response);
+    $question->updateQuestionA($params, $files);
+
+    /*echo '<pre>';
+    var_dump($params);
+    var_dump("<hr/>");
+    var_dump($files);
+    echo '<pre>';
+    exit;*/
+
+});
+
+// クイズ編集（Bパターン）
+$app->post('/management/quiz/update/b', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    $files = $request->getUploadedFiles();
+    $params = $request->getParsedBody();
+    $question = new App\Controllers\UpdateQuestionController($this, $response);
+    $question->updateQuestionB($params, $files);
+
+    /*echo '<pre>';
+    var_dump($params);
+    var_dump("<hr/>");
+    var_dump($files);
+    echo '<pre>';
+    exit;*/
+});
+
+// クイズ編集（Cパターン）
+$app->post('/management/quiz/update/c', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    $files = $request->getUploadedFiles();
+    $params = $request->getParsedBody();
+
+    $question = new App\Controllers\UpdateQuestionController($this, $response);
+    $question->updateQuestionC($params, $files);
+
+    /*echo '<pre>';
+    var_dump($params);
+    var_dump("<hr/>");
+    var_dump($files);
+    echo '<pre>';
+    exit;*/
+});
 
 // エリア追加
 $app->post('/management/area/create', function($request, $response, $args) {

@@ -66,6 +66,7 @@ function entryChange1() {
     var firstBox = null;
     var secondBox = null;
     for (var i = 0; i < radio.length; i += 2){
+        //console.log(num+"問目");
         console.log(num+"問目");
         if (radio[i].checked) {
             console.log("はい形式:"+i);
@@ -74,42 +75,41 @@ function entryChange1() {
             firstBox = "firstBox"+num;
             secondBox = "secondBox"+num;
 
-            document.getElementById(firstBox).style.display = "";
-            document.getElementById(secondBox).style.display = "none";
+            if(document.getElementById(firstBox)){
+                document.getElementById(firstBox).style.display = "";
+            }
+            if(document.getElementById(secondBox)){
+                document.getElementById(secondBox).style.display = "none";
+            }
         } else if (radio[i+1].checked) {
             console.log("解答文形式:"+i);
             firstBox = "firstBox"+num;
             secondBox = "secondBox"+num;
             //フォーム
-            document.getElementById(firstBox).style.display = "none";
-            document.getElementById(secondBox).style.display = "";
+
+            if(document.getElementById(firstBox)){
+                document.getElementById(firstBox).style.display = "none";
+                console.log("firstBox hiddin");
+            }
+            if(document.getElementById(secondBox)){
+                document.getElementById(secondBox).style.display = "";
+            }
+
         }
         console.log(firstBox);
         console.log(secondBox);
         num++;
     }
 }
-// 解答方法
-/*function entryChange2() {
- radio = document.getElementsByName('answertype2');
- if (radio[0].checked) {
- //フォーム
- document.getElementById('firstBox2').style.display = "";
- document.getElementById('secondBox2').style.display = "none";
- } else if (radio[1].checked) {
- //フォーム
- document.getElementById('firstBox2').style.display = "none";
- document.getElementById('secondBox2').style.display = "";
- }
- }*/
+
 
 //オンロードさせ、リロード時に選択を保持
 window.onload = function () { // ページ読み込み時
     entryChange1(); // 関数呼び出し
-    entryChange2(); // 関数呼び出し
-    setRequired(false);
-    setRequired2(false);
-}
+    //entryChange2(); // 関数呼び出し
+    //setRequired(false);
+    //setRequired2(false);
+};
 
 
 //requiredの追記
@@ -118,18 +118,17 @@ function setRequired( $required ) {
     var $elementReference1 = document.getElementById( "correct" );
     var $elementReference2 = document.getElementById( "incorrect" );
     $elementReference1.required = $required;
-    // var $required = $elementReference1.required;
     $elementReference2.required = $required;
-    // var $required = $elementReference2.required;
-    // document.getElementById( "sampleOutput" ).innerHTML = $required;
 }
 // Cパターン
 function setRequired2( $required ) {
     var $elementReference1 = document.getElementById( "correct2" );
     var $elementReference2 = document.getElementById( "incorrect2" );
     $elementReference1.required = $required;
-    // var $required = $elementReference1.required;
     $elementReference2.required = $required;
-    // var $required = $elementReference2.required;
-    // document.getElementById( "sampleOutput" ).innerHTML = $required;
+}
+
+function ImgCheck(type,id){
+    var target_image = "#"+type+id;
+    $(target_image).val(1);
 }

@@ -12,6 +12,7 @@
 	<!-- BootstrapのJS読み込み -->
 	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script src="/tobe_master/public/js/management/makeQuestion2.js"></script>
+	<script src="/tobe_master/public/js/management/editing.js"></script>
 	<link href="/tobe_master/public/css/management/topquiz.css" rel="stylesheet">
 	<script>
 $(function(){
@@ -49,12 +50,6 @@ $(function(){
 			border-radius: 5px;
 		}
 
-		/*.problem {
-			width: 300px;
-			white-space: nowrap;
-	  	overflow: hidden;
-	  	text-overflow: ellipsis;
-		}*/
 	</style>
 
 </head>
@@ -95,21 +90,15 @@ $(function(){
 			<td><button type="button"  data-toggle="modal" data-target="#{{ question['question_id'] }}">編集</button></td>
 			<td><button type="button"  data-toggle="modal" data-target="#questiondelete{{ question['question_id'] }}">削除</button></td>
 		</tr>
-		<!--<th scope="row" class="num">{{ item['question_id'] }}</th>-->
-				<!--<td>{{ item['title'] }}</td>-->
-				<!--<td>{{ item['problem_statement'] }}</td>-->
-				<!--<td>{{ item['name'] }}</td>-->
-				<!--<td><input type="button" onclick="location.href={{ item['difficulty_id'] }}" value="編集"></td>-->
-				<!--<td><button type="button"  data-toggle="modal" data-target="#areadelete{{ item['beast_house_id'] }}">削除</button></td>-->
-			<!--</tr>-->
 		{% endfor %}
 		</tbody>
 	</table>
 	<!--</form> -->
-
+	{% set pattern = null %}
 	{% for question in questions %}
-			 <!--モーダルウィンドウを表示するボタンを設置 -->
+	<!--モーダルウィンドウを表示するボタンを設置 -->
 			 <!--表示されるモーダルウィンドウ -->
+
 			<div class="modal fade" id="{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -118,10 +107,19 @@ $(function(){
 							<h4 class="modal-title" id="myModalLabel">クイズ編集</h4>
 						</div>
 						<div class="modal-body">
-							<form class="form-horizontal" method="post" action="/tobe_master/management/quiz/make/a" name="signup" id="signup" enctype="multipart/form-data">
+							{% if question['pattern_id'] == 1 %}
+								{% set pattern = "a" %}
+							{% elseif question['pattern_id'] == 2 %}
+								{% set pattern = "b" %}
+							{% else %}
+								{% set pattern = "c" %}
+							{% endif %}
+							<form class="form-horizontal" method="post" action="/tobe_master/management/quiz/update/{{ pattern }}" name="signup" id="signup" enctype="multipart/form-data">
+								<input type="hidden" name="id" value="{{ question['question_id'] }}">
+								<input type="hidden" name="pattern_id" value="{{ question['pattern_id'] }}">
 								<div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
 									<div class="col-md-8 col-sm-9">
-										<input type="text" class="form-control" name="title" id="mem_name" value="{{ question['title'] }}" placeholder="タイトルを書いてください" value="" required>
+										<input type="text" class="form-control" name="title" id="mem_name" value="{{ question['title'] }}" placeholder="タイトルを書いてください" required>
 									</div>
 								</div>
 								<div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
@@ -135,20 +133,36 @@ $(function(){
 									<div class="col-md-7 col-sm-8">
 										<div class="input-group">
 											{% if  question['pattern_id'] == 1 %}
-												<div class="input-file_A"><input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" required></div>
+												<div class="input-file_A_1">
+													<input type="hidden" name="problem_image_in" id="problem_image{{ question['question_id'] }}" value = 0>
+													<input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('problem_image',{{ question['question_id'] }})" ></div>
+												<div class="preview_A_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['problem_image_path'] }}" width="150px" class="preview_A_1" title="" >
+												</div>
 											{% elseif question['pattern_id'] == 2 %}
-												正解の画像<div class="input-file1"><input type="file" name="preview1_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div><br />
-												<div class="preview1" style="margin-top:10px;" /></div><br />
-												不正解の画像<div class="input-file2"><input type="file" name="inpreview1_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div>
-												<div class="preview2" style="margin-top:10px;" /></div>
+												正解の画像<div class="input-file_B_1"><input type="file" name="correct_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('correct_image',{{ question['question_id'] }})" style="margin-bottom: 10px;"></div><br />
+												<input type="hidden" name="correct_image_in" id="correct_image{{ question['question_id'] }}" value = 0>
+												<div class="preview_B_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['first_image_path'] }}" width="150px" class="preview_B_1" title="" >
+												</div>
+												不正解の画像<div class="input-file_B_2"><input type="file" name="incorrect_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('incorrect_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div>
+												<input type="hidden" name="incorrect_image_in" id="incorrect_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_B_2" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['second_image_path'] }}" width="150px" class="preview_B_2" title="" >
+												</div>
 											{% else %}
-												A<div class="input-fileA"><input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div><br />
-												<div class="preview_A" style="margin-top:10px;" /></div>
-												B<div class="input-fileB"><input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" style="margin-bottom: 10px;" required></div>
-												<div class="preview_B" style="margin-top:10px;" /></div>
+												A<div class="input-file_C_1"><input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('first_problem_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div><br />
+												<input type="hidden" name="first_problem_image_in" id="first_problem_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_C_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['first_image_path'] }}" width="150px" class="preview_C_1" title="" >
+												</div>
+												B<div class="input-file_C_2"><input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('second_problem_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div>
+												<input type="hidden" name="second_problem_image_in" id="second_problem_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_C_2" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['second_image_path'] }}" width="150px" class="preview_C_2" title="" >
+												</div>
 											{% endif %}
 										</div>
-										<div class="preview" style="margin-top:10px;" /></div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>
@@ -211,6 +225,7 @@ $(function(){
 									</div>
 								</div>
 								{% if  question['pattern_id'] != 2 %}
+									{% set test = test + 1 %}
 								<div class="form-group">
 									<label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small>
 									</label>
@@ -230,7 +245,7 @@ $(function(){
 													</td>
 												</tr>
 												<!-- 表示非表示切り替え -->
-												<tr id="firstBox{{ question['question_id'] }}">
+												<tr id="firstBox{{ test }}">
 													<td>
 														<label>
 															<input name="answer" type="radio" value="Yes" checked>はい
@@ -240,17 +255,19 @@ $(function(){
 														</label>
 													</td>
 												</tr>
-												<td>
-													<label>
-														{% if question['correct_answer'] == "はい" or question['correct_answer'] == "いいえ" %}
-															<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
-														{% else %}
-															<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" checked/>：②解答文で解答
-														{% endif %}
-													</label>
-												</td>
+												<tr>
+													<td>
+														<label>
+															{% if question['correct_answer'] == "はい" or question['correct_answer'] == "いいえ" %}
+																<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
+															{% else %}
+																<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" checked/>：②解答文で解答
+															{% endif %}
+														</label>
+													</td>
+												</tr>
 												<!-- 表示非表示切り替え -->
-												<tr id="secondBox{{ question['question_id'] }}">
+												<tr id="secondBox{{ test }}">
 													<td>
 														<input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="{{ question['correct_answer'] }}" required>
 													</td>
@@ -275,13 +292,6 @@ $(function(){
 								</div>
 							</form>
 						</div>
-
-							<!--<form method="post" action="/tobe_master/management/area/update">-->
-								<!--<p>エリア名を入力して下さい。</p>-->
-								<!--<input type="hidden" name="beast_house_id" value="{{ item['beast_house_id'] }}">-->
-								<!--<input type="text" class="form-control" name="area_name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" value="{{ item['name'] }}" required>-->
-								<!--<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">-->
-							<!--</form>-->
 						</div>
 					</div>
 				</div>
@@ -304,7 +314,16 @@ $(function(){
 					</div>
 				</div>
 			</div>
-	{% endfor %}
+{% endfor %}
+<ul class="pagination">
+	<li class="disabled"><a href="#">«</a></li>
+	<li class="active"><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>
+	<li><a href="#">4</a></li>
+	<li><a href="#">5</a></li>
+	<li><a href="#">»</a></li>
+</ul>
 
 	<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">

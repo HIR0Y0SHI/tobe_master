@@ -1,6 +1,6 @@
 <?php
 /**
-* Created by HIR0Y0SHI on 2017/06/05
+* created by kuwano on 2017/07/16
 */
 
 namespace App\Models;
@@ -10,7 +10,7 @@ use App\Mapper;
 /**
 * 問題関連のDBアクセスクラス
 *
-* @author HIR0Y0SHI
+* @author kuwano
 * @package Models
 */
 class Question extends Mapper {
@@ -227,6 +227,109 @@ class Question extends Mapper {
                     break;
             }
 
+            $stmt->bindParam(':pattern_id', $prams[pattern_id], \PDO::PARAM_INT);
+            $stmt->bindParam(':difficulty_id', $prams[difficulty], \PDO::PARAM_INT);
+            $stmt->bindParam(':solution_time_id', $prams[solution_time], \PDO::PARAM_INT);
+            $stmt->bindParam(':beast_house_id', $prams[area], \PDO::PARAM_INT);
+            $stmt->bindParam(':title', $prams[title], \PDO::PARAM_STR);
+            $stmt->bindParam(':problem_statement', $prams[introduction], \PDO::PARAM_STR);
+            $stmt->bindParam(':commentary', $prams[commentary], \PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $result = true;
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        return $result;
+    }
+
+    /**
+     * 問題を編集する
+     *
+     * @access public
+     * @param string $prams 入力パラメータ
+     * @return bool trueなら成功
+     */
+    public function update($prams) {
+        $result = false;
+        $sqlflg = 1;
+        switch ($prams[pattern_id]) {
+            case 1:
+                $query = 'UPDATE  m_questions ';
+                $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
+                $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ';
+                $query .= ',correct_answer = :correct_answer ,incorrect_answer = :incorrect_answer ,commentary = :commentary ';
+                if ($prams['problem_image_in']) {
+                    $query .= ',problem_image_path = :problem_image_path ';
+                }
+                $query .= 'where question_id = :question_id';
+                $sqlflg = 1;
+                //echo "問題ID".$prams[id];
+                //exit;
+                break;
+            case 2:
+                $query = 'UPDATE  m_questions ';
+                $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
+                $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ,commentary = :commentary ';
+                if ($prams['correct_image_in']) {
+                    $query .= ',first_image_path = :first_image_path ';
+                }
+                if ($prams['incorrect_image_in']) {
+                    $query .= ',second_image_path = :second_image_path';
+                }
+                $query .= 'where question_id = :question_id';
+                $sqlflg = 2;
+                break;
+            case 3:
+                $query = 'UPDATE  m_questions ';
+                $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
+                $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ';
+                $query .= ',correct_answer = :correct_answer ,incorrect_answer = :incorrect_answer ,commentary = :commentary ';
+                if ($prams['first_problem_image_in']) {
+                    $query .= ',first_image_path = :first_image_path ';
+                }
+                if ($prams['second_problem_image_in']) {
+                    $query .= ',second_image_path = :second_image_path';
+                }
+                $query .= 'where question_id = :question_id';
+                $sqlflg = 3;
+                break;
+        }
+
+
+        try {
+            $stmt = $this->db->prepare($query);
+            switch ($sqlflg) {
+                case 1:
+                    if ($prams['problem_image_in']) {
+                        $stmt->bindParam(':problem_image_path', $prams[problem_image_path], \PDO::PARAM_STR);
+                    }
+                    $stmt->bindParam(':correct_answer', $prams[correct_answer], \PDO::PARAM_STR);
+                    $stmt->bindParam(':incorrect_answer', $prams[incorrect_answer], \PDO::PARAM_STR);
+                    break;
+                case 2:
+                    if ($prams['correct_image_in']) {
+                        $stmt->bindParam(':first_image_path', $prams[first_image_path], \PDO::PARAM_STR);
+                    }
+                    if ($prams['incorrect_image_in']) {
+                        $stmt->bindParam(':second_image_path', $prams[second_image_path], \PDO::PARAM_STR);
+                    }
+                    break;
+                case 3:
+                    if ($prams['first_problem_image_in']) {
+                        $stmt->bindParam(':first_image_path', $prams[first_image_path], \PDO::PARAM_STR);
+                    }
+                    if ($prams['second_problem_image_in']) {
+                        $stmt->bindParam(':second_image_path', $prams[second_image_path], \PDO::PARAM_STR);
+                    }
+                    $stmt->bindParam(':correct_answer', $prams[correct_answer], \PDO::PARAM_STR);
+                    $stmt->bindParam(':incorrect_answer', $prams[incorrect_answer], \PDO::PARAM_STR);
+                    break;
+            }
+
+            $stmt->bindParam(':question_id', $prams[id], \PDO::PARAM_STR);
             $stmt->bindParam(':pattern_id', $prams[pattern_id], \PDO::PARAM_INT);
             $stmt->bindParam(':difficulty_id', $prams[difficulty], \PDO::PARAM_INT);
             $stmt->bindParam(':solution_time_id', $prams[solution_time], \PDO::PARAM_INT);

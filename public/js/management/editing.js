@@ -1,9 +1,9 @@
 $(function(){
   //画像ファイルプレビュー表示(Aパターン）
-  $('.input-file_A').on('change', 'input[type="file"]', function(e) {
+  $('.input-file_A_1').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview = $(".preview");
+        $preview = $(".preview_A_1");
         t = this;
 
     // 画像ファイル以外の場合は何もしない
@@ -17,7 +17,7 @@ $(function(){
         $preview.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
-                   class: "preview",
+                   class: "preview_A_1",
                   title: file.name
               }));
       };
@@ -27,10 +27,10 @@ $(function(){
 
 
   //画像ファイルプレビュー表示(Bパターン)
-  $('.input-file1').on('change', 'input[type="file"]', function(e) {
+  $('.input-file_B_1').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview1 = $(".preview1");
+        $preview1 = $(".preview_B_1");
         t = this;
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
@@ -42,17 +42,18 @@ $(function(){
         $preview1.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
-                   class: "preview1",
+                   class: "preview_B_1",
                   title: file.name
               }));
       };
     })(file);
     reader.readAsDataURL(file);
   });
-  $('.input-file2').on('change', 'input[type="file"]', function(e) {
+
+  $('.input-file_B_2').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview2 = $(".preview2");
+        $preview2 = $(".preview_B_2");
         t = this;
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
@@ -64,7 +65,7 @@ $(function(){
         $preview2.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
-                   class: "preview2",
+                   class: "preview_B_2",
                   title: file.name
               }));
       };
@@ -73,10 +74,10 @@ $(function(){
   });
 
   //画像ファイルプレビュー表示(Cパターン)
-  $('.input-fileA').on('change', 'input[type="file"]', function(e) {
+  $('.input-file_C_1').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview_A = $(".preview_A");
+        $preview_A = $(".preview_C_1");
         t = this;
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
@@ -89,17 +90,17 @@ $(function(){
         $preview_A.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
-                   class: "preview_A",
+                   class: "preview_C_1",
                   title: file.name
               }));
       };
     })(file);
     reader.readAsDataURL(file);
   });
-  $('.input-fileB').on('change', 'input[type="file"]', function(e) {
+  $('.input-file_C_2').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview_B = $(".preview_B");
+        $preview_B = $(".preview_C_2");
         t = this;
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
@@ -111,7 +112,7 @@ $(function(){
         $preview_B.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
-                   class: "preview_B",
+                   class: "preview_C_2",
                   title: file.name
               }));
       };
