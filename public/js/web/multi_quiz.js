@@ -20,8 +20,10 @@ $(function() {
 
 // Deferredの宣言
 var dfd = $.Deferred();
+// プレイヤー数
+var playerQuantity = 4;
 
-//最初の○○さんですか？の画像と名前の配列を宣言
+//動物の画像と名前の配列を宣言
 var animals = [];
 animals[0] = "シロクマ";
 animals[1] = "トラ";
@@ -30,45 +32,39 @@ animals[3] = "ゾウ";
 animals[4] = "ウサギ";
 animals[5] = "ペンギン";
 
+var animalImagePath = "/tobe_master/public/images/web/";
 var animalsImage = [];
-animalsImage[0] = '/tobe_master/public/images/sample.jpg';
-animalsImage[1] = '/tobe_master/public/images/sample.jpg';
-animalsImage[2] = '/tobe_master/public/images/sample.jpg';
-animalsImage[3] = '/tobe_master/public/images/sample.jpg';
-animalsImage[4] = '/tobe_master/public/images/sample.jpg';
-animalsImage[5] = '/tobe_master/public/images/sample.jpg';
+// animalsImage[0] = '/tobe_master/public/images/web/ico_bear01.jpg';
+// animalsImage[1] = '/tobe_master/public/images/web/ico_tiger01.jpg';
+// animalsImage[2] = '/tobe_master/public/images/web/ico_fox01.jpg';
+// animalsImage[3] = '/tobe_master/public/images/web/ico_elephant01.jpg';
+// animalsImage[4] = '/tobe_master/public/images/web/ico_rabbit01.jpg';
+// animalsImage[5] = '/tobe_master/public/images/web/ico_penguin01.jpg';
 
-//ajaxでapiから値を受け取り格納する
-$(function() {
+animalsImage[0] = '/tobe_master/public/images/web/ico_animal01.png';
+animalsImage[1] = '/tobe_master/public/images/web/ico_animal01.png';
+animalsImage[2] = '/tobe_master/public/images/web/ico_animal02.png';
+animalsImage[3] = '/tobe_master/public/images/web/ico_animal02.png';
+animalsImage[4] = '/tobe_master/public/images/web/ico_animal03.png';
+animalsImage[5] = '/tobe_master/public/images/web/ico_animal04.png';
+
+// 配列を宣言
+var answer = "";
+var answerPlayerName = "";
+var correctGroup = [];
+var incorrectGroup = [];
+var dropGroup = [];
+
+// ajaxでapiから値を受け取り格納する
+var getData = function getData(questionDifficulty) {
+    console.log(questionDifficulty);
     $.ajax({
         type: "GET",
-        url: "/tobe_master/api/mock/question/multiple/1",
+        url: "/tobe_master/api/question/multiple/1",
         dataType: "json",
         crossdomain: true
     }).done(function(data) {
-        var i = 1;
-        var question = data.questions[i].problem_statement;
-        var image = data.questions[i].problem_image_path;
-        var correct = data.questions[i].correct_answer;
-        var incorrect = data.questions[i].incorrect_answer;
-        var pattern = data.questions[i].pattern_name;
-        var commentary = data.questions[i].commentary;
-        var second = data.questions[i].second;
-        $.cookie("second", second, { expires: 1 });
-
-        // 問題
-        $(".questionText").text(question);
-        // 正解
-        $(".correct").text(correct);
-        $.cookie("correct", correct, { expires: 1 });
-        // 解説
-        $('.commentaryArea > p').text(commentary);
-
-        // 解答をランダム表示
-        // 1か2をランダムで取得
-        var r = Math.round(Math.random() + 1);
-        (r == 1) ? $(".answer01").text(correct) + $(".answer02").text(incorrect): $(".answer02").text(correct) + $(".answer01").text(incorrect);
-
+        output(data);
         //次の問題数を投げる。
 
     }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
@@ -77,10 +73,43 @@ $(function() {
         console.log('2:' + textStatus);
         console.log('3:' + errorThrown);
     });
-});
+}
+
+// 問題を出力
+var output = function output(data) {
+    i = 0;
+    if (!data) {
+        getData(questionDifficulty);
+    } else {
+        var question = data.questions[i].problem_statement;
+        var image = data.questions[i].problem_image_path;
+        var correct = data.questions[i].correct_answer;
+        var incorrect = data.questions[i].incorrect_answer;
+        var pattern = data.questions[i].pattern_name;
+        var commentary = data.questions[i].commentary;
+        var second = data.questions[i].second;
+        disp();
+        repeat();
+        nextPage();
+        answerSelect();
+        i++;
+    }
+
+    // 問題
+    $(".questionText").text(question);
+    // 正解
+    $(".correct").text(correct);
+    $.cookie("correct", correct, { expires: 1 });
+    // 解説
+    $('.commentaryArea > p').text(commentary);
+
+    // 解答をランダム表示
+    // 1か2をランダムで取得
+    var r = Math.round(Math.random() + 1);
+    (r == 1) ? $(".answer01").text(correct) + $(".answer02").text(incorrect): $(".answer02").text(correct) + $(".answer01").text(incorrect);
+};
 
 // プレイヤー数分の繰り返し表示
-var playerQuantity = 4;
 var repeat = function repeat() {
     var zindex = 998;
     for (var i = 0; i < playerQuantity; i++) {
@@ -95,15 +124,9 @@ var repeat = function repeat() {
     }
 }
 
-// 配列を宣言
-var answer = "";
-var answerPlayerName = "";
-var correctGroup = [];
-var incorrectGroup = [];
-var dropGroup = [];
+
 // 選択された回答に .selected を付与
 var answerSelect = function answerSelect() {
-
     // .answer01,02につけた .selectedを消す
     var answerReset = function() {
         $('.answer01').removeClass('selected');
@@ -119,8 +142,9 @@ var answerSelect = function answerSelect() {
         answerReset();
         $(this).addClass('selected');
     });
-
 }
+
+// 選択された回答を取得
 var answerCheck = function answerCheck() {
     // 選択された回答を取得
     answer = $('.selected').text();
@@ -128,26 +152,28 @@ var answerCheck = function answerCheck() {
     answerPlayerName = $('.selected').parent('li').parent('.answerArea').prev('.playerArea').find('.playerName').find('span').text();
     anwswerCheckIF(answer, answerPlayerName);
 };
+
 var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
+    // animalsの要素分ループする。keyは添え字
     for (key in animals) {
+        // 配列の値と回答者が同じ場合の添え字を取得
         if (animals[key] == answerPlayerName) {
             answerPlayerName = key;
         }
     }
+    // 選択された解答と正解が同じとき
     (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName): incorrectGroup.push(answerPlayerName) + dropGroup.push(answerPlayerName);
-    dfd.resolve()
+    dfd.resolve();
     dfd.promise().then(function() {
-        if ($('.correctPlayer > ul').empty()) {
-            // console.log("qwe");
-        }
-
-        // 正解者、不正解者、脱落者の画像を表示する
+        // 正解者の画像を表示する
+        $('.correctPlayer > ul').empty();
         var correctCharaImage = "";
         for (i in correctGroup) {
-            correctCharaImage += "<li><img src='" + animalsImage[i] + "' alt='asd'></li>";
+            correctCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
         }
         $('.correctPlayer > ul').append(correctCharaImage);
 
+        // 不正解者の画像を表示
         $('.incorrectPlayer > ul').empty();
         var incorrectCharaImage = "";
         for (i in incorrectGroup) {
@@ -155,15 +181,20 @@ var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
         }
         $('.incorrectPlayer > ul').append(incorrectCharaImage);
 
+        // 脱落者の画像を表示する
         $('.dropoutPlayer > ul').empty();
         var dropCharaImage = "";
-        for (i in $.cookie("dropGroup")) {
-            dropCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
+        // クッキーに脱落者が登録されていれば
+        if ($.cookie("dropGroup") == "") {
+            var dropdrop = $.cookie("dropGroup");
+            for (i in dropdrop) {
+                dropCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
+            }
+            $('.dropoutPlayer > ul').append(dropCharaImage);
         }
-        $('.correctPlayer > ul').append(dropCharaImage);
         // 正解者と不正解者の配列を空にする
-        $.cookie("correctGroup", "", { expires: 1 });
-        $.cookie("incorrectGroup", "", { expires: 1 });
+        $.removeCookie("correctGroup");
+        $.removeCookie("incorrectGroup");
         // 正解者と不正解者を配列に入れる
         $.cookie("correctGroup", correctGroup, { expires: 1 });
         $.cookie("incorrectGroup", incorrectGroup, { expires: 1 });
@@ -174,20 +205,6 @@ var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
         console.log("不正解:" + $.cookie("incorrectGroup"));
         console.log("脱落:" + $.cookie("dropGroup"));
     });
-};
-
-//プレイヤー確認と問題の表示
-var asd = 0;
-nextQuestion = function nextQuestion() {
-    asd++;
-    if (asd != playerQuantity) {
-        $('.secPage' + asd - 1).css('z-index', "-1");
-        $('.confPage' + asd).css("z-index", "999");
-    } else {
-        $('.secPage' + asd - 1).css('z-index', "-1");
-        $('.sec02').css("z-index", "999");
-    }
-
 };
 
 //htmlを整形して、表示する
@@ -264,18 +281,57 @@ var nextPage = function nextPage() {
         $('.sec04').css('z-index', '999');
     });
 
-    //次の問題へ
-    $('.next04').on('click', function() {
+    // 次の問題へ
+    // まだ正解者がいるとき
+    $('.nextQuestion').on('click', function() {
+        questionNumber = $.cookie("questionNumber");
+        questionNumber++;
+        $.cookie('questionNumber', questionNumber, { expires: 1 });
+        // 色々初期設定に戻す
+        $('.sec04').css('z-index', '-1');
+        $('.confPage0').css('z-index', '999');
+        asd = 0;
+        // 現在の総人数 = 総人数 - 間違えた人
+        playerQuantity = playerQuantity - incorrectGroup.length;
+        if (playerQuantity == 0) {
+            $('.gameover').css('z-index', '999');
+        } else {
+            // 間違えた人を脱落者配列に追加
+            dropGroup = incorrectGroup;
+            // 正解者と不正解者配列を初期化$('.gameover').css('z-index', '999');
+            correctGroup = [];
+            incorrectGroup = [];
+            output();
+        }
 
     });
 };
 
+//プレイヤー確認と問題の表示
+var asd = 0;
+nextQuestion = function nextQuestion() {
+    asd++;
+    if (asd != playerQuantity) {
+        $('.secPage' + asd - 1).css('z-index', "-1");
+        $('.confPage' + asd).css("z-index", "999");
+    } else {
+        $('.secPage' + asd - 1).css('z-index', "-1");
+        $('.sec02').css("z-index", "999");
+    }
+};
+
+// クッキーの初期化
+$.removeCookie("data");
+$.removeCookie("correct");
+$.removeCookie("second");
+$.removeCookie("correctGroup");
+$.removeCookie("incorrectGroup");
+$.removeCookie("dropGroup");
+$.removeCookie("questionNumber");
 // デザインとかその他もろもろ最初の方に実行したいやつら
-// プレイヤー数が無ければ実行しないようにしないといけない
 $(".contentIn > div").css("z-index", "-1");
 $("#quizRepeat").css("z-index", "900");
 $("#quizRepeat > div").css("z-index", "-1");
-disp();
-repeat();
-nextPage();
-answerSelect();
+// 関数の実行
+var questionDifficulty = 1;
+getData(questionDifficulty);
