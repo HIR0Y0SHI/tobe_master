@@ -316,6 +316,7 @@
 		</div>
 	</div>
 
+<<<<<<< Updated upstream
 	<div class="modal fade" id="questiondelete{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -333,6 +334,31 @@
 			</div>
 		</div>
 	</div>
+=======
+			<div class="modal fade" id="questiondelete{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="width:430px;margin-left:200px;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">クイズ削除</h4>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/tobe_master/management/area/">
+								<p>削除してよろしいですか？</p>
+								<input type="hidden" class="form-control" name="question_id" id="question_id" value="{{ question['question_id'] }}">
+								<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endfor %}
+<ul class="pagination" style="margin-left:500px;">
+	<li class="disabled"><a href="#">«</a></li>
+	{% for count in range(low=1, high=pagination, step=1) %}
+	<!--class="active">-->
+	<li><a href="/tobe_master/management/quiz/search/{{count}}">{{count}}</a></li>
+>>>>>>> Stashed changes
 	{% endfor %}
 	<ul class="pagination">
 		<li class="disabled"><a href="#">«</a></li>
