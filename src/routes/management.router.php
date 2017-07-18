@@ -41,8 +41,6 @@ $app->get('/management', function($request, $response, $args) {
     exit;
 });
 
-
-
 // クイズ管理画面
 $app->get('/management/quiz', function($request, $response, $args) {
 
@@ -52,13 +50,24 @@ $app->get('/management/quiz', function($request, $response, $args) {
     $question->render('topquestion.html');
 });
 
+//// クイズ管理画面
+//$app->get('/management/quiz/search/{page}', function($request, $response, $args) {
+//
+//    App\Auth::check($this, $response);
+//    $request->getBody();
+//    echo '<pre>';
+//    echo 'ここはID番号'.$args['page'].'のページです。';
+//    echo '</pre>';
+//    $question = new App\Controllers\MakeQuestionController($this, $response);
+//    //$question->test_render('topquestion.html',$args['page']);
+//});
 
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
 
     // App\Auth::check($this, $response);
-    $url = $this->router->pathFor('login');    
+    $url = $this->router->pathFor('login');
     // return $response->withStatus(302)->withHeader('Location', $url);
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
@@ -66,41 +75,6 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
-
-
-// クイズ編集画面(A)
-$app->get('/management/quiz/editing_A', function($request, $response, $args) {
-
-    App\Auth::check($this, $response);
-
-    $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->render('editing_A.html');
-    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
-});
-
-
-
-// クイズ編集画面(B)
-$app->get('/management/quiz/editing_B', function($request, $response, $args) {
-
-    App\Auth::check($this, $response);
-
-    $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->render('editing_B.html');
-    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
-});
-
-
-
-// クイズ編集画面(C)
-$app->get('/management/quiz/editing_C', function($request, $response, $args) {
-
-    App\Auth::check($this, $response);
-
-    $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->render('editing_C.html');
-    // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
-});
 
 
 // エリア作成画面
@@ -128,8 +102,6 @@ $app->get('/management/test', function($request, $response, $args) {
 });
 
 
-
-
 /* ==================================================================================================== */
 // POST
 /* ==================================================================================================== */
@@ -142,7 +114,43 @@ $app->post('/login', function($request, $response, $args) {
     $management->login($params["inputId"], $params["inputPassword"]);
 });
 
+// クイズ検索
+$app->post('/management/quiz/search', function($request, $response, $args) {
 
+    App\Auth::check($this, $response);
+    $params = $request->getParsedBody();
+    $request->getBody();
+
+    /*echo '<pre>';
+    echo 'ここはID番号'.$args['page'].'のページです。';
+    echo '</pre>';
+    echo '<pre>';
+    var_dump($params);
+    echo '</pre>';*/
+
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->searchQuestion('topquestion.html',$params,$args['page']);
+    //$question->render('makeQuestion.html');
+});
+
+// クイズ検索
+$app->get('/management/quiz/search/{page}', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    $params = $request->getParsedBody();
+    $request->getBody();
+
+    /*echo '<pre>';
+    echo 'ここはID番号'.$args['page'].'のページです。';
+    echo '</pre>';
+    echo '<pre>';
+    var_dump($params);
+    echo '</pre>';*/
+
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->searchQuestion('topquestion.html',$params,$args['page']);
+    //$question->render('makeQuestion.html');
+});
 
 // クイズ追加（Aパターン）
 $app->post('/management/quiz/make/a', function($request, $response, $args) {
@@ -272,6 +280,7 @@ $app->post('/management/area/delete', function($request, $response, $args) {
     $area->deleteArea($params);
     $area->render('area.html');
 });
+
 
 
 function dump($args) {

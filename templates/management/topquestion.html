@@ -317,12 +317,11 @@ $(function(){
 {% endfor %}
 <ul class="pagination">
 	<li class="disabled"><a href="#">«</a></li>
-	<li class="active"><a href="#">1</a></li>
-	<li><a href="#">2</a></li>
-	<li><a href="#">3</a></li>
-	<li><a href="#">4</a></li>
-	<li><a href="#">5</a></li>
-	<li><a href="#">»</a></li>
+	{% for count in range(low=1, high=pagination, step=1) %}
+	<!--class="active">-->
+	<li><a href="/tobe_master/management/quiz/search/{{count}}">{{count}}</a></li>
+	{% endfor %}
+	<li><a href="/tobe_master/management/quiz/search?page=last">»</a></li>
 </ul>
 
 	<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -333,11 +332,11 @@ $(function(){
 					<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">検索フォーム</h4>
 				</div>
 				<div class="modal-body">
-					<form method="post" action="/tobe_master/management/area/">
+					<form method="post" action="/tobe_master/management/quiz/search">
 						<p>絞り込み検索</p>
 						<div class="form-group"> <label class="control-label col-sm-3">キーワード</label>
 							<div class="col-md-8 col-sm-9">
-								<input type="text" class="form-control" name="title" id="mem_name" value="" placeholder="検索キーワードを入力して下さい">
+								<input type="text" class="form-control" name="keyword" id="mem_name" value="" placeholder="検索キーワードを入力して下さい">
 							</div>
 						</div>
 						<div class="form-group">
@@ -346,7 +345,7 @@ $(function(){
 							<div class="col-xs-8 left">
 								<div class="form-inline">
 									<div class="form-group">
-										<select name="area" class="form-control">
+										<select name="beast_house_id" class="form-control">
 											<option value="">選択してください</option>
 											{% for item in area %}
 												{% if question['name'] == item['name'] %}
@@ -366,7 +365,7 @@ $(function(){
 							<div class="col-xs-8 left">
 								<div class="form-inline">
 									<div class="form-group">
-										<select name="difficulty" class="form-control">
+										<select name="difficulty_id" class="form-control">
 											<option value="">選択してください</option>
 											{% for difficulty in difficulty %}
 												{% if question['difficulty_id']  == difficulty['difficulty_id'] %}
@@ -387,15 +386,16 @@ $(function(){
 								<div class="form-inline">
 									<div class="form-group">
 										<label>
-												<input type="checkbox" name="commentary" value="" />：解説あり
-												<input type="checkbox" name="commentary" value="" />：解説なし
+											<input type="radio" name="commentary" value="1" />：解説あり
+										</label>
+										<label>
+											<input type="radio" name="commentary" value="2" />：解説なし
 										</label>
 									</div>
 								</div>
 							</div>
 						</div>
-						<input type="hidden" class="form-control" name="question_id" id="question_id" value="{{ question['question_id'] }}">
-						<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="検索">
+						<input type="submit" class="form-control btn btn-primary deletecheck"  value="検索">
 					</form>
 				</div>
 			</div>

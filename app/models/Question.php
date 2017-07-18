@@ -83,18 +83,41 @@ class Question extends Mapper {
 
 
     /**
-     * クイズ一覧を取得する
+     * 問題一覧を取得する
      *
      * @access public
      * @return bool trueなら成功
      */
-    public function getQuestion() {
+    public function getQuestion($page) {
 
+        $page_start = null;
+        unset($_SESSION['count']);
+        unset($_SESSION['params']);
+
+        if ($page > 1) {
+            // 例：２ページ目の場合は、『(2 × 10) - 10 = 10』
+            $page_start = ($page * 10) - 10;
+        } else {
+            $page_start = 0;
+        }
         $query = 'SELECT * FROM m_questions as q INNER JOIN m_beast_house as b ';
         $query.= 'ON q.beast_house_id = b.beast_house_id ORDER BY question_id ';
+        $query.= 'limit '.$page_start.',10';
         $results = [];
 
+        $count = 'SELECT count(*) as num FROM m_questions as q INNER JOIN m_beast_house as b ';
+        $count.= 'ON q.beast_house_id = b.beast_house_id ORDER BY question_id ';
+
         try {
+            $stmt = $this->db->prepare($count);
+            $stmt->execute();
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                // ページネーションの数を取得する
+                $pagination = $row;
+            }
+            $pagination = ceil((int)$pagination['num'] / 10);
+            $_SESSION['pagination'] = $pagination;
+
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -175,6 +198,87 @@ class Question extends Mapper {
             throw $e;
         }
         return $results;
+    }
+
+
+    /**
+     * 問題を検索
+     *
+     * @access public
+     * @return bool trueなら成功
+     */
+    public function search($params,$page) {
+
+        echo "<pre>";
+        if (!empty($_SESSION['params'])) {
+            $params = $_SESSION['params'];
+        }
+        var_dump($_SESSION['params']);
+        echo "</pre>";
+
+        $page_start = null;
+        if ($page > 1) {
+            // 例：２ページ目の場合は、『(2 × 10) - 10 = 10』
+            $page_start = ($page * 10) - 10;
+        } else {
+            $page_start = 0;
+        }
+
+        $query = 'SELECT * FROM m_questions as q INNER JOIN m_beast_house as b ';
+        $query.= 'ON q.beast_house_id = b.beast_house_id where 1= 1';
+
+        $count = 'SELECT count(*) as num FROM m_questions as q INNER JOIN m_beast_house as b ';
+        $count.= 'ON q.beast_house_id = b.beast_house_id where 1= 1';
+
+        if (!empty($params['keyword'])){
+            $query .= ' AND commentary like (:keyword) ';
+            $count .= ' AND commentary like (:keyword) ';
+        }
+        if (!empty($params['beast_house_id'])){
+            $query .= ' AND q.beast_house_id = :beast_house_id ';
+            $count .= ' AND q.beast_house_id = :beast_house_id ';
+        }
+        if (!empty($params['difficulty_id'])){
+            $query .= ' AND difficulty_id = :difficulty_id ';
+            $count .= ' AND difficulty_id = :difficulty_id ';
+        }
+
+        $query.= ' ORDER BY question_id limit '.$page_start.',10';
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt_count = $this->db->prepare($count);
+            if (!empty($params['keyword'])){
+                $keyword = "%".$params['keyword']."%";
+                $stmt->bindParam(':keyword',$keyword, \PDO::PARAM_STR);
+                $stmt_count->bindParam(':keyword',$keyword, \PDO::PARAM_STR);
+            }
+            if (!empty($params['beast_house_id'])){
+                $stmt->bindParam(':beast_house_id',$params['beast_house_id'], \PDO::PARAM_INT);
+                $stmt_count->bindParam(':beast_house_id',$params['beast_house_id'], \PDO::PARAM_INT);
+            }
+            if (!empty($params['difficulty_id'])){
+                $stmt->bindParam(':difficulty_id',$params['difficulty_id'], \PDO::PARAM_INT);
+                $stmt_count->bindParam(':difficulty_id',$params['difficulty_id'], \PDO::PARAM_INT);
+            }
+            $stmt_count->execute();
+            while($row = $stmt_count->fetch(\PDO::FETCH_ASSOC)) {
+                // ページネーションの数を取得する
+                $pagination = $row;
+            }
+            $pagination = ceil((int)$pagination['num'] / 10);
+            $_SESSION['pagination'] = $pagination;
+            var_dump($_SESSION['pagination']);
+            $stmt->execute();
+            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+        } catch (PDOException $e) {
+            throw $e;
+        }
+
+        return $results;
+
     }
 
 

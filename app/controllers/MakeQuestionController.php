@@ -13,6 +13,50 @@ class MakeQuestionController extends BaseController {
     const QUESTION_IMAGE_PATH = __DIR__ . '/../../public/images/questions/';
 
     /**
+     * 問題を検索する
+     *
+     * @access public
+     * @param array $params
+     * @param array $files
+     */
+    public function searchQuestion($path,$params,$page) {
+
+        $message = null;
+        $bh = null;
+
+        session_start(); // セッションを再開
+        /*if (!is_null($params)) {
+            $params = array_filter($params);
+        }*/
+
+        if (!empty($params)) {
+            $_SESSION['params'] = $params;
+        }
+
+        //exit;
+        // DBの起動確認
+        if (empty($this->app->db)) {
+            $message = 'データベースが起動していません。';
+        }
+
+        // 問題がなければ
+        if (empty($message)) {
+            try {
+                $question = new Question($this->app->db);
+                $questions = $question->search($params,$page);
+                $bh = $question->getBeastHouses();
+                $difficulty = $question->getDifficulty();
+                $solution = $question->getSolution();
+                echo "</pre>";
+            } catch (PDOException $e) {
+                $message = 'データベースでエラーが発生しました。';
+            }
+        }
+        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions, 'difficulty' => $difficulty, 'solution' => $solution,'pagination' => $_SESSION['pagination']));
+
+    }
+
+    /**
     * Aパターンの問題を追加する
     * 
     * @access public
@@ -194,7 +238,7 @@ class MakeQuestionController extends BaseController {
             try {
                 $question = new Question($this->app->db);
                 $bh = $question->getBeastHouses();
-                $questions = $question->getQuestion();
+                $questions = $question->getQuestion(1);
                 $difficulty = $question->getDifficulty();
                 $solution = $question->getSolution();
 
@@ -202,10 +246,12 @@ class MakeQuestionController extends BaseController {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
+        echo '<pre>';
+        var_dump($_SESSION['pagination']);
+        echo '</pre>';
 
-        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions, 'difficulty' => $difficulty, 'solution' => $solution));
+        $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions, 'difficulty' => $difficulty, 'solution' => $solution, 'pagination' => $_SESSION['pagination']));
     }
-
 
 
     /**
