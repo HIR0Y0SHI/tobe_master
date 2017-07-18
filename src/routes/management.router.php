@@ -102,6 +102,12 @@ $app->get('/management/test', function($request, $response, $args) {
 });
 
 
+// ログアウト
+$app->get('/logout', function($request, $response, $args) {
+    App\Auth::logout($this, $response);
+});
+
+
 /* ==================================================================================================== */
 // POST
 /* ==================================================================================================== */
@@ -151,6 +157,9 @@ $app->get('/management/quiz/search/{page}', function($request, $response, $args)
     $question->searchQuestion('topquestion.html',$params,$args['page']);
     //$question->render('makeQuestion.html');
 });
+
+
+
 
 // クイズ追加（Aパターン）
 $app->post('/management/quiz/make/a', function($request, $response, $args) {

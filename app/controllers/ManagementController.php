@@ -32,7 +32,7 @@ class ManagementController extends BaseController {
         $management = new Management($this->app->db);
         $enc_pass = base64_encode($pass);
 
-
+            
         /*
          ユーザーの存在確認
         */
@@ -48,7 +48,7 @@ class ManagementController extends BaseController {
 
                     // 管理TOPをレンダー
                     // TODO: 遷移先を管理TOP画面に変更する
-                    return $this->app->view->render($this->response, 'management/makeQuestion.html');
+                    return $this->app->view->render($this->response, 'management/topquestion.html');
                 } else {
                     // ユーザーが存在しない
                     $message = 'ユーザー名またはパスワードが間違えています。';

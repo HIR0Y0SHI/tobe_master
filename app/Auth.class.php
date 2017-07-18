@@ -56,5 +56,9 @@ class Auth {
     public static function logout() {
         $session = new \SlimSession\Helper;
         $session::destroy();
+
+        // Redirectの処理がうまく動かないので強制
+        header('Location: /tobe_master/login');
+        exit;
     }
 }
