@@ -21,7 +21,12 @@ $(function() {
 // Deferredの宣言
 var dfd = $.Deferred();
 // プレイヤー数
-var playerQuantity = 4;
+var playerQuantity = 2;
+$.cookie('playerQuantity', 2, { expires: 1 });
+// 現在の問題番号
+var questionNumber = 1;
+// 現在の問題番号の表示
+$('.questionNo').text(questionNumber);
 
 //動物の画像と名前の配列を宣言
 var animals = [];
@@ -31,6 +36,7 @@ animals[2] = "キツネ";
 animals[3] = "ゾウ";
 animals[4] = "ウサギ";
 animals[5] = "ペンギン";
+
 
 var animalImagePath = "/tobe_master/public/images/web/";
 var animalsImage = [];
@@ -75,7 +81,7 @@ var getData = function getData(questionDifficulty) {
     });
 }
 
-// 問題を出力
+// apiからデータもらって問題を出力
 var output = function output(data) {
     i = 0;
     if (!data) {
@@ -245,7 +251,7 @@ var disp = function disp() {
 
         a += '<div class="questionArea">';
         a += '<div class="inner">';
-        a += '<p class="tC">第<span class="questionNo">1</span>問</p>';
+        a += '<p class="tC">第<span class="questionNo">' + questionNumber + '</span>問</p>';
         a += '<p class="questionText">この動物はカピバラ？それともヌートリア？</p>';
         a += '</div>';
         a += '</div>';
@@ -271,6 +277,7 @@ var disp = function disp() {
 };
 
 // sec02,03の.nextクリックでsec03,04の読み込み
+// ゲームオーバー時の設定
 var nextPage = function nextPage() {
     $('.next02').on('click', function() {
         $('.sec02').css('z-index', '-1');
@@ -284,9 +291,13 @@ var nextPage = function nextPage() {
     // 次の問題へ
     // まだ正解者がいるとき
     $('.nextQuestion').on('click', function() {
-        questionNumber = $.cookie("questionNumber");
         questionNumber++;
-        $.cookie('questionNumber', questionNumber, { expires: 1 });
+        if (isInteger(questionNumber / 3)) {
+            questionDifficulty++;
+        }
+
+        console.log("次は問" + questionNumber);
+        $('.questionNo').text(questionNumber);
         // 色々初期設定に戻す
         $('.sec04').css('z-index', '-1');
         $('.confPage0').css('z-index', '999');
@@ -294,7 +305,20 @@ var nextPage = function nextPage() {
         // 現在の総人数 = 総人数 - 間違えた人
         playerQuantity = playerQuantity - incorrectGroup.length;
         if (playerQuantity == 0) {
+            // ゲームオーバーの時の表示と整形
             $('.gameover').css('z-index', '999');
+            $('.playerList03').empty();
+            var gameoverPlayer = "";
+            console.log($.cookie('playerQuantity'))
+            for (var k = 0; k < $.cookie('playerQuantity'); k++) {
+                gameoverPlayer += '<li>';
+                gameoverPlayer += '<p class="image"><img src="' + animalsImage[k] + '"></p>';
+                gameoverPlayer += '<div class="text">';
+                gameoverPlayer += '<p class="playerName">' + animals[k] + '</p>';
+                gameoverPlayer += '</div>';
+                gameoverPlayer += '</li>';
+            }
+            $('.playerList03').append(gameoverPlayer);
         } else {
             // 間違えた人を脱落者配列に追加
             dropGroup = incorrectGroup;
@@ -306,6 +330,10 @@ var nextPage = function nextPage() {
 
     });
 };
+// 整数チェック
+var isInteger = function isInteger(x) {
+    return Math.round(x) === x;
+}
 
 //プレイヤー確認と問題の表示
 var asd = 0;
@@ -327,7 +355,6 @@ $.removeCookie("second");
 $.removeCookie("correctGroup");
 $.removeCookie("incorrectGroup");
 $.removeCookie("dropGroup");
-$.removeCookie("questionNumber");
 // デザインとかその他もろもろ最初の方に実行したいやつら
 $(".contentIn > div").css("z-index", "-1");
 $("#quizRepeat").css("z-index", "900");
