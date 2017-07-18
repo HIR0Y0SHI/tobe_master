@@ -122,3 +122,7 @@
 .gameclear .playerList03>li>.text {
     color: #000;
 }
+
+#quizRepeat .playerConfirm {
+    z-index: 999;
+}
