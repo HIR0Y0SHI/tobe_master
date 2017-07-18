@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>クイズ一覧</title>
+	<!-- <link rel="stylesheet" href="css/quizTop.css"/> -->
+	<!-- BootstrapのCSS読み込み -->
+	<link href="/tobe_master/public/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery読み込み -->
+	<script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
+	<!-- BootstrapのJS読み込み -->
+	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="/tobe_master/public/js/management/makeQuestion2.js"></script>
+<<<<<<< Updated upstream
+	<script src="/tobe_master/public/js/management/editing.js"></script>
+=======
+	<script src="/tobe_master/public/js/management/editing.js"></script>
+>>>>>>> Stashed changes
+	<link href="/tobe_master/public/css/management/topquiz.css" rel="stylesheet">
+	<script>
+$(function(){
+    var $setElm = $('.introduction');
+    var cutFigure = '15'; // カットする文字数
+    var afterTxt = ' …'; // 文字カット後に表示するテキスト
+
+    $setElm.each(function(){
+        var textLength = $(this).text().length;
+        var textTrim = $(this).text().substr(0,(cutFigure))
+
+        if(cutFigure < textLength) {
+            $(this).html(textTrim + afterTxt).css({visibility:'visible'});
+        } else if(cutFigure >= textLength) {
+            $(this).css({visibility:'visible'});
+        }
+    });
+});
+</script>
+	<style type="text/css">
+
+		.modal-content{
+			width: 800px;
+			height: auto;
+		}
+		.modal-dialog {
+			width: 800px;
+			margin: auto;
+		}
+		.left{
+			padding-left: 4%;
+		}
+		.answer{
+			border: 1px solid #B2B2B2;
+			border-radius: 5px;
+		}
+
+	</style>
+
+</head>
+<body>
+<div class="container">
+	<div class="row　row_quiz">
+		<div class="col-md-12">
+			<button role="button" class="btn btn-link button search" data-toggle="modal" data-target="#search_modal">絞り込み検索</button>
+			<h1 class="text-center"> クイズ管理 </h1>
+			<div class="link">
+				<a href="http://localhost/tobe_master/management/area" role="button" class="btn btn-link button">エリア管理へ</a>
+				<a href="http://localhost/tobe_master/management/quiz/make" role="button" class="btn btn-link button">クイズ作成へ</a>
+				<a href="http://localhost/tobe_master/management/" role="button" class="btn btn-link button logout">ログアウト</a>
+			</div>
+		</div>
+
+
+	</div>
+	<table class="table table-hover table-size">
+		<thead>
+			<tr>
+				<th class="num">番号</th>
+				<th class="title">タイトル</th>
+				<th class="introduction">問題文</th>
+				<th class="area">獣舎</th>
+				<th class="rename">編集</th>
+				<th class="delete">削除</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!--<form action="" method="get">-->
+		{% for question in questions %}
+		<tr>
+			<th scope="row" class="num">{{ question['question_id'] }}</th>
+			<td>{{ question['title'] }}</td>
+			<td class="introduction">{{ question['problem_statement'] }}</td>
+			<td>{{ question['name'] }}</td>
+			<td><button type="button"  data-toggle="modal" data-target="#{{ question['question_id'] }}">編集</button></td>
+			<td><button type="button"  data-toggle="modal" data-target="#questiondelete{{ question['question_id'] }}">削除</button></td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<!--</form> -->
+	{% set pattern = null %}
+	{% for question in questions %}
+	<!--モーダルウィンドウを表示するボタンを設置 -->
+			 <!--表示されるモーダルウィンドウ -->
+
+			<div class="modal fade" id="{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">クイズ編集</h4>
+						</div>
+						<div class="modal-body">
+							{% if question['pattern_id'] == 1 %}
+								{% set pattern = "a" %}
+							{% elseif question['pattern_id'] == 2 %}
+								{% set pattern = "b" %}
+							{% else %}
+								{% set pattern = "c" %}
+							{% endif %}
+							<form class="form-horizontal" method="post" action="/tobe_master/management/quiz/update/{{ pattern }}" name="signup" id="signup" enctype="multipart/form-data">
+								<input type="hidden" name="id" value="{{ question['question_id'] }}">
+								<input type="hidden" name="pattern_id" value="{{ question['pattern_id'] }}">
+								<div class="form-group"> <label class="control-label col-sm-3">タイトル<span class="text-danger">*</span></label>
+									<div class="col-md-8 col-sm-9">
+										<input type="text" class="form-control" name="title" id="mem_name" value="{{ question['title'] }}" placeholder="タイトルを書いてください" required>
+									</div>
+								</div>
+								<div class="form-group"> <label class="control-label col-sm-3">問題文<span class="text-danger">*</span></label>
+									<div class="col-md-8 col-sm-9">
+										<textarea name="introduction" id="mem_name" cols="45" rows="8"  placeholder="問題文を入力して下さい" class="form-control arearesize"  required>{{ question['problem_statement'] }}</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3">問題画像<span class="text-danger">*</span><br>
+									</label>
+									<div class="col-md-7 col-sm-8">
+										<div class="input-group">
+											{% if  question['pattern_id'] == 1 %}
+												<div class="input-file_A_1">
+													<input type="hidden" name="problem_image_in" id="problem_image{{ question['question_id'] }}" value = 0>
+													<input type="file" name="problem_image" id="problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('problem_image',{{ question['question_id'] }})" ></div>
+												<div class="preview_A_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['problem_image_path'] }}" width="150px" class="preview_A_1" title="" >
+												</div>
+											{% elseif question['pattern_id'] == 2 %}
+												正解の画像<div class="input-file_B_1"><input type="file" name="correct_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('correct_image',{{ question['question_id'] }})" style="margin-bottom: 10px;"></div><br />
+												<input type="hidden" name="correct_image_in" id="correct_image{{ question['question_id'] }}" value = 0>
+												<div class="preview_B_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['first_image_path'] }}" width="150px" class="preview_B_1" title="" >
+												</div>
+												不正解の画像<div class="input-file_B_2"><input type="file" name="incorrect_image" id="file_nm" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('incorrect_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div>
+												<input type="hidden" name="incorrect_image_in" id="incorrect_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_B_2" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['second_image_path'] }}" width="150px" class="preview_B_2" title="" >
+												</div>
+											{% else %}
+												A<div class="input-file_C_1"><input type="file" name="first_problem_image" id="first_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('first_problem_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div><br />
+												<input type="hidden" name="first_problem_image_in" id="first_problem_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_C_1" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['first_image_path'] }}" width="150px" class="preview_C_1" title="" >
+												</div>
+												B<div class="input-file_C_2"><input type="file" name="second_problem_image" id="second_problem_image" class="form-control upload" placeholder="" aria-describedby="file_upload" onchange="ImgCheck('second_problem_image',{{ question['question_id'] }})"  style="margin-bottom: 10px;"></div>
+												<input type="hidden" name="second_problem_image_in" id="second_problem_image{{ question['question_id'] }}" value = 0 >
+												<div class="preview_C_2" style="margin-top:10px;" />
+													<img src="/tobe_master/public/images/questions/{{ question['second_image_path'] }}" width="150px" class="preview_C_2" title="" >
+												</div>
+											{% endif %}
+										</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3">獣舎<span class="text-danger">*</span>
+									</label>
+									<div class="col-xs-8 left">
+										<div class="form-inline">
+											<div class="form-group">
+												<select name="area" class="form-control" required>
+													<option value="">選択してください</option>
+													{% for item in area %}
+														{% if question['name'] == item['name'] %}
+															<option value="{{ item['beast_house_id'] }}" selected>{{ item['name'] }}</option>
+														{% else %}
+															<option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+														{% endif %}
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3">難易度<span class="text-danger">*</span>
+									</label>
+									<div class="col-xs-8 left">
+										<div class="form-inline">
+											<div class="form-group">
+												<select name="difficulty" class="form-control" required>
+													<option value="">選択してください</option>
+													{% for difficulty in difficulty %}
+														{% if question['difficulty_id']  == difficulty['difficulty_id'] %}
+															<option value="{{ difficulty['difficulty_id'] }}" selected>{{ difficulty['name'] }}</option>
+														{% else %}
+															<option value="{{ difficulty['difficulty_id'] }}" >{{ difficulty['name'] }}</option>
+														{% endif %}
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3">解答時間<span class="text-danger">*</span>
+									</label>
+									<div class="col-xs-8 left">
+										<div class="form-inline">
+											<div class="form-group">
+												<select name="solution_time" class="form-control" required>
+													<option value="">選択してください</option>
+													{% for solution in solution %}
+														{% if question['solution_time_id']  == solution['solution_time_id'] %}
+															<option value="{{ solution['solution_time_id'] }}" selected>{{ solution['second'] }}秒</option>
+														{% else %}
+															<option value="{{ solution['solution_time_id'] }}" >{{ solution['second'] }}秒</option>
+														{% endif %}
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% if  question['pattern_id'] != 2 %}
+									{% set test = test + 1 %}
+								<div class="form-group">
+									<label class="control-label col-sm-3">答え<span class="text-danger">*</span><br /><small>①と②のどちらかを入力</small>
+									</label>
+									<div class="col-md-8 col-sm-9">
+										<div class="input-group answer " id="answer{{ question['question_id'] }}">
+											<span class="input-group-addon" id="file_upload">解答方法</span>
+											<table class="table">
+												<tr>
+													<td>
+														<label>
+															{% if question['correct_answer'] == "はい" or question['correct_answer'] == "いいえ" %}
+																<input type="radio" name="answertype" value="answertype1" onclick="entryChange1(),setRequired(false);" checked="checked" />：①はい、いいえで解答
+															{% else %}
+																<input type="radio" name="answertype" value="answertype1" onclick="entryChange1(),setRequired(false);"/>：①はい、いいえで解答
+															{% endif %}
+														</label>
+													</td>
+												</tr>
+												<!-- 表示非表示切り替え -->
+												<tr id="firstBox{{ test }}">
+													<td>
+														<label>
+															<input name="answer" type="radio" value="Yes" checked>はい
+														</label> &nbsp;
+														<label>
+															<input name="answer" type="radio" value="No" >いいえ
+														</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<label>
+															{% if question['correct_answer'] == "はい" or question['correct_answer'] == "いいえ" %}
+																<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" />：②解答文で解答
+															{% else %}
+																<input type="radio" name="answertype" value="answertype2" onclick="entryChange1(),setRequired(true);" checked/>：②解答文で解答
+															{% endif %}
+														</label>
+													</td>
+												</tr>
+												<!-- 表示非表示切り替え -->
+												<tr id="secondBox{{ test }}">
+													<td>
+														<input type="text" class="form-control correct" name="correct_answer" id="correct" placeholder="正解を書いてください" value="{{ question['correct_answer'] }}" required>
+													</td>
+													<td>
+														<input type="text" class="form-control incorrect" name="incorrect_answer" id="incorrect" placeholder="不正解を書いてください" value="{{ question['incorrect_answer'] }}" required>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								{% endif %}
+								<div class="form-group"> <label class="control-label col-sm-3">問題解説</label>
+									<div class="col-md-8 col-sm-9">
+										<textarea name="commentary" id="commentary" cols="45" rows="8" placeholder="問題の解説を書いてください" class="form-control arearesize">{{ question['commentary'] }}</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-xs-offset-3 col-xs-10">
+										<input name="Submit" type="submit" value="編集" class="btn btn-primary">
+									</div>
+								</div>
+							</form>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="questiondelete{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">クイズ削除</h4>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/tobe_master/management/area/">
+								<p>削除してよろしいですか？</p>
+								<input type="hidden" class="form-control" name="question_id" id="question_id" value="{{ question['question_id'] }}">
+								<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endfor %}
+<ul class="pagination">
+	<li class="disabled"><a href="#">«</a></li>
+	{% for count in range(low=1, high=pagination, step=1) %}
+	<!--class="active">-->
+	<li><a href="/tobe_master/management/quiz/search/{{count}}">{{count}}</a></li>
+	{% endfor %}
+	<li><a href="/tobe_master/management/quiz/search?page=last">»</a></li>
+</ul>
+
+	<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">検索フォーム</h4>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="/tobe_master/management/quiz/search">
+						<p>絞り込み検索</p>
+						<div class="form-group"> <label class="control-label col-sm-3">キーワード</label>
+							<div class="col-md-8 col-sm-9">
+								<input type="text" class="form-control" name="keyword" id="mem_name" value="" placeholder="検索キーワードを入力して下さい">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">獣舎
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<select name="beast_house_id" class="form-control">
+											<option value="">選択してください</option>
+											{% for item in area %}
+												{% if question['name'] == item['name'] %}
+													<option value="{{ item['beast_house_id'] }}" selected>{{ item['name'] }}</option>
+												{% else %}
+													<option value="{{ item['beast_house_id'] }}" >{{ item['name'] }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">難易度
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<select name="difficulty_id" class="form-control">
+											<option value="">選択してください</option>
+											{% for difficulty in difficulty %}
+												{% if question['difficulty_id']  == difficulty['difficulty_id'] %}
+													<option value="{{ difficulty['difficulty_id'] }}" selected>{{ difficulty['name'] }}</option>
+												{% else %}
+													<option value="{{ difficulty['difficulty_id'] }}" >{{ difficulty['name'] }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">解説の有無
+							</label>
+							<div class="col-xs-8 left">
+								<div class="form-inline">
+									<div class="form-group">
+										<label>
+											<input type="radio" name="commentary" value="1" />：解説あり
+										</label>
+										<label>
+											<input type="radio" name="commentary" value="2" />：解説なし
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<input type="submit" class="form-control btn btn-primary deletecheck"  value="検索">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- class=container -->
+</body>
+</html>
