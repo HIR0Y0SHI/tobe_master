@@ -117,6 +117,12 @@ margin-right: 5px;
   margin-top: 10px;
   margin-left: 290px;
 }
+.correction-check {
+  width: 100px;
+  margin-top: 10px;
+  float: right;
+  margin-right: 130px;
+}
 .search-button {
   width: 100px;
   margin-top: 10px;
