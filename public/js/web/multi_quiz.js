@@ -63,25 +63,22 @@ var dropGroup = [];
 
 // ajaxでapiから値を受け取り格納する
 var getData = function getData(questionDifficulty) {
-    console.log(questionDifficulty);
-    $.ajax({
-        type: "GET",
-        url: "/tobe_master/api/question/multiple/1",
-        dataType: "json",
-        crossdomain: true
-    }).done(function(data) {
-        output(data);
-        //次の問題数を投げる。
-
-    }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-        alert("chk失敗");
-        console.log(XMLHttpRequest);
-        console.log('2:' + textStatus);
-        console.log('3:' + errorThrown);
-    });
-}
-
-// apiからデータもらって問題を出力
+        console.log(questionDifficulty);
+        $.ajax({
+            type: "GET",
+            url: "/tobe_master/api/question/multiple/" + questionDifficulty,
+            dataType: "json",
+            crossdomain: true
+        }).done(function(data) {
+            output(data);
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("chk失敗");
+            console.log(XMLHttpRequest);
+            console.log('2:' + textStatus);
+            console.log('3:' + errorThrown);
+        });
+    }
+    // apiからデータもらって問題を出力
 var output = function output(data) {
     i = 0;
     if (!data) {
@@ -94,6 +91,7 @@ var output = function output(data) {
         var pattern = data.questions[i].pattern_name;
         var commentary = data.questions[i].commentary;
         var second = data.questions[i].second;
+        // 表示のために実行しないといけない関数
         disp();
         repeat();
         nextPage();
@@ -168,7 +166,7 @@ var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
         }
     }
     // 選択された解答と正解が同じとき
-    (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName): incorrectGroup.push(answerPlayerName) + dropGroup.push(answerPlayerName);
+    (answer == $.cookie('correct')) ? correctGroup.push(answerPlayerName): incorrectGroup.push(answerPlayerName);
     dfd.resolve();
     dfd.promise().then(function() {
         // 正解者の画像を表示する
@@ -192,8 +190,7 @@ var anwswerCheckIF = function anwswerCheckIF(answer, answerPlayerName) {
         var dropCharaImage = "";
         // クッキーに脱落者が登録されていれば
         if ($.cookie("dropGroup") == "") {
-            var dropdrop = $.cookie("dropGroup");
-            for (i in dropdrop) {
+            for (i in $.cookie('dropGroup')) {
                 dropCharaImage += "<li><img src='" + animalsImage[i] + "'></li>";
             }
             $('.dropoutPlayer > ul').append(dropCharaImage);
@@ -287,20 +284,22 @@ var nextPage = function nextPage() {
         $('.sec03').css('z-index', '-1');
         $('.sec04').css('z-index', '999');
     });
+};
 
-    // 次の問題へ
-    // まだ正解者がいるとき
+// 次の問題へ
+// まだ正解者がいるとき
+var nextQuestion = function nextQuestion() {
     $('.nextQuestion').on('click', function() {
         questionNumber++;
+        console.log("次は問" + questionNumber);
+        // ３問ごとに難易度アップ
         if (isInteger(questionNumber / 3)) {
             questionDifficulty++;
         }
-
-        console.log("次は問" + questionNumber);
-        $('.questionNo').text(questionNumber);
         // 色々初期設定に戻す
         $('.sec04').css('z-index', '-1');
         $('.confPage0').css('z-index', '999');
+        // nextPlayerのページ捲る用変数の初期化
         asd = 0;
         // 現在の総人数 = 総人数 - 間違えた人
         playerQuantity = playerQuantity - incorrectGroup.length;
@@ -326,10 +325,12 @@ var nextPage = function nextPage() {
             correctGroup = [];
             incorrectGroup = [];
             output();
+            $('.questionNo').text(questionNumber);
         }
 
     });
 };
+
 // 整数チェック
 var isInteger = function isInteger(x) {
     return Math.round(x) === x;
@@ -337,7 +338,7 @@ var isInteger = function isInteger(x) {
 
 //プレイヤー確認と問題の表示
 var asd = 0;
-nextQuestion = function nextQuestion() {
+nextPlayer = function nextPlayer() {
     asd++;
     if (asd != playerQuantity) {
         $('.secPage' + asd - 1).css('z-index', "-1");
@@ -355,6 +356,7 @@ $.removeCookie("second");
 $.removeCookie("correctGroup");
 $.removeCookie("incorrectGroup");
 $.removeCookie("dropGroup");
+
 // デザインとかその他もろもろ最初の方に実行したいやつら
 $(".contentIn > div").css("z-index", "-1");
 $("#quizRepeat").css("z-index", "900");
@@ -362,3 +364,4 @@ $("#quizRepeat > div").css("z-index", "-1");
 // 関数の実行
 var questionDifficulty = 1;
 getData(questionDifficulty);
+nextQuestion();

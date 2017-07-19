@@ -44,7 +44,7 @@ var timeRedBar = function redBar() {
         right: '100%',
         ease: Power0.easeNone,
         onComplete: function() {
-            nextQuestion();
+            nextPlayer();
             answerCheck();
         }
     });
