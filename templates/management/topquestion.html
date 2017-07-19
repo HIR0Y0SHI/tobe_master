@@ -325,7 +325,7 @@
 		</div>
 		<div class="modal fade" id="questiondelete{{ question['question_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
-				<div class="modal-content" style="width:430px;margin-left:200px;">
+				<div class="modal-content" style="width:430px;margin-left:200px;margin-top:20px;">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">クイズ削除</h4>
@@ -337,7 +337,7 @@
 							<p>エリア名 : {{ item['name'] }}</p>
 							<input type="hidden" name="_METHOD" value="DELETE"/>
 							<input type="hidden" class="form-control" name="question_id" id="question_id" value="{{ question['question_id'] }}">
-							<input type="submit" class="form-control btn btnprimary deletecheck" name="delete" value="削除">
+							<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
 						</form>
 					</div>
 				</div>
@@ -357,7 +357,7 @@
 		</div>
 		<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
-				<div class="modal-content" style="width:540px;height:360px;margin-left:200px;">
+				<div class="modal-content" style="width:540px;height:360px;margin-left:150px;margin-top:20px;">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">検索フォーム</h4>
