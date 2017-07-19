@@ -290,44 +290,59 @@ var nextPage = function nextPage() {
 // まだ正解者がいるとき
 var nextQuestion = function nextQuestion() {
     $('.nextQuestion').on('click', function() {
-        questionNumber++;
-        console.log("次は問" + questionNumber);
         // ３問ごとに難易度アップ
         if (isInteger(questionNumber / 3)) {
             questionDifficulty++;
+            console.log('難易度アップ');
         }
-        // 色々初期設定に戻す
-        $('.sec04').css('z-index', '-1');
-        $('.confPage0').css('z-index', '999');
-        // nextPlayerのページ捲る用変数の初期化
-        asd = 0;
-        // 現在の総人数 = 総人数 - 間違えた人
-        playerQuantity = playerQuantity - incorrectGroup.length;
-        if (playerQuantity == 0) {
-            // ゲームオーバーの時の表示と整形
-            $('.gameover').css('z-index', '999');
+        // クリアに飛ぶ
+        if (questionNumber == 10) {
+            $('.gameclear').css('z-index', '999');
             $('.playerList03').empty();
-            var gameoverPlayer = "";
-            console.log($.cookie('playerQuantity'))
+            var gameclearPlayer = "";
             for (var k = 0; k < $.cookie('playerQuantity'); k++) {
-                gameoverPlayer += '<li>';
-                gameoverPlayer += '<p class="image"><img src="' + animalsImage[k] + '"></p>';
-                gameoverPlayer += '<div class="text">';
-                gameoverPlayer += '<p class="playerName">' + animals[k] + '</p>';
-                gameoverPlayer += '</div>';
-                gameoverPlayer += '</li>';
+                gameclearPlayer += '<li>';
+                gameclearPlayer += '<p class="image"><img src="' + animalsImage[k] + '"></p>';
+                gameclearPlayer += '<div class="text">';
+                gameclearPlayer += '<p class="playerName">' + animals[k] + '</p>';
+                gameclearPlayer += '</div>';
+                gameclearPlayer += '</li>';
             }
-            $('.playerList03').append(gameoverPlayer);
+            $('.playerList03').append(gameclearPlayer);
         } else {
-            // 間違えた人を脱落者配列に追加
-            dropGroup = incorrectGroup;
-            // 正解者と不正解者配列を初期化$('.gameover').css('z-index', '999');
-            correctGroup = [];
-            incorrectGroup = [];
-            output();
-            $('.questionNo').text(questionNumber);
+            questionNumber++;
+            console.log("次は問" + questionNumber);
+            // 色々初期設定に戻す
+            $('.sec04').css('z-index', '-1');
+            $('.confPage0').css('z-index', '999');
+            // nextPlayerのページ捲る用変数の初期化
+            asd = 0;
+            // 現在の総人数 = 総人数 - 間違えた人
+            playerQuantity = playerQuantity - incorrectGroup.length;
+            if (playerQuantity == 0) {
+                // ゲームオーバーの時の表示と整形
+                $('.gameover').css('z-index', '999');
+                $('.playerList03').empty();
+                var gameoverPlayer = "";
+                for (var k = 0; k < $.cookie('playerQuantity'); k++) {
+                    gameoverPlayer += '<li>';
+                    gameoverPlayer += '<p class="image"><img src="' + animalsImage[k] + '"></p>';
+                    gameoverPlayer += '<div class="text">';
+                    gameoverPlayer += '<p class="playerName">' + animals[k] + '</p>';
+                    gameoverPlayer += '</div>';
+                    gameoverPlayer += '</li>';
+                }
+                $('.playerList03').append(gameoverPlayer);
+            } else {
+                // 間違えた人を脱落者配列に追加
+                dropGroup = incorrectGroup;
+                // 正解者と不正解者配列を初期化$('.gameover').css('z-index', '999');
+                correctGroup = [];
+                incorrectGroup = [];
+                output();
+                $('.questionNo').text(questionNumber);
+            }
         }
-
     });
 };
 
