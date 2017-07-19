@@ -48,8 +48,7 @@ h1 {
 }
 
 .search {
-  background-color: #FF8000;
-	color: #fff;
+
   float: left;
   position: absolute;
   left: 120px;
@@ -117,4 +116,10 @@ margin-right: 5px;
   width: 100px;
   margin-top: 10px;
   margin-left: 270px;
+}
+.search-button {
+  width: 100px;
+  margin-top: 10px;
+  float: right;
+  margin-right: 10px;
 }
