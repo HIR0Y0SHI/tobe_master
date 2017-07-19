@@ -50,18 +50,6 @@ $app->get('/management/quiz', function($request, $response, $args) {
     $question->render('topquestion.html');
 });
 
-//// クイズ管理画面
-//$app->get('/management/quiz/search/{page}', function($request, $response, $args) {
-//
-//    App\Auth::check($this, $response);
-//    $request->getBody();
-//    echo '<pre>';
-//    echo 'ここはID番号'.$args['page'].'のページです。';
-//    echo '</pre>';
-//    $question = new App\Controllers\MakeQuestionController($this, $response);
-//    //$question->test_render('topquestion.html',$args['page']);
-//});
-
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
@@ -75,6 +63,19 @@ $app->get('/management/quiz/make', function($request, $response, $args) {
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
+// クイズ検索
+$app->get('/management/quiz/{page}', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    $request->getBody();
+
+    echo '<pre>';
+    echo 'ここはID番号'.$args['page'].'のページです。';
+    echo '</pre>';
+
+    //$question = new App\Controllers\MakeQuestionController($this, $response);
+    //$question->searchQuestion('topquestion.html',$params,$args['page']);
+});
 
 
 // エリア作成画面
@@ -127,16 +128,8 @@ $app->post('/management/quiz/search', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $request->getBody();
 
-    /*echo '<pre>';
-    echo 'ここはID番号'.$args['page'].'のページです。';
-    echo '</pre>';
-    echo '<pre>';
-    var_dump($params);
-    echo '</pre>';*/
-
     $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->searchQuestion('topquestion.html',$params,$args['page']);
-    //$question->render('makeQuestion.html');
 });
 
 // クイズ検索
@@ -146,16 +139,12 @@ $app->get('/management/quiz/search/{page}', function($request, $response, $args)
     $params = $request->getParsedBody();
     $request->getBody();
 
-    /*echo '<pre>';
+    echo '<pre>';
     echo 'ここはID番号'.$args['page'].'のページです。';
     echo '</pre>';
-    echo '<pre>';
-    var_dump($params);
-    echo '</pre>';*/
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
     $question->searchQuestion('topquestion.html',$params,$args['page']);
-    //$question->render('makeQuestion.html');
 });
 
 
@@ -210,14 +199,6 @@ $app->post('/management/quiz/update/a', function($request, $response, $args) {
     $params = $request->getParsedBody();
     $question = new App\Controllers\UpdateQuestionController($this, $response);
     $question->updateQuestionA($params, $files);
-
-    /*echo '<pre>';
-    var_dump($params);
-    var_dump("<hr/>");
-    var_dump($files);
-    echo '<pre>';
-    exit;*/
-
 });
 
 // クイズ編集（Bパターン）
@@ -226,15 +207,9 @@ $app->post('/management/quiz/update/b', function($request, $response, $args) {
     App\Auth::check($this, $response);
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
+
     $question = new App\Controllers\UpdateQuestionController($this, $response);
     $question->updateQuestionB($params, $files);
-
-    /*echo '<pre>';
-    var_dump($params);
-    var_dump("<hr/>");
-    var_dump($files);
-    echo '<pre>';
-    exit;*/
 });
 
 // クイズ編集（Cパターン）
@@ -246,22 +221,17 @@ $app->post('/management/quiz/update/c', function($request, $response, $args) {
 
     $question = new App\Controllers\UpdateQuestionController($this, $response);
     $question->updateQuestionC($params, $files);
-
-    /*echo '<pre>';
-    var_dump($params);
-    var_dump("<hr/>");
-    var_dump($files);
-    echo '<pre>';
-    exit;*/
 });
+
+
 
 // エリア追加
 $app->post('/management/area/create', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
-
     $params = $request->getParsedBody();
     $area = new App\Controllers\MakeAreaController($this, $response);
+
     $area->addArea($params);
     $area->render('area.html');
 });
@@ -271,9 +241,9 @@ $app->post('/management/area/create', function($request, $response, $args) {
 $app->post('/management/area/update', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
-
     $params = $request->getParsedBody();
     $area = new App\Controllers\MakeAreaController($this, $response);
+
     $area->updateArea($params);
     $area->render('area.html');
 });
@@ -290,6 +260,23 @@ $app->post('/management/area/delete', function($request, $response, $args) {
     $area->render('area.html');
 });
 
+
+/* ==================================================================================================== */
+// DELETE
+/* ==================================================================================================== */
+
+// クイズ削除
+$app->delete('/management/quiz/delete/{id}', function($request, $response, $args) {
+
+    App\Auth::check($this, $response);
+    echo '<pre>';
+    echo 'ここはID番号'.$args['id'].'のページです。';
+    echo '</pre>';
+
+    $question = new App\Controllers\MakeQuestionController($this, $response);
+    $question->deleteQuestion($args['id']);
+    $question->render('topquestion.html');
+});
 
 
 function dump($args) {

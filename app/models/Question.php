@@ -207,7 +207,7 @@ class Question extends Mapper {
      * @access public
      * @return bool trueなら成功
      */
-    public function search($params,$page) {
+    public function searchQuestion($params,$page) {
 
         echo "<pre>";
         if (!empty($_SESSION['params'])) {
@@ -365,40 +365,46 @@ class Question extends Mapper {
                 $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
                 $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ';
                 $query .= ',correct_answer = :correct_answer ,incorrect_answer = :incorrect_answer ,commentary = :commentary ';
+
                 if ($prams['problem_image_in']) {
                     $query .= ',problem_image_path = :problem_image_path ';
                 }
                 $query .= 'where question_id = :question_id';
                 $sqlflg = 1;
-                //echo "問題ID".$prams[id];
-                //exit;
+
                 break;
             case 2:
                 $query = 'UPDATE  m_questions ';
                 $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
                 $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ,commentary = :commentary ';
+
                 if ($prams['correct_image_in']) {
                     $query .= ',first_image_path = :first_image_path ';
                 }
                 if ($prams['incorrect_image_in']) {
                     $query .= ',second_image_path = :second_image_path';
                 }
+
                 $query .= 'where question_id = :question_id';
                 $sqlflg = 2;
+
                 break;
             case 3:
                 $query = 'UPDATE  m_questions ';
                 $query .= 'SET pattern_id = :pattern_id ,difficulty_id = :difficulty_id ,solution_time_id = :solution_time_id ';
                 $query .= ',beast_house_id = :beast_house_id ,title = :title ,problem_statement = :problem_statement ';
                 $query .= ',correct_answer = :correct_answer ,incorrect_answer = :incorrect_answer ,commentary = :commentary ';
+
                 if ($prams['first_problem_image_in']) {
                     $query .= ',first_image_path = :first_image_path ';
                 }
                 if ($prams['second_problem_image_in']) {
                     $query .= ',second_image_path = :second_image_path';
                 }
+
                 $query .= 'where question_id = :question_id';
                 $sqlflg = 3;
+
                 break;
         }
 
@@ -446,6 +452,30 @@ class Question extends Mapper {
 
             $result = true;
 
+        } catch (PDOException $e) {
+            throw $e;
+        }
+        return $result;
+    }
+
+    /**
+     * 問題を削除する
+     *
+     * @access public
+     * @param string $id 問題id
+     * @return bool trueなら成功
+     */
+    public function deleteQuestion($id) {
+        $result = false;
+        $query = 'Delete from m_questions  ';
+        $query .= ' where question_id = :delete_no';
+        try {
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindParam(':delete_no', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            $result = true;
         } catch (PDOException $e) {
             throw $e;
         }

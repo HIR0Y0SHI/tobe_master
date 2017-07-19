@@ -25,15 +25,11 @@ class MakeQuestionController extends BaseController {
         $bh = null;
 
         session_start(); // セッションを再開
-        /*if (!is_null($params)) {
-            $params = array_filter($params);
-        }*/
 
         if (!empty($params)) {
             $_SESSION['params'] = $params;
         }
 
-        //exit;
         // DBの起動確認
         if (empty($this->app->db)) {
             $message = 'データベースが起動していません。';
@@ -43,11 +39,10 @@ class MakeQuestionController extends BaseController {
         if (empty($message)) {
             try {
                 $question = new Question($this->app->db);
-                $questions = $question->search($params,$page);
+                $questions = $question->searchQuestion($params,$page);
                 $bh = $question->getBeastHouses();
                 $difficulty = $question->getDifficulty();
                 $solution = $question->getSolution();
-                echo "</pre>";
             } catch (PDOException $e) {
                 $message = 'データベースでエラーが発生しました。';
             }
@@ -218,6 +213,36 @@ class MakeQuestionController extends BaseController {
         var_dump($params);
         var_dump($files);
         exit;*/
+    }
+
+    /**
+     * 問題を削除する
+     *
+     * @access public
+     * @param integer $id
+     */
+    public function deleteQuestion($id) {
+
+        $message = null;
+        $bh = null;
+
+        // DBの起動確認
+        if (empty($this->app->db)) {
+            $message = 'データベースが起動していません。';
+        }
+
+        // 問題がなければ
+        if (empty($message)) {
+            try {
+                $question = new Question($this->app->db);
+                $bh = $question->deleteQuestion($id);
+                $message = '削除完了しました。';
+
+            } catch (PDOException $e) {
+                $message = 'データベースでエラーが発生しました。';
+            }
+        }
+
     }
 
     // クイズ管理画面、再表示メソッド

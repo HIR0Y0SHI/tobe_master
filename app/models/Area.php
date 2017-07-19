@@ -39,6 +39,7 @@ class Area extends Mapper {
         return $result;
 
     }
+
     /**
      * エリアを更新する
      *
@@ -62,14 +63,15 @@ class Area extends Mapper {
             throw $e;
         }
         return $result;
-}
-/**
-* エリアを削除する
-*
-* @access public
-* @param string $prams 入力パラメータ
-* @return bool trueなら成功
-*/
+    }
+
+    /**
+    * エリアを削除する
+    *
+    * @access public
+    * @param string $prams 入力パラメータ
+    * @return bool trueなら成功
+    */
     public function delete($prams) {
         $result = false;
         $query = 'Delete from m_beast_house ';
@@ -86,6 +88,7 @@ class Area extends Mapper {
         }
         return $result;
     }
+
     /**
      * 獣舎一覧を取得する
      *
