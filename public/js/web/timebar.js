@@ -8,10 +8,10 @@
 
 
 var timebarCount = $.cookie("second");
-timebarCount = 3;
-console.log("カウント時間" + timebarCount);
+timebarCount = 1;
 timebarCount = timebarCount / 3;
 
+console.log("カウント時間" + timebarCount);
 //青色のタイムバー
 var timeBlueBar = function blueBar() {
     $('.timebar').css('right', '0%');
