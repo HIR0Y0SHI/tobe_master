@@ -1,0 +1,28 @@
+.sec04 {
+	background-color: #007E32!important;
+	
+	& > .inner {
+		height: 100vh;
+		padding: 5% 2%;
+		background-color: rgba(0,0,0,.5);
+
+		div[class$="Player"] {
+			margin-bottom: 8%;
+			h3 {
+				margin-bottom: 10px;
+				color: $white;
+				text-align: center;
+			}
+		}
+		
+		.dropoutPlayer {
+			& > .playerList02 {
+				background-color: #6b6b6b;
+			}
+		}
+		
+		& > .next {
+			width: 100%;
+		}
+	}
+}

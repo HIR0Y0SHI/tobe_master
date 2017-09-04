@@ -1,0 +1,6 @@
+.gameover {
+	background-color: #292929!important;
+	& > h2 {
+		color: $red;
+	}
+}

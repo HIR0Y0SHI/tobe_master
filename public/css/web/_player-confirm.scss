@@ -1,0 +1,19 @@
+.playerConfirm {
+	padding: 5%;
+	
+	h2 {
+		text-align: center;
+	}
+	
+	.playerArea {
+		padding: 12vh 0;
+
+		& > p img {
+			background-color: $skyblue;
+		}
+
+		& > .playerName {
+			margin-top: 4vh;
+		}
+	}
+}

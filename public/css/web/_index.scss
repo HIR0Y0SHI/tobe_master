@@ -1,0 +1,13 @@
+.index {
+	padding: 42% 0;
+	background: url(#{$image_path}bg01.png) no-repeat;
+	background-size: auto 100%;
+	
+	& > h1 {
+		margin-bottom: 10%;
+		height: 20vh;
+		text-indent: -9999px;
+		background: url(#{$image_path}logo01.png) no-repeat;
+		background-size: 100%;
+	}
+}

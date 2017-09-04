@@ -1,0 +1,38 @@
+.playerArea {
+	margin: 3% 0;
+	& > p {
+		text-align: center;
+	}
+	.icon {
+		width: 20%;
+		margin: 0 auto;
+		background-color: $skyblue;
+	}
+	.playerName {
+		margin-top: 1%;
+		@include fz_vw(12);
+	}
+}
+
+.answerArea {
+	width: 94%;
+	margin: 0 auto;
+}
+
+.time {
+	width: 95%;
+	height: 2%;
+	margin: -2% auto 0;
+	border: 3px solid #333;
+	position: relative;
+	overflow: hidden;
+
+	& > .timebar {
+		width: 100%;
+		height: 100%;
+		background-color: $skyblue;
+		position: absolute;
+		top: 0;
+	}
+}
+
