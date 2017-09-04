@@ -50,11 +50,11 @@ class Area extends Mapper {
     public function update($prams) {
         $result = false;
         $query = 'Update m_beast_house set name = :name ';
-        $query .= ' where beast_house_id = :delete_no';
+        $query .= ' where beast_house_id = :update_id';
         try {
             $stmt = $this->db->prepare($query);
 
-            $stmt->bindParam(':delete_no', $prams[beast_house_id], \PDO::PARAM_INT);
+            $stmt->bindParam(':update_id', $prams[beast_house_id], \PDO::PARAM_INT);
             $stmt->bindParam(':name', $prams[area_name], \PDO::PARAM_STR);
             $stmt->execute();
 
@@ -72,14 +72,14 @@ class Area extends Mapper {
     * @param string $prams 入力パラメータ
     * @return bool trueなら成功
     */
-    public function delete($prams) {
+    public function delete($beast_house_id) {
         $result = false;
         $query = 'Delete from m_beast_house ';
-        $query .= ' where beast_house_id = :delete_no';
+        $query .= ' where beast_house_id = :delete_id';
         try {
             $stmt = $this->db->prepare($query);
 
-            $stmt->bindParam(':delete_no', $prams[beast_house_id], \PDO::PARAM_STR);
+            $stmt->bindParam(':delete_id', $beast_house_id, \PDO::PARAM_STR);
             $stmt->execute();
 
             $result = true;

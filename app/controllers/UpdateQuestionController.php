@@ -217,7 +217,7 @@ class UpdateQuestionController extends BaseController {
             try {
                 $question = new Question($this->app->db);
                 $bh = $question->getBeastHouses();
-                $questions = $question->getQuestion();
+                $questions = $question->getQuestion(1);
                 $difficulty = $question->getDifficulty();
                 $solution = $question->getSolution();
 

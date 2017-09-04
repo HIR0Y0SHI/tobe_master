@@ -209,12 +209,9 @@ class Question extends Mapper {
      */
     public function searchQuestion($params,$page) {
 
-        echo "<pre>";
         if (!empty($_SESSION['params'])) {
             $params = $_SESSION['params'];
         }
-        var_dump($_SESSION['params']);
-        echo "</pre>";
 
         $page_start = null;
         if ($page > 1) {
@@ -266,10 +263,11 @@ class Question extends Mapper {
                 // ページネーションの数を取得する
                 $pagination = $row;
             }
+
             $pagination = ceil((int)$pagination['num'] / 10);
             $_SESSION['pagination'] = $pagination;
-            var_dump($_SESSION['pagination']);
             $stmt->execute();
+
             while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
                 $results[] = $row;
             }

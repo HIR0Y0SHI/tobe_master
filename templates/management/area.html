@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="add">
-			<form method="post" action="/tobe_master/management/area/create" name="" id="" enctype="">
+			<form method="post" action="/tobe_master/management/area" name="" id="" enctype="">
 			<input type="text" class="newarea" name="area_name" placeholder="追加するエリア名を入力して下さい" value="" required>
 			<input name="Submit" type="submit" value="エリア追加" class="btn btn-primary">
 		</form>
@@ -68,9 +68,8 @@
 							<h4 class="modal-title" id="myModalLabel">エリア編集</h4>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/update">
+							<form method="post" action="/tobe_master/management/area/{{item['beast_house_id']}}">
 								<p>エリア名を入力して下さい。</p>
-								<input type="hidden" name="beast_house_id" value="{{ item['beast_house_id'] }}">
 								<input type="text" class="form-control" name="area_name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" value="{{ item['name'] }}" required>
 								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
 							</form>
@@ -87,11 +86,11 @@
 							<h4 class="modal-title" id="myModalLabel{{ item['beast_house_id'] }}">エリア削除</h4>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/tobe_master/management/area/delete">
+							<form method="post" action="/tobe_master/management/area/{{item['beast_house_id']}}">
 								<p>削除してよろしいですか？</p>
 								<p>エリアID : {{ item['beast_house_id'] }}</p>
 								<p>エリア名 : {{ item['name'] }}</p>
-								<input type="hidden" class="form-control" name="beast_house_id" id="beast_house_id" value="{{ item['beast_house_id'] }}">
+								<input type="hidden" name="_METHOD" value="DELETE"/>
 								<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
 							</form>
 						</div>

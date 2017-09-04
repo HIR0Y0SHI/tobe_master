@@ -271,9 +271,6 @@ class MakeQuestionController extends BaseController {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
-        echo '<pre>';
-        var_dump($_SESSION['pagination']);
-        echo '</pre>';
 
         $this->app->view->render($this->response, 'management/'.$path, array('message' => $message, 'area' => $bh, 'questions' => $questions, 'difficulty' => $difficulty, 'solution' => $solution, 'pagination' => $_SESSION['pagination']));
     }

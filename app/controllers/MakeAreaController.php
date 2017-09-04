@@ -72,7 +72,7 @@ class MakeAreaController extends BaseController {
      * @access public
      * @param array $params
      */
-    public function deleteArea($params) {
+    public function deleteArea($beast_house_id) {
 
         $message = null;
         $bh = null;
@@ -86,7 +86,7 @@ class MakeAreaController extends BaseController {
         if (empty($message)) {
             try {
                 $question = new Area($this->app->db);
-                $bh = $question->delete($params);
+                $bh = $question->delete($beast_house_id);
 
             } catch (PDOException $e) {
                 $message = 'データベースでエラーが発生しました。';
