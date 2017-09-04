@@ -109,6 +109,7 @@ class ComposerStaticInit65e04ec8fccb64959f1efa1859e04b8e
         'App\\Controllers\\MakeQuestionController' => __DIR__ . '/../..' . '/app/controllers/MakeQuestionController.php',
         'App\\Controllers\\ManagementController' => __DIR__ . '/../..' . '/app/controllers/ManagementController.php',
         'App\\Controllers\\QuestionAPIController' => __DIR__ . '/../..' . '/app/controllers/QuestionAPIController.php',
+        'App\\Controllers\\UpdateQuestionController' => __DIR__ . '/../..' . '/app/controllers/UpdateQuestionController.php',
         'App\\Mapper' => __DIR__ . '/../..' . '/app/Mapper.class.php',
         'App\\Models\\Area' => __DIR__ . '/../..' . '/app/models/Area.php',
         'App\\Models\\Management' => __DIR__ . '/../..' . '/app/models/Management.php',

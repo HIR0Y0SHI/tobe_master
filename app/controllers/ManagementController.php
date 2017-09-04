@@ -48,7 +48,12 @@ class ManagementController extends BaseController {
 
                     // 管理TOPをレンダー
                     // TODO: 遷移先を管理TOP画面に変更する
-                    return $this->app->view->render($this->response, 'management/topquestion.html');
+                    // MEMO: リダイレクトが動かない為ゴリ押し
+                    header('Location: /tobe_master/management/quiz');
+                    exit;
+                    // return $this->app->view->render($this->response, 'management/topquestion.html');
+                    // return $this->response->withStatus(302)->withHeader('Location', '/management/quiz');
+                    // return $this->response->withRedirect('http://www.yahoo.co.jp/');
                 } else {
                     // ユーザーが存在しない
                     $message = 'ユーザー名またはパスワードが間違えています。';

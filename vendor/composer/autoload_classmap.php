@@ -12,6 +12,7 @@ return array(
     'App\\Controllers\\MakeQuestionController' => $baseDir . '/app/controllers/MakeQuestionController.php',
     'App\\Controllers\\ManagementController' => $baseDir . '/app/controllers/ManagementController.php',
     'App\\Controllers\\QuestionAPIController' => $baseDir . '/app/controllers/QuestionAPIController.php',
+    'App\\Controllers\\UpdateQuestionController' => $baseDir . '/app/controllers/UpdateQuestionController.php',
     'App\\Mapper' => $baseDir . '/app/Mapper.class.php',
     'App\\Models\\Area' => $baseDir . '/app/models/Area.php',
     'App\\Models\\Management' => $baseDir . '/app/models/Management.php',
