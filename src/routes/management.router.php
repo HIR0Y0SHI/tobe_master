@@ -81,7 +81,7 @@ $app->get('/management/quiz/{page}', function($request, $response, $args) {
 // エリア作成画面
 $app->get('/management/area', function($request, $response, $args) {
 
-    // App\Auth::check($this, $response);
+    App\Auth::check($this, $response);
 
     $mkc = new App\Controllers\MakeAreaController($this, $response);
     $mkc->render('area.html');
