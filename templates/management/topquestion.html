@@ -88,17 +88,28 @@
 		</div>
 		<table class="table table-hover table-size">
 			<thead>
-				<tr>
-					<th class="num">問題ID</th>
-					<th class="title">タイトル</th>
-					<th class="introduction">問題文</th>
-					<th class="area">獣舎</th>
-					<th class="rename">編集</th>
-					<th class="delete">削除</th>
-				</tr>
+			{% if questions is empty %}
+			<tr>
+				<th class="num"></th>
+			</tr>
+			{% else %}
+			<tr>
+				<th class="num">問題ID</th>
+				<th class="title">タイトル</th>
+				<th class="introduction">問題文</th>
+				<th class="area">獣舎</th>
+				<th class="rename">編集</th>
+				<th class="delete">削除</th>
+			</tr>
+			{% endif %}
 			</thead>
 			<tbody>
-				<!--<form action="" method="get">-->
+
+			{% if questions is empty %}
+			<tr>
+				<th scope="row" class="num">検索した条件に引っかかるクイズは見つかりませんでした。</th>
+			</tr>
+			{% else %}
 				{% for question in questions %}
 				<tr>
 					<th scope="row" class="num">{{ question['question_id'] }}</th>
@@ -109,6 +120,7 @@
 					<td><button type="button" data-toggle="modal" data-target="#questiondelete{{ question['question_id'] }}">削除</button></td>
 				</tr>
 				{% endfor %}
+			{% endif %}
 			</tbody>
 		</table>
 		<!--</form> -->
@@ -346,12 +358,14 @@
 			{% endfor %}
 			<div class="pageing">
 			<ul class="pagination">
-				<li class="disabled"><a href="#">«</a></li>
+				<!--<li class="disabled"><a href="#">«</a></li>-->
 				{% for count in range(low=1, high=pagination, step=1) %}
 				<!--class="active">-->
-				<li><a href="/tobe_master/management/quiz/search/{{count}}">{{count}}</a></li>
+					{% if count > 0 %}
+						<li><a href="/tobe_master/management/quiz/search/{{count}}">{{count}}</a></li>
+					{% endif %}
 				{% endfor %}
-				<li><a href="/tobe_master/management/quiz/search?page=last">»</a></li>
+				<!--<li><a href="/tobe_master/management/quiz/search?page=last">»</a></li>-->
 			</ul>
 		</div>
 		<div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -418,11 +432,11 @@
 									<div class="form-inline">
 										<div class="form-group">
 											<label>
-											<input type="radio" name="commentary" value="1" />：解説あり
-										</label>
+												<input type="radio" name="commentary_search" value="1" />：解説あり
+											</label>
 											<label>
-											<input type="radio" name="commentary" value="2" />：解説なし
-										</label>
+												<input type="radio" name="commentary_search" value="2" />：解説なし
+											</label>
 										</div>
 									</div>
 								</div>

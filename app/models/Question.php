@@ -240,6 +240,16 @@ class Question extends Mapper {
             $count .= ' AND difficulty_id = :difficulty_id ';
         }
 
+        if (!empty($params['commentary_search'])){
+            if ($params['commentary_search'] == 1) {
+                $query .= ' AND commentary is not null ';
+                $count .= ' AND commentary is not null ';
+            }elseif ($params['commentary_search'] == 2) {
+                $query .= ' AND commentary is null ';
+                $count .= ' AND commentary is null ';
+            }
+        }
+
         $query.= ' ORDER BY question_id limit '.$page_start.',10';
 
         try {
@@ -290,6 +300,9 @@ class Question extends Mapper {
     public function registration($prams) {
         $result = false;
         $sqlflg = 1;
+        if(!($prams['commentary'])){
+            $prams['commentary'] = null;
+        }
         switch ($prams[pattern_id]) {
             case 1:
                 $query = 'INSERT INTO  m_questions (pattern_id, difficulty_id ,solution_time_id ,beast_house_id ,title ,problem_statement ,problem_image_path ,correct_answer ,incorrect_answer ,commentary)';
