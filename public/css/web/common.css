@@ -111,9 +111,11 @@ div[class^="game"] > h2 {
   text-align: center;
 }
 .slider li img {
-  width: 70%;
+  width: auto;
+  height: 27vh;
   margin: 0 auto;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.69);
+  object-fit: contain;
 }
 
 /* btnList */
@@ -262,10 +264,13 @@ button.selected {
 
 .answerArea {
   padding-bottom: 2%;
+  letter-spacing: -.4em;
   overflow: hidden;
 }
 .answerArea > li {
   display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
   width: 48%;
 }
 .answerArea > li + li {
