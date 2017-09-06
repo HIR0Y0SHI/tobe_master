@@ -124,7 +124,8 @@
 			</tbody>
 		</table>
 		<!--</form> -->
-		{% set pattern = null %} {% for question in questions %}
+		{% set pattern = null %}
+		{% for question in questions %}
 		<!--モーダルウィンドウを表示するボタンを設置 -->
 		<!--表示されるモーダルウィンドウ -->
 
@@ -345,8 +346,8 @@
 					<div class="modal-body">
 						<form method="post" action="/tobe_master/management/quiz/delete/{{ question['question_id'] }}">
 							<p>削除してよろしいですか？</p>
-							<p>問題ID : {{ item['beast_house_id'] }}</p>
-							<p>エリア名 : {{ item['name'] }}</p>
+							<p>問題ID : {{ question['question_id'] }}</p>
+							<p>エリア名 : {{ question['name'] }}</p>
 							<input type="hidden" name="_METHOD" value="DELETE"/>
 							<input type="submit" class="form-control btn btn-primary deletecheck" name="delete" value="削除">
 						</form>

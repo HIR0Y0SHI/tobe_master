@@ -1,7 +1,7 @@
 $(function(){
   //画像ファイルプレビュー表示(Aパターン）
   $('.input-file_A_1').on('change', 'input[type="file"]', function(e) {
-    var file = e.target.files[0],
+      var file = e.target.files[0],
         reader = new FileReader(),
         $preview = $(".preview_A_1");
         t = this;
@@ -15,11 +15,11 @@ $(function(){
       return function(e) {
         $preview.empty();
         $preview.append($('<img>').attr({
-                  src: e.target.result,
-                  width: "150px",
-                   class: "preview_A_1",
-                  title: file.name
-              }));
+            src: e.target.result,
+            width: "150px",
+            class: "preview_A_1",
+            title: file.name
+        }));
       };
     })(file);
     reader.readAsDataURL(file);

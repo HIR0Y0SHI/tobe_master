@@ -266,7 +266,7 @@ $app->delete('/management/quiz/delete/{question_id}', function($request, $respon
     App\Auth::check($this, $response);
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->deleteQuestion($args['question_id:']);
+    $question->deleteQuestion($args['question_id']);
     $question->render('topquestion.html');
 });
 
