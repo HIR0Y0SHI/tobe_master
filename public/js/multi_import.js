@@ -7,25 +7,21 @@
  */
 
 function importJS() {
-if (! new Array().push) return false;
+    if (!new Array().push) return false;
     var scripts = new Array(
         // JQueryの読み込み
         '/tobe_master/public/js/jquery-3.1.1.min.js',
-        // BootstrapのJS読み込み 
-		'/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js',
-		// TweenMaxの読み込み
-		'/tobe_master/public/js/web/TweenMax.min.js',
-		// TweenMaxの読み込み
-		'/tobe_master/public/js/web/swiper.min.js',
+        // TweenMaxの読み込み
+        '/tobe_master/public/js/web/TweenMax.min.js',
+        // TweenMaxの読み込み
+        '/tobe_master/public/js/web/swiper.min.js',
         // web側のjsの読み込み
         '/tobe_master/public/js/web/jquery.cookie.js',
         '/tobe_master/public/js/web/multi_quiz.js',
         '/tobe_master/public/js/web/timebar.js',
-        '/tobe_master/public/js/web/member_check.js',
-        '/tobe_master/public/js/web/typed.min.js'
     );
-    for (var i=0; i<scripts.length; i++) {
-        document.write('<script type="text/javascript" src="' +scripts[i] +'" charset="utf-8"></script>');
+    for (var i = 0; i < scripts.length; i++) {
+        document.write('<script type="text/javascript" src="' + scripts[i] + '" charset="utf-8"></script>');
     }
 }
 importJS();

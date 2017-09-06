@@ -21,38 +21,42 @@ $(function() {
 // Deferredの宣言
 var dfd = $.Deferred();
 // プレイヤー数
-var playerQuantity = 6;
-$.cookie('playerQuantity', 2, { expires: 1 });
+var playerQuantity = 1;
+playerQuantity = Number($.cookie('playerQuantity'));
+$.removeCookie('playerQuantity');
+
 // 現在の問題番号
 var questionNumber = 1;
 // 現在の問題番号の表示
 $('.questionNo').text(questionNumber);
+// 問題の秒数用変数
+var second = 0;
 
 // 変更していく動物配列の宣言
 var animals = [];
+//動物の画像と名前の配列を宣言
+var fixAnimals = [];
 switch (playerQuantity) {
     case 6:
         animals.unshift('ペンギン');
+        fixAnimals.unshift('ペンギン');
     case 5:
         animals.unshift('ウサギ');
+        fixAnimals.unshift('ウサギ');
     case 4:
         animals.unshift('ゾウ');
+        fixAnimals.unshift('ゾウ');
     case 3:
         animals.unshift('キツネ');
+        fixAnimals.unshift('キツネ');
     case 2:
         animals.unshift('トラ');
+        fixAnimals.unshift('トラ');
     case 1:
         animals.unshift('シロクマ');
+        fixAnimals.unshift('シロクマ');
 }
 
-//動物の画像と名前の配列を宣言
-var fixAnimals = [];
-fixAnimals[0] = 'シロクマ';
-fixAnimals[1] = 'トラ';
-fixAnimals[2] = 'キツネ';
-fixAnimals[3] = 'ゾウ';
-fixAnimals[4] = 'ウサギ';
-fixAnimals[5] = 'ペンギン';
 
 var animalImagePath = "/tobe_master/public/images/web/";
 var animalsImage = [];
@@ -77,11 +81,25 @@ var correctGroup = [];
 var incorrectGroup = [];
 var dropGroup = [];
 
+// swiperのスライドボタンとかの可視、不可視を変更する関数
+var visible = function visible(vis) {
+    $('.sec02 .swiper-container .swiper-slide:last-child').css('visibility', vis);
+    $('.sec02 .swiper-container .swiper-pagination').css('visibility', vis);
+    $('.sec02 .swiper-container .swiper-button-prev').css('visibility', vis);
+    $('.sec02 .swiper-container .swiper-button-next').css('visibility', vis);
+
+    $('.sec03 .swiper-container .swiper-slide:last-child').css('visibility', vis);
+    $('.sec03 .swiper-container .swiper-pagination').css('visibility', vis);
+    $('.sec03 .swiper-container .swiper-button-prev').css('visibility', vis);
+    $('.sec03 .swiper-container .swiper-button-next').css('visibility', vis);
+}
+
 // ajaxでapiから値を受け取り格納する
 var getData = function getData(questionDifficulty) {
     $.ajax({
         type: "GET",
-        url: "/tobe_master/api/question/multiple/" + questionDifficulty,
+        // url: "/tobe_master/api/question/multiple/" + questionDifficulty,
+        url: "/tobe_master/api/question/multiple/3",
         dataType: "json",
         crossdomain: true
     }).done(function(data) {
@@ -106,7 +124,9 @@ var output = function output(data) {
         var incorrect = data.questions[i].incorrect_answer;
         var pattern = data.questions[i].pattern_name;
         var commentary = data.questions[i].commentary;
-        var second = data.questions[i].second;
+        var firstImage = data.questions[i].first_image_path;
+        var secondImage = data.questions[i].second_image_path;
+        second = data.questions[i].second;
 
         var x = "";
         // 表示のために実行しないといけない関数
@@ -116,7 +136,6 @@ var output = function output(data) {
             nextPage();
             answerSelect();
         };
-        var x = "";
         // 問題パターンによってそれぞれの処理
         switch (true) {
             case /A/.test(pattern):
@@ -128,10 +147,12 @@ var output = function output(data) {
                 (r == 1) ? $(".answer01").text(correct) + $(".answer02").text(incorrect): $(".answer02").text(correct) + $(".answer01").text(incorrect);
                 $(".correct").text(correct);
                 $.cookie("correct", correct, { expires: 1 });
+                visible('hidden');
                 break;
             case /B/.test(pattern):
                 x = "B";
                 firstExecution();
+                visible('visible');
                 break;
             case /C/.test(pattern):
                 x = "C";
@@ -140,10 +161,9 @@ var output = function output(data) {
                 // 1か2をランダムで取得
                 var r = Math.round(Math.random() + 1);
                 (r == 1) ? $(".answer01").text(correct) + $(".answer02").text(incorrect): $(".answer02").text(correct) + $(".answer01").text(incorrect);
+                visible('visible');
                 break;
         }
-
-        i++;
 
         // 問題
         $(".questionText").text(question);
@@ -152,8 +172,6 @@ var output = function output(data) {
 
 
         // パターンＢの時の画像表示
-        var firstImage = '';
-        var secondImage = '';
         $('.swiper-slide').empty();
         if (!image) {
             var firstCorrect = correct;
@@ -162,10 +180,12 @@ var output = function output(data) {
                 firstCorrect = "A";
                 secondCorrect = "B";
             }
-            // firstImage = data.questions[i].first_image_path;
-            // secondImage = data.questions[i].second_image_path;
-            firstImage = "20170621101000_2_1.jpg";
-            secondImage = "20170621101000_2_2.jpg";
+            var qweqwe = data.questions[i].title;
+
+            console.log(qweqwe);
+            console.log(question);
+            console.log(firstImage);
+            console.log(secondImage);
 
             var ssFirst = '<img src="/tobe_master/public/images/questions/' + firstImage + '">';
             var ssLast = '<img src="/tobe_master/public/images/questions/' + secondImage + '">';
@@ -179,6 +199,7 @@ var output = function output(data) {
             // 画像を表示
             $('.swiper-slide').append('<img src="/tobe_master/public/images/questions/' + image + '">');
         }
+        i++;
     }
 };
 
@@ -191,7 +212,8 @@ var repeat = function repeat() {
             $('.confPage' + i + ' > .outputQuestion').on('click', function() {
                 $('.confPage' + n).css("z-index", "-1");
                 $('.secPage' + n).css('z-index', "999");
-                timeBlueBar();
+                timeBlueBar(Number(second) / 3);
+                console.log(second);
             });
         })(i);
     }
@@ -310,13 +332,7 @@ var disp = function disp(x) {
             a += '<li class="swiper-slide">';
             a += '<img src="../../public/images/web/dummy.png" alt="">';
             a += '</li>';
-            a += '<li class="swiper-slide">';
-            a += '<img src="../../public/images/web/dummy.png" alt="">';
-            a += '</li>';
             a += '</ul>';
-            a += '<div class="swiper-pagination"></div>';
-            a += '<div class="swiper-button-prev"></div>';
-            a += '<div class="swiper-button-next"></div>';
             a += '</div>';
 
             a += '<div class="questionArea">';
@@ -597,9 +613,6 @@ nextPlayer = function nextPlayer() {
 $.removeCookie("data");
 $.removeCookie("correct");
 $.removeCookie("second");
-$.removeCookie("correctGroup");
-$.removeCookie("incorrectGroup");
-$.removeCookie("dropGroup");
 
 // デザインとかその他もろもろ最初の方に実行したいやつら
 $(".contentIn > div").css("z-index", "-1");
