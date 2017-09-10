@@ -36,6 +36,7 @@ class MakeAreaController extends BaseController {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
+        return $message;
     }
 
     /**
@@ -63,6 +64,7 @@ class MakeAreaController extends BaseController {
                 $message = 'データベースでエラーが発生しました。';
             }
         }
+        return $message;
 
     }
 
@@ -93,12 +95,21 @@ class MakeAreaController extends BaseController {
             }
         }
 
+        return $message;
+
     }
 
     // エリア管理画面、再表示メソッド
-    public function render($path) {
+    public function render($path,$mes) {
+
         $message = null;
         $bh = null;
+
+        if ($mes != ""){
+            $message = $mes;
+        }else{
+            $message = null;
+        }
 
         // DBの起動確認
         if (empty($this->app->db)) {

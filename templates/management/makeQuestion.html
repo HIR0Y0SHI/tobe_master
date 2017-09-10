@@ -41,11 +41,11 @@
 
 
         {# エラーメッセージ #}
-			  {% if message is not null %}
+        {% if message is not null %}
         <div class="alert alert-danger" role="alert">
           <strong>{{message}}</strong>
         </div>
-			  {% endif %}
+        {% endif %}
         <ul class="tab-contents">
 <!-- 確認用
           <p>サンプルテキストエリアのrequired属性の値：<span id="sampleOutput"></span></p>

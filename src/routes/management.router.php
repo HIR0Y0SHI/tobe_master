@@ -43,23 +43,23 @@ $app->get('/management', function($request, $response, $args) {
 
 // クイズ管理画面
 $app->get('/management/quiz', function($request, $response, $args) {
-
+    $message = "";
     App\Auth::check($this, $response);
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->render('topquestion.html');
+    $question->render('topquestion.html',$message);
 });
 
 
 // クイズ作成画面
 $app->get('/management/quiz/make', function($request, $response, $args) {
-
+    $message = "";
     App\Auth::check($this, $response);
     //$url = $this->router->pathFor('login');
     // return $response->withStatus(302)->withHeader('Location', $url);
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->render('makeQuestion.html');
+    $question->render('makeQuestion.html',$message);
     // return $this->view->render($response, 'management/makeQuestion.html', array('message' => $message));
 });
 
@@ -83,8 +83,9 @@ $app->get('/management/area', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
 
+    $message = null;
     $mkc = new App\Controllers\MakeAreaController($this, $response);
-    $mkc->render('area.html');
+    $mkc->render('area.html',$message);
 });
 
 
@@ -154,8 +155,9 @@ $app->post('/management/quiz/a', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->addQuestionA($params, $files);
-    $question->render('makeQuestion.html');
+    $message = $question->addQuestionA($params, $files);
+    $question->render('makeQuestion.html',$message);
+
 });
 
 
@@ -168,8 +170,8 @@ $app->post('/management/quiz/b', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->addQuestionB($params, $files);
-    $question->render('makeQuestion.html');
+    $message = $question->addQuestionB($params, $files);
+    $question->render('makeQuestion.html',$message);
 });
 
 
@@ -182,8 +184,8 @@ $app->post('/management/quiz/c', function($request, $response, $args) {
     $files = $request->getUploadedFiles();
     $params = $request->getParsedBody();
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->addQuestionC($params, $files);
-    $question->render('makeQuestion.html');
+    $message = $question->addQuestionC($params, $files);
+    $question->render('makeQuestion.html',$message);
 });
 
 
@@ -236,10 +238,11 @@ $app->post('/management/area', function($request, $response, $args) {
 
     App\Auth::check($this, $response);
 
+    $message = null;
     $params = $request->getParsedBody();
     $area = new App\Controllers\MakeAreaController($this, $response);
-    $area->addArea($params);
-    $area->render('area.html');
+    $message = $area->addArea($params);
+    $area->render('area.html',$message);
 });
 
 /* ==================================================================================================== */
@@ -251,9 +254,10 @@ $app->put('/management/area/{beast_house_id}', function($request, $response, $ar
 
     App\Auth::check($this, $response);
 
+    $params = $request->getParsedBody();
     $area = new App\Controllers\MakeAreaController($this, $response);
-    $area->updateArea($args['beast_house_id']);
-    $area->render('area.html');
+    $message = $area->updateArea($params);
+    $area->render('area.html',$message);
 });
 
 /* ==================================================================================================== */
@@ -266,8 +270,8 @@ $app->delete('/management/quiz/delete/{question_id}', function($request, $respon
     App\Auth::check($this, $response);
 
     $question = new App\Controllers\MakeQuestionController($this, $response);
-    $question->deleteQuestion($args['question_id']);
-    $question->render('topquestion.html');
+    $message = $question->deleteQuestion($args['question_id']);
+    $question->render('topquestion.html',$message);
 });
 
 // エリア削除
@@ -277,8 +281,8 @@ $app->delete('/management/area/{beast_house_id}', function($request, $response, 
 
 
     $area = new App\Controllers\MakeAreaController($this, $response);
-    $area->deleteArea($args['beast_house_id']);
-    $area->render('area.html');
+    $message = $area->deleteArea($args['beast_house_id']);
+    $area->render('area.html',$message);
 });
 
 

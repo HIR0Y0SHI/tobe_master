@@ -35,6 +35,11 @@
 		</div>
 
 	</div>
+	{% if message is not null %}
+	<div class="alert alert-danger" role="alert">
+		<strong>{{message}}</strong>
+	</div>
+	{% endif %}
 	<table class="table table-hover table-size">
 		<thead>
 			<tr>
@@ -71,6 +76,8 @@
 							<form method="post" action="/tobe_master/management/area/{{item['beast_house_id']}}">
 								<p>エリア名を入力して下さい。</p>
 								<input type="text" class="form-control" name="area_name" id="area{{ item['beast_house_id'] }}" placeholder="エリア名を入力して下さい" value="{{ item['name'] }}" required>
+								<input type="hidden" name="beast_house_id" value="{{item['beast_house_id']}}"/>
+								<input type="hidden" name="_METHOD" value="PUT"/>
 								<input type="submit" class="form-control btn btn-primary update" name="update" value="変更">
 							</form>
 						</div>
