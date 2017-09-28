@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+	テストだよ
+ -->
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="/tobe_master/public/css/web/import_multi.css">
+	<title>テスト</title>
+</head>
+<body>
+	
+	<div id="test">
+		
+		<!--プレイ者を確認-->
+		<div class="box1" style="width:100%;height:100%;background-color:beige;z-index:10">
+		  <h1>複数人プレイで決定押して飛んでくるページ<br>kuwanoですか？</h1>
+		  <button class="next">kuwanoです</button>
+		</div>
+
+		<!--問題表示-->
+		<div class="box2" style="width:100%;height:100%;background-color:white;z-index:9">
+			<h1 id="questionText"></h1>
+			<!--残り時間を表示する-->
+			<div id="time"><div id="timebar"></div></div>
+			<button type="button" id="correct" value=""></button>
+			<button type="button" id="incorrect" value=""></button>
+		</div>
+
+	</div>
+
+	<!--答えを表示-->
+	<div id="box3" style="width:100%;height:100%;background-color:deeppink;z-index:8">
+		<h1 id="answer"></h1>
+	</div>
+
+	<!--正解者表示-->
+	<div id="box4" style="width:100%;height:100%;background-color:cadetblue;z-index:7">
+		<h1>kuwano正解<br>ひろよしout</h1>
+	</div>
+
+<script src="/tobe_master/public/js/multi_import.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

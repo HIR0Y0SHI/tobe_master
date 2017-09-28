@@ -1,3 +1,7 @@
 # cacheを無視
 /cache/*
 !/cache/.gitkeep
+
+# PHPStorm対策
+/.idea/
+/.idea/*

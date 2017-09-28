@@ -1,0 +1,13 @@
+.gameclear {
+	& > h2 {
+		color: $skyblue;
+	}
+	.playerList03 {
+		& > li > .text {
+			color: $black;
+		}
+	}
+	.btnList03 .btnStyle04 {
+		background-color: $skyblue;
+	}
+}

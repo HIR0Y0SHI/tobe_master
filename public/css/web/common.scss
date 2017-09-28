@@ -1,0 +1,334 @@
+@charset "utf-8";
+@import '_var';
+@import '_mixin';
+
+/* 共通クラス */
+.fL { float: left!important; }
+.fR { float: right!important; }
+.clearfix { @include clearfix(); }
+
+.tL { text-align: left!important; }
+.tC { text-align: center!important; }
+.tR { text-align: right!important; }
+
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	color: $black;
+	@include fz_vw(14);
+	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+	font-weight: normal;
+}
+
+.contentIn {
+	position: relative;
+	background-color: $white;
+	
+	& > div,
+	#quizRepeat > div,
+	div[class^="sec"] {
+		width: 100%;
+		height: 100vh;
+		background-color: $white;
+		position: absolute;
+	}
+}
+
+div[class^="sec"] {
+	background: url(#{$image_path}bg01.png) no-repeat;
+	background-size: 100%;
+}
+div[class^="game"] {
+	padding: 10% 2% 5%;
+
+	& > h2 {
+		margin-bottom: 10%;
+		text-align: center;
+		@include fz_vw(36);
+		font-weight: bold;
+	}
+}
+
+.questionArea,
+.textArea {
+	width: 100%;
+	height: auto;
+	min-height: 138px;
+	color: $white;
+	background: url(#{$image_path}img_board01.png) no-repeat;
+	background-size: 100%;
+	position: relative;
+	
+	&:before {
+		content: '';
+		display: block;
+		padding-top: 44.2%;
+	}
+	
+	& > .inner {
+		width: 100%;
+		height: 100%;
+		padding: 2% 8% 0;
+		@include absPosition ($top: 0, $right: auto, $bottom: auto, $left: 0);
+		
+		& > .tC {
+			padding: 10px 0;
+		}
+	}
+}
+.slider {
+	margin: 9% 0 6%;
+
+	& li {
+		width: 100%;
+		text-align: center;
+
+		img {
+			width: auto;
+			height: 27vh;
+			margin: 0 auto;
+			box-shadow: 0 3px 5px 0 rgba(0,0,0,0.69);
+			object-fit: contain;
+		}
+	}
+}
+
+/* btnList */
+.btnList01 {
+	padding: 0 5%;
+	& > li + li {
+		margin-top: 5%;
+	}
+}
+.btnList02 {
+	margin-bottom: 4%;
+	overflow: hidden;
+	& > li {
+		width: 48%;
+		float: left;
+		
+		& + li {
+			margin-left: 4%;
+		}
+	}
+}
+.btnList03 {
+	margin-top: 6%;
+	& > li + li {
+		margin-top: 3%;
+	}
+}
+
+/* btnStyle */
+[class*="btnStyle"] {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	color: $white;
+	text-align: center;
+	@include fz_vw(18);
+	font-weight: bold;
+	border: none;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	outline: none;
+}
+button.selected {
+	border: 2px solid #333;
+}
+.btnStyle01 {
+	letter-spacing: -.04em;
+	background: url(#{$image_path}btn01.png) no-repeat;
+	background-size: cover;
+}
+.btnStyle02 {
+	letter-spacing: -.04em;
+	background: url(#{$image_path}btn02.png) no-repeat;
+	background-size: cover;
+}
+.btnStyle03 {
+	padding: 2% 0;
+	@include fz_vw(14);
+	font-weight: normal;
+	border: solid 1px $gray02;
+	border-radius: 5px;
+	background-color: $skyblue;
+}
+.btnStyle04 {
+	padding: 2% 0;
+	@include fz_vw(24);
+	border: solid 1px $gray;
+	border-radius: 5px;
+	background-color: $red;
+}
+.btnStyle05 {
+	@extend .btnStyle04;
+	background-color: $gray03;
+}
+.btnStyle06 {
+	padding: 3% 0;
+	@include fz_vw(28);
+	border: solid 3px $black;
+	border-radius: 5px;
+	@include gradient(#F0858A, #F5AA9A, vertical);
+}
+.btnStyle07 {
+	@extend .btnStyle06;
+	@include gradient(#51D0FF, #8CF3FF, vertical);
+}
+.btnStyle08 {
+	padding: 3% 0 3% 15%;
+	color: $black;
+	font-weight: normal;
+	border: solid 1px $black;
+	border-radius: 5px;
+	background-color: $white;
+	position: relative;
+	
+	&:before {
+		content: '';
+		display: block;
+		width: 15%;
+		height: 60%;
+		margin: auto;
+	}
+	&.plus:before {
+		@include absPosition ($top: 0, $right: auto, $bottom: 0, $left: 17%);
+		background: url(#{$image_path}ico_plus01.png) no-repeat;
+		background-size: 100%;
+	}
+	&.minus:before {
+		@include absPosition ($top: 0, $right: auto, $bottom: 0, $left: 17%);
+		background: url(#{$image_path}ico_minus01.png) no-repeat;
+		background-size: 100%;
+	}
+}
+
+.answerArea {
+	padding-bottom: 2%;
+	letter-spacing: -.4em;
+	overflow: hidden;
+
+	& > li {
+		@include inlineBlock;
+		width: 48%;
+
+		& + li {
+			margin-left: 4%;
+		}
+	}
+}
+.answerBtn {
+	line-height: 29.1vw;
+	white-space: nowrap;
+	text-shadow: 0 3px 6px rgba(0,0,0,0.6);
+}
+div.next {
+	width: 90%;
+	margin: 0 auto;
+}
+
+/* playerList */
+.playerList01 {
+	height: 76vh;
+	margin-bottom: 8%;
+	overflow: hidden;
+	& > li {
+		width: 48%;
+		height: 24vh;
+		padding: 0.8% 0;
+		text-align: center;
+		border: solid 1px $black;
+		float: left;
+		position: relative;
+
+		&:nth-child(2n) {
+			margin-left: 4%;
+		}
+		&:nth-child(n+3) {
+			margin-top: 4%;
+		}
+		& > img {
+			width: auto;
+			height: 23vh;
+		}
+		& > span {
+			display: block;
+			width: 100%;
+			padding: 5px 0;
+			color: $white;
+			text-align: center;
+			text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+			@include fz_vw(12);
+			@include absPosition ($top: auto, $right: auto, $bottom: 0, $left: 0);
+			background-color: rgba(0,0,0,0.4);
+		}
+	}
+}
+.playerList02 {
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	width: 100%;
+	height: 20vh;
+	padding: 2%;
+	text-align: center;
+	border-radius: 5px;
+	background-color: $white;
+	
+	& > li {
+		-webkit-flex-grow: 1;
+		flex-grow: 1;
+		
+		& > img {
+			width: auto;
+			max-width: 100%;
+		}
+	}
+}
+.playerList03 {
+	height: 58vh;
+	letter-spacing: -.4em;
+	overflow: hidden;
+	
+	& > li {
+		@include inlineBlock;
+		width: 50%;
+		letter-spacing: -.4em;
+		
+		&:nth-child(n+3) {
+			margin-top: 4%;
+		}
+		
+		& > * {
+			@include inlineBlock;
+			width: 50%;
+			
+			&.image img {
+				width: 100%;
+			}
+			
+			&.text {
+				color: $white;
+				@include fz_vw(12);
+
+				& > .master {
+					margin-bottom: 10px;
+					color: $yellow;
+					font-weight: bold;
+				}
+				
+				& > .playerName {
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+}

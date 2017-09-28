@@ -1,0 +1,209 @@
+@charset "utf-8";
+
+body {
+  background: #fff;
+	font-family: 'Roboto', sans-serif;
+	color:#333;
+	line-height: 22px;
+}
+h1 {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.link {
+  float: right;
+  margin-top: -60px;
+}
+.text-center {
+  margin-top: 20px;
+}
+
+<!--- button --->
+.button {
+	display: inline-block;
+	width: 200px;
+	height: 54px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 54px;
+	outline: none;
+}
+.button::before,
+.button::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+.button,
+.button::before,
+.button::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+.button {
+	background-color: #FF8000;
+	color: #fff;
+}
+.button:hover {
+	background-color: #FE9A2E;
+  text-decoration: none;
+}
+
+.logout {
+	background-color: #808080;
+	color: #fff;
+}
+.logout:hover {
+	background-color: #C0C0C0;
+  text-decoration: none;
+}
+
+/* RESET */
+
+ul, li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-right: 1px solid #fff;
+}
+
+.tab-title {
+  overflow: hidden;
+  position: relative;
+  width: 75%;
+  margin: auto;
+}
+.tab-title:before, .tab-title:after {
+  display: table;
+  content: '';
+}
+.tab-title:after {
+  clear: both;
+}
+.tab-title li {
+  position: relative;
+  float: left;
+  width: 33.3%;
+  padding: .8em 0;
+  color: #fff;
+  text-align: center;
+  background-color: #FF8000;
+  cursor: pointer;
+  overflow: hidden;
+}
+.tab-title-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 33.3%;
+  height: 2px;
+  background-color: #000;
+  -webkit-transition: .45s ease-in-out;
+  -moz-transition: .45s ease-in-out;
+  -o-transition: .45s ease-in-out;
+  transition: .45s ease-in-out;
+}
+.tab-contents {
+  width: 75%;
+  margin: auto;
+}
+.tab-contents li {
+  display: none;
+  padding: 1.4em;
+  background-color: #fff;
+}
+.tab-contents li.active {
+  display: block;
+}
+
+/* 波紋 */
+.ripple {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+.ripple-animation {
+  -webkit-animation: ripple .6s linear;
+  -moz-animation: ripple .6s linear;
+  animation: ripple .6s linear;
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+  }
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+  }
+}
+.form-inline .form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
+.control-label {
+    color:#333333;
+}
+
+.answer {
+	border: 1px solid #B2B2B2;
+	border-radius:5px;
+}
+
+.answerOr {
+	margin-left: 50px;
+	font-size: 20px;
+}
+
+.answer_file_nm {
+	float: left;
+}
+
+article {
+  display: none;
+}
+
+article.selected {
+  display: block;
+}
+.row_quiz {
+  position: relative;
+}
+.form_box {
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+}
+.upload {
+  padding: unset;
+}
+.correct {
+  background-color: #A9E2F3;
+}
+.incorrect {
+  background-color: #F6CECE;
+}
+.arearesize {
+    resize: none;
+}

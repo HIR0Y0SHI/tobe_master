@@ -1,0 +1,393 @@
+@charset "UTF-8";
+/* 共通クラス */
+.fL {
+  float: left !important;
+}
+
+.fR {
+  float: right !important;
+}
+
+.clearfix {
+  *zoom: 1;
+  clear: both;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.tL {
+  text-align: left !important;
+}
+
+.tC {
+  text-align: center !important;
+}
+
+.tR {
+  text-align: right !important;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  color: #000;
+  font-size: 14px;
+  font-size: 4.375vw;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+  font-weight: normal;
+}
+
+.contentIn {
+  position: relative;
+  background-color: #fff;
+}
+.contentIn > div,
+.contentIn #quizRepeat > div,
+.contentIn div[class^="sec"] {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  position: absolute;
+}
+
+div[class^="sec"] {
+  background: url(/tobe_master/public/images/web/bg01.png) no-repeat;
+  background-size: 100%;
+}
+
+div[class^="game"] {
+  padding: 10% 2% 5%;
+}
+div[class^="game"] > h2 {
+  margin-bottom: 10%;
+  text-align: center;
+  font-size: 36px;
+  font-size: 11.25vw;
+  font-weight: bold;
+}
+
+.questionArea,
+.textArea {
+  width: 100%;
+  height: auto;
+  min-height: 138px;
+  color: #fff;
+  background: url(/tobe_master/public/images/web/img_board01.png) no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.questionArea:before,
+.textArea:before {
+  content: '';
+  display: block;
+  padding-top: 44.2%;
+}
+.questionArea > .inner,
+.textArea > .inner {
+  width: 100%;
+  height: 100%;
+  padding: 2% 8% 0;
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+}
+.questionArea > .inner > .tC,
+.textArea > .inner > .tC {
+  padding: 10px 0;
+}
+
+.slider {
+  margin: 9% 0 6%;
+}
+.slider li {
+  width: 100%;
+  text-align: center;
+}
+.slider li img {
+  width: auto;
+  height: 27vh;
+  margin: 0 auto;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.69);
+  object-fit: contain;
+}
+
+/* btnList */
+.btnList01 {
+  padding: 0 5%;
+}
+.btnList01 > li + li {
+  margin-top: 5%;
+}
+
+.btnList02 {
+  margin-bottom: 4%;
+  overflow: hidden;
+}
+.btnList02 > li {
+  width: 48%;
+  float: left;
+}
+.btnList02 > li + li {
+  margin-left: 4%;
+}
+
+.btnList03 {
+  margin-top: 6%;
+}
+.btnList03 > li + li {
+  margin-top: 3%;
+}
+
+/* btnStyle */
+[class*="btnStyle"] {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-size: 5.625vw;
+  font-weight: bold;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  outline: none;
+}
+
+button.selected {
+  border: 2px solid #333;
+}
+
+.btnStyle01 {
+  letter-spacing: -.04em;
+  background: url(/tobe_master/public/images/web/btn01.png) no-repeat;
+  background-size: cover;
+}
+
+.btnStyle02 {
+  letter-spacing: -.04em;
+  background: url(/tobe_master/public/images/web/btn02.png) no-repeat;
+  background-size: cover;
+}
+
+.btnStyle03 {
+  padding: 2% 0;
+  font-size: 14px;
+  font-size: 4.375vw;
+  font-weight: normal;
+  border: solid 1px #484A4B;
+  border-radius: 5px;
+  background-color: #60D3FF;
+}
+
+.btnStyle04, .btnStyle05 {
+  padding: 2% 0;
+  font-size: 24px;
+  font-size: 7.5vw;
+  border: solid 1px #95989A;
+  border-radius: 5px;
+  background-color: #FF4d4d;
+}
+
+.btnStyle05 {
+  background-color: #5d5d5d;
+}
+
+.btnStyle06, .btnStyle07 {
+  padding: 3% 0;
+  font-size: 28px;
+  font-size: 8.75vw;
+  border: solid 3px #000;
+  border-radius: 5px;
+  background: #F0858A;
+  background: -moz-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0858A), color-stop(100%, #F5AA9A));
+  background: -webkit-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -o-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: -ms-linear-gradient(top, #F0858A 0%, #F5AA9A 100%);
+  background: linear-gradient(to bottom, #F0858A 0%, #F5AA9A 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
+}
+
+.btnStyle07 {
+  background: #51D0FF;
+  background: -moz-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #51D0FF), color-stop(100%, #8CF3FF));
+  background: -webkit-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -o-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: -ms-linear-gradient(top, #51D0FF 0%, #8CF3FF 100%);
+  background: linear-gradient(to bottom, #51D0FF 0%, #8CF3FF 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 );
+}
+
+.btnStyle08 {
+  padding: 3% 0 3% 15%;
+  color: #000;
+  font-weight: normal;
+  border: solid 1px #000;
+  border-radius: 5px;
+  background-color: #fff;
+  position: relative;
+}
+.btnStyle08:before {
+  content: '';
+  display: block;
+  width: 15%;
+  height: 60%;
+  margin: auto;
+}
+.btnStyle08.plus:before {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 17%;
+  background: url(/tobe_master/public/images/web/ico_plus01.png) no-repeat;
+  background-size: 100%;
+}
+.btnStyle08.minus:before {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: 0;
+  left: 17%;
+  background: url(/tobe_master/public/images/web/ico_minus01.png) no-repeat;
+  background-size: 100%;
+}
+
+.answerArea {
+  padding-bottom: 2%;
+  letter-spacing: -.4em;
+  overflow: hidden;
+}
+.answerArea > li {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
+  width: 48%;
+}
+.answerArea > li + li {
+  margin-left: 4%;
+}
+
+.answerBtn {
+  line-height: 29.1vw;
+  white-space: nowrap;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+div.next {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* playerList */
+.playerList01 {
+  height: 76vh;
+  margin-bottom: 8%;
+  overflow: hidden;
+}
+.playerList01 > li {
+  width: 48%;
+  height: 24vh;
+  padding: 0.8% 0;
+  text-align: center;
+  border: solid 1px #000;
+  float: left;
+  position: relative;
+}
+.playerList01 > li:nth-child(2n) {
+  margin-left: 4%;
+}
+.playerList01 > li:nth-child(n+3) {
+  margin-top: 4%;
+}
+.playerList01 > li > img {
+  width: auto;
+  height: 23vh;
+}
+.playerList01 > li > span {
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  font-size: 3.75vw;
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.playerList02 {
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 20vh;
+  padding: 2%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.playerList02 > li {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+.playerList02 > li > img {
+  width: auto;
+  max-width: 100%;
+}
+
+.playerList03 {
+  height: 58vh;
+  letter-spacing: -.4em;
+  overflow: hidden;
+}
+.playerList03 > li {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
+  width: 50%;
+  letter-spacing: -.4em;
+}
+.playerList03 > li:nth-child(n+3) {
+  margin-top: 4%;
+}
+.playerList03 > li > * {
+  display: inline-block;
+  letter-spacing: normal;
+  vertical-align: middle;
+  width: 50%;
+}
+.playerList03 > li > *.image img {
+  width: 100%;
+}
+.playerList03 > li > *.text {
+  color: #fff;
+  font-size: 12px;
+  font-size: 3.75vw;
+}
+.playerList03 > li > *.text > .master {
+  margin-bottom: 10px;
+  color: #FFCF33;
+  font-weight: bold;
+}
+.playerList03 > li > *.text > .playerName {
+  margin-bottom: 10px;
+}

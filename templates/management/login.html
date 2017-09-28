@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ログイン画面</title>
+	<link rel="stylesheet" href="/tobe_master/public/css/management/login.css"/>
+	<!-- BootstrapのCSS読み込み -->
+	<link href="/tobe_master/public/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- jQuery読み込み -->
+	<script src="/tobe_master/public/js/jquery-3.1.1.min.js"></script>
+	<!-- BootstrapのJS読み込み -->
+	<script src="/tobe_master/public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="card card-container">
+			<img id="profile-img" class="profile-img-card" src="/tobe_master/public/images/management/user.png" />
+			<p id="profile-name" class="profile-name-card"></p>
+
+			{# エラーメッセージ #}
+			{% if message is not null %}
+			{{message}}
+			{% endif %}
+			<form class="form-signin" action="/tobe_master/login" method="post">
+				<span id="reauth-email" class="reauth-email"></span>
+				<input type="text" name="inputId" id="inputId" class="form-control" placeholder="User ID" required autofocus>
+				<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+
+				<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ログイン</button>
+			</form><!-- /form -->
+		</div><!-- /card-container -->
+	</div><!-- /container -->
+</body>
+</html>

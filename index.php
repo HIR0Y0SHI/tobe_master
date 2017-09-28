@@ -9,27 +9,21 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/app/bootstrap.php';
 
-@session_start();
+// ini_set('session.gc_probability', 1);
+// ini_set('session.gc_divisor', 1);
+// ini_set('session.gc_maxlifetime', 24*60*60);
+// @session_start();
+
 
 // Instantiate the app
 $settings = require __DIR__ . '/src/settings.php';
 $app = new \Slim\App($settings);
 
-// Set up dependencies
-require __DIR__ . '/src/dependencies.php';
 
-// Register middleware
-require __DIR__ . '/src/middleware.php';
-
-// Register routes
-require __DIR__ . '/src/routes.php';
-
-// Use Smarty
-// $app = new \Slim\Slim(array(
-//     'view' => new \Slim\Views\Smarty()
-// ));
+// Register src
+require_once __DIR__ . '/src/bootstrap.php';
 
 // Run app
 $app->run();

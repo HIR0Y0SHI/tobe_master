@@ -1,0 +1,8 @@
+.commentaryArea {
+	padding: 3% 5%;
+	& > p {
+		height: 24vh;
+		@include fz_vw(14);
+		line-height: 1.5;
+	}
+}
